@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HAM:LIVE – Hamm in Echtzeit</title>
+  </head>
+  <body>
+    <div id="start" role="status" aria-live="polite">
+      <div class="start-inhalt">
+        <div class="schachbalken" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        <svg class="skyline" viewBox="0 0 360 72" aria-hidden="true">
+          <!-- Förderturm Zeche Radbod -->
+          <path d="M14 72 L30 18 L46 72 M20 52 H40 M24 36 H36" fill="none" stroke="#fff" stroke-width="3"/>
+          <circle cx="30" cy="18" r="7" fill="none" stroke="#fff" stroke-width="3"/>
+          <!-- Pauluskirche -->
+          <path d="M80 72 V30 L88 6 L96 30 V72 Z M96 72 V44 H126 V72 Z" fill="#fff"/>
+          <!-- Gradierwerk -->
+          <path d="M140 72 V54 H200 V72 Z" fill="#fff"/>
+          <path d="M146 54 V72 M158 54 V72 M170 54 V72 M182 54 V72 M194 54 V72" stroke="#005468" stroke-width="2"/>
+          <!-- Glaselefant -->
+          <path d="M214 72 V48 H222 V36 H262 V44 H270 V60 H266 V50 H262 V72 H252 V58 H232 V72 Z" fill="#fff"/>
+          <path d="M240 36 V26 L246 20 L252 26 V36" fill="#95c11e"/>
+          <!-- Tempel (Gopuram) -->
+          <path d="M290 72 V60 H294 V50 H298 V40 H302 V30 H306 V22 H318 V30 H322 V40 H326 V50 H330 V60 H334 V72 Z" fill="#fff"/>
+          <path d="M309 22 V14 H315 V22" fill="#fff"/>
+        </svg>
+        <h1>HAM:LIVE</h1>
+        <p>Hamm in Echtzeit</p>
+        <ul id="start-schritte">
+          <li data-s="karte">Karte</li>
+          <li data-s="fahrplan">Busse und Bahnen</li>
+          <li data-s="gebaeude">42 000 Gebäude</li>
+          <li data-s="live">Live-Daten</li>
+        </ul>
+      </div>
+    </div>
+    <main id="karte"></main>
+
+    <header id="kopf">
+      <button id="marktplatz" class="marke" title="Zur Startseite">HAM<span>:</span>LIVE</button>
+      <div class="suchfeld">
+        <input id="suche" type="search" placeholder="Ort, Straße, Adresse oder Haltestelle" autocomplete="off" />
+        <ul id="treffer" hidden></ul>
+      </div>
+      <nav id="tabs" aria-label="Themen"></nav>
+      <div class="chips">
+        <span id="wetter" class="chip" hidden></span>
+        <span id="warn" class="chip" hidden></span>
+        <span id="uhr" class="chip leise"></span>
+      </div>
+      <div id="radio" class="radio"></div>
+      <button id="menueknopf" aria-label="Menü" aria-expanded="false"><i></i><i></i><i></i><span id="seitentitel"></span></button>
+    </header>
+    <nav id="menue" hidden aria-label="Alle Seiten"></nav>
+    <div id="ebenenleiste" hidden></div>
+
+    <section id="tafel" hidden></section>
+    <aside id="panel" class="panel"></aside>
+    <section id="blatt" class="panel" hidden></section>
+    <section id="zeitleiste" class="panel" hidden></section>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

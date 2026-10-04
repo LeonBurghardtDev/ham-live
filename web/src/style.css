@@ -1,0 +1,717 @@
+/* HAM:LIVE – ruhige, helle Kartenoberfläche in den Farben der Stadt Hamm (Auftritt hamm.de):
+   Petrol #005468 für Marke und Auswahl, Hamm-Grün #95c11e als Akzent, Grau #505050, Schrift Fira Sans, Überschriften Poppins.
+   Eine Kopfzeile mit Suche und Tabs, ein Panel links mit dem Inhalt des Tabs, ein Detailblatt rechts nur bei Auswahl.
+   Gelb nur für „dicht/Hinweis“, Rot nur für Gefahr. */
+:root {
+  --gelb: #f0ca00;
+  --petrol: #005468;
+  --hamm-gruen: #95c11e;
+  --grau: #505050;
+  --schwarz: #141416;
+  --text: #1f2024;
+  --text2: #5f6168;
+  --text3: #8a8c92;
+  --linie: #e4e4df;
+  --flaeche: #ffffff;
+  --flaeche2: #f5f5f2;
+  --blau: #005ca9;
+  --blau-hell: #e8f0f8;
+  --rot: #c4271b;
+  --gruen: #1d7f3c;
+  --schatten: 0 1px 2px rgba(20, 20, 22, 0.12), 0 4px 16px rgba(20, 20, 22, 0.08);
+  --din: 'Fira Sans', 'Segoe UI', system-ui, sans-serif;
+  --sans: 'Fira Sans', 'Segoe UI', system-ui, sans-serif;
+  --titel: 'Poppins', 'Fira Sans', sans-serif;
+  --kopf: 56px;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; overflow: hidden; font: 14px/1.45 var(--sans); color: var(--text); background: #eceae4; }
+button { font: inherit; color: inherit; }
+#karte { position: absolute; inset: var(--kopf) 0 0 0; }
+.panel { position: absolute; background: var(--flaeche); box-shadow: var(--schatten); z-index: 5; }
+h4 { margin: 16px 0 6px; font: 600 12px var(--din); letter-spacing: 0.06em; text-transform: uppercase; color: var(--text2); }
+
+/* ---------------------------------------------------------------- Kopfzeile: Marke, Suche, Tabs, Status */
+#kopf { position: absolute; top: 0; left: 0; right: 0; height: var(--kopf); display: flex; align-items: center; gap: 16px; padding: 0 16px 0 0; background: var(--flaeche); border-bottom: 1px solid var(--linie); z-index: 8; }
+.marke { height: 100%; padding: 0 20px; background: var(--petrol); color: #fff; border: 0; border-bottom: 4px solid var(--hamm-gruen); font: 600 20px var(--titel); letter-spacing: 0.02em; cursor: pointer; flex: none; }
+.suchfeld { position: relative; width: 340px; flex: none; }
+#suche { width: 100%; height: 40px; padding: 0 14px; border: 1px solid var(--linie); background: var(--flaeche2); font: 15px var(--sans); outline: none; }
+#suche:focus { background: var(--flaeche); border-color: var(--blau); }
+#treffer { position: absolute; top: 44px; left: 0; right: 0; margin: 0; padding: 4px 0; list-style: none; background: var(--flaeche); box-shadow: var(--schatten); z-index: 9; }
+#treffer li { padding: 8px 14px; cursor: pointer; display: flex; justify-content: space-between; gap: 12px; }
+#treffer li span { color: var(--text3); font-size: 12px; white-space: nowrap; }
+#treffer li:hover { background: var(--blau-hell); }
+#tabs { display: flex; height: 100%; }
+#tabs button { height: 100%; padding: 0 14px; border: 0; background: none; font: 600 15px var(--din); color: var(--text2); cursor: pointer; border-bottom: 4px solid transparent; white-space: nowrap; }
+#tabs button:hover { color: var(--schwarz); }
+#tabs button.aktiv { color: var(--petrol); border-bottom-color: var(--hamm-gruen); }
+.chips { margin-left: auto; display: flex; gap: 8px; }
+.chip { height: 36px; display: inline-flex; align-items: center; gap: 8px; padding: 0 12px; background: var(--flaeche2); font: 500 14px var(--din); white-space: nowrap; }
+.chip b { font-size: 17px; }
+.chip span { color: var(--text2); }
+.chip.ok::before { content: ''; width: 8px; height: 8px; background: var(--gruen); }
+.chip.alarm { background: var(--rot); color: #fff; }
+.chip.leise { color: var(--text2); font-variant-numeric: tabular-nums; }
+@media (max-width: 1400px) { .chip.leise { display: none; } .suchfeld { width: 260px; } }
+
+/* ---------------------------------------------------------------- Panel links */
+#panel { top: calc(var(--kopf) + 16px); left: 16px; bottom: 16px; width: 360px; overflow-y: auto; padding: 16px; }
+.einleitung { margin: 0 0 12px; color: var(--text2); }
+.chips-reihe { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+.chip-schalter { padding: 6px 10px; border: 1px solid var(--linie); background: var(--flaeche); font: 500 13px var(--din); cursor: pointer; }
+.chip-schalter:hover { border-color: var(--text3); }
+.chip-schalter.an { background: var(--petrol); border-color: var(--petrol); color: #fff; }
+.segment { display: flex; border: 1px solid var(--linie); margin-bottom: 8px; }
+.segment.umbruch { flex-wrap: wrap; }
+.segment button { flex: 1 1 auto; padding: 8px 10px; border: 0; border-right: 1px solid var(--linie); background: var(--flaeche); font: 500 13px var(--din); cursor: pointer; }
+.segment button:last-child { border-right: 0; }
+.segment button.an { background: var(--petrol); color: #fff; }
+.vorlagen { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+.vorlagen button { padding: 8px; border: 1px solid var(--linie); background: var(--flaeche2); text-align: left; font: 500 13px var(--din); cursor: pointer; }
+.vorlagen button:hover { border-color: var(--blau); }
+#ebenen-suche { width: 100%; height: 36px; padding: 0 10px; border: 1px solid var(--linie); margin-bottom: 8px; font: 14px var(--sans); }
+details { border-bottom: 1px solid var(--linie); }
+summary { padding: 8px 0; font: 600 14px var(--din); cursor: pointer; display: flex; justify-content: space-between; }
+summary span { color: var(--blau); }
+.schalter { display: flex; gap: 8px; align-items: flex-start; padding: 6px 0; cursor: pointer; }
+.schalter.gross { margin-top: 16px; padding: 10px; background: var(--flaeche2); }
+.schalter input { margin: 3px 0 0; accent-color: var(--blau); width: 16px; height: 16px; flex: none; }
+.schalter small { display: block; font-size: 11px; color: var(--text3); }
+
+#jetzt { display: flex; flex-direction: column; gap: 20px; }
+#jetzt:empty { display: none; }
+.karte header { display: flex; justify-content: space-between; align-items: baseline; padding-bottom: 4px; border-bottom: 2px solid var(--petrol); margin-bottom: 4px; }
+.karte header b { font: 600 15px var(--titel); color: var(--petrol); }
+.zaehler { font: 600 13px var(--din); color: var(--text2); }
+.karte ul { list-style: none; margin: 0; padding: 0; }
+.karte li { padding: 6px 0 6px 10px; border-left: 3px solid transparent; border-bottom: 1px solid var(--linie); }
+.karte li:last-child { border-bottom: 0; }
+.karte li span { display: block; }
+.karte li small { display: block; color: var(--text3); font-size: 12px; }
+.karte li.warnung { border-left-color: var(--gelb); }
+.karte li.alarm { border-left-color: var(--rot); }
+.karte li.klickbar { cursor: pointer; }
+.karte li.klickbar:hover { background: var(--flaeche2); }
+.mehr { margin-top: 4px; padding: 0; border: 0; background: none; color: var(--blau); cursor: pointer; font-size: 13px; font-weight: 600; }
+.quelle { margin: 4px 0 0; font-size: 11px; color: var(--text3); }
+
+/* ---------------------------------------------------------------- Detailblatt rechts */
+#blatt { top: calc(var(--kopf) + 16px); right: 16px; width: 380px; max-height: calc(100vh - var(--kopf) - 32px); display: flex; flex-direction: column; z-index: 7; }
+#blatt header { display: flex; align-items: center; gap: 8px; padding: 12px 16px; border-bottom: 1px solid var(--linie); }
+#blatt header.blau { background: var(--blau); color: #fff; border: 0; }
+#blatt header h2 { flex: 1; margin: 0; display: flex; align-items: center; gap: 8px; font: 600 18px var(--din); }
+button.zu { width: 32px; height: 32px; border: 0; background: none; font: 24px var(--din); line-height: 1; cursor: pointer; color: inherit; }
+#blatt .inhalt { padding: 16px; overflow-y: auto; }
+#blatt section { margin-bottom: 16px; }
+#blatt section h3 { margin: 0 0 4px; font: 600 12px var(--din); letter-spacing: 0.06em; text-transform: uppercase; color: var(--text2); }
+.adresse p { margin: 0; font-size: 15px; }
+.fakten { display: grid; grid-template-columns: minmax(96px, 40%) 1fr; gap: 4px 12px; margin: 0; font-size: 13px; }
+.fakten dt { color: var(--text2); }
+.fakten dd { margin: 0; word-break: break-word; }
+.hinweis { margin: 0 0 12px; font-size: 12px; color: var(--text3); }
+.lade { color: var(--text3); }
+.liniennr { display: inline-flex; align-items: center; justify-content: center; min-width: 32px; height: 26px; padding: 0 6px; background: #fff; color: var(--blau); font: 700 15px var(--din); }
+#blatt header:not(.blau):not(.rot) .liniennr, .liniennr.klein { background: var(--blau); color: #fff; min-width: 28px; height: 22px; font-size: 13px; }
+.h-zeichen { display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 50%; background: var(--gelb); border: 2px solid var(--gruen); color: var(--gruen); font: 700 14px var(--din); }
+.halte { list-style: none; margin: 0; padding: 0; position: relative; }
+.halte li { display: grid; grid-template-columns: 48px 1fr; gap: 12px; padding: 5px 0; position: relative; cursor: pointer; }
+.halte li::before { content: ''; position: absolute; left: 58px; top: 12px; width: 10px; height: 10px; background: #fff; border: 2px solid var(--blau); }
+.halte li::after { content: ''; position: absolute; left: 63px; top: 24px; bottom: -6px; width: 2px; background: var(--blau); }
+.halte li:last-child::after { display: none; }
+.halte li span { padding-left: 24px; }
+.halte li time { font: 600 13px var(--din); font-variant-numeric: tabular-nums; color: var(--text2); text-align: right; }
+.halte li.vorbei { color: var(--text3); }
+.halte li.vorbei::before { background: #cfd8e3; border-color: #cfd8e3; }
+.halte li.naechster span { font-weight: 700; }
+.halte li.naechster::before { background: var(--gelb); border-color: var(--schwarz); }
+.halte li:hover span { text-decoration: underline; }
+.abfahrten { list-style: none; margin: 0; padding: 0; }
+.abfahrten li { display: grid; grid-template-columns: 48px 40px 1fr; gap: 8px; align-items: center; padding: 6px 0; border-bottom: 1px solid var(--linie); }
+.abfahrten time { font: 600 14px var(--din); font-variant-numeric: tabular-nums; }
+
+/* ---------------------------------------------------------------- Zeitleiste unten (rechts neben dem Panel mittig) */
+#zeitleiste { left: calc(392px + (100vw - 392px) / 2); transform: translateX(-50%); bottom: 24px; width: min(760px, calc(100vw - 440px)); padding: 12px 16px 8px; }
+#zeitleiste .kopf { display: flex; align-items: baseline; gap: 12px; margin-bottom: 4px; }
+#zeitleiste .kopf b { font: 700 22px var(--din); }
+#zeitleiste .kopf span { color: var(--text2); flex: 1; }
+#zeitleiste input[type='range'] { width: 100%; accent-color: var(--blau); }
+.marken { display: flex; justify-content: space-between; }
+.marken button { padding: 2px 3px; border: 0; background: none; font: 12px var(--din); color: var(--text3); cursor: pointer; }
+.marken button.aktiv { color: var(--schwarz); font-weight: 700; box-shadow: inset 0 -2px 0 var(--hamm-gruen); }
+.marken.skala span { font: 12px var(--din); color: var(--text3); }
+.knopf { height: 32px; padding: 0 16px; border: 0; background: var(--blau); color: #fff; font: 600 13px var(--din); text-transform: uppercase; letter-spacing: 0.04em; cursor: pointer; }
+.knopf:hover { background: #004a8a; }
+.kurve { width: 100%; height: 44px; display: block; margin: 4px 0; background: var(--flaeche2); }
+
+/* ---------------------------------------------------------------- Züge (zuege.ts): Rot/Weiß wie Bahn-Anzeiger, ohne Logo */
+#blatt header.rot { background: var(--rot); color: #fff; border: 0; }
+#blatt header.rot .liniennr { background: #fff; color: var(--rot); }
+.zughalte li::before { border-color: var(--rot); }
+.zughalte li::after { background: var(--rot); }
+.zughalte li time .ist { color: var(--rot); }
+.zughalte li.hbf span { font-weight: 700; }
+.zuglauf dd.warnung, .zuglauf dd.alarm { color: var(--rot); font-weight: 600; }
+
+/* ---------------------------------------------------------------- MapLibre */
+.maplibregl-ctrl-group { border-radius: 0 !important; box-shadow: var(--schatten) !important; }
+.maplibregl-ctrl-attrib { font-size: 10px; }
+
+/* ---------------------------------------------------------------- Ladebildschirm: Märkischer Schachbalken (Rot-Silber) auf Gold, eigener Entwurf */
+#start { position: fixed; inset: 0; z-index: 50; display: flex; align-items: center; justify-content: center; background: var(--petrol); transition: opacity 0.4s; }
+#start.weg { opacity: 0; pointer-events: none; }
+.start-inhalt { width: 360px; text-align: center; color: #fff; }
+.schachbalken { display: grid; grid-template-columns: repeat(8, 1fr); grid-template-rows: repeat(2, 22px); margin-bottom: 24px; border: 2px solid #fff; }
+.schachbalken i { background: #fff; animation: schach 1.6s infinite; }
+.schachbalken i:nth-child(odd) { background: #c4271b; }
+.schachbalken i:nth-child(n+9):nth-child(odd) { background: #fff; }
+.schachbalken i:nth-child(n+9):nth-child(even) { background: #c4271b; }
+.schachbalken i:nth-child(8n+1) { animation-delay: 0s; } .schachbalken i:nth-child(8n+2) { animation-delay: 0.1s; } .schachbalken i:nth-child(8n+3) { animation-delay: 0.2s; } .schachbalken i:nth-child(8n+4) { animation-delay: 0.3s; }
+.schachbalken i:nth-child(8n+5) { animation-delay: 0.4s; } .schachbalken i:nth-child(8n+6) { animation-delay: 0.5s; } .schachbalken i:nth-child(8n+7) { animation-delay: 0.6s; } .schachbalken i:nth-child(8n+8) { animation-delay: 0.7s; }
+@keyframes schach { 0%, 70%, 100% { opacity: 1; } 35% { opacity: 0.35; } }
+#start h1 { margin: 0; font: 600 44px var(--titel); letter-spacing: 0.02em; }
+#start p { margin: 0 0 24px; font: 500 16px var(--din); }
+#start-schritte { list-style: none; margin: 0 auto; padding: 0; width: 220px; text-align: left; font: 500 14px var(--din); }
+#start-schritte li { padding: 3px 0 3px 24px; position: relative; color: rgba(255, 255, 255, 0.6); }
+#start-schritte li::before { content: ''; position: absolute; left: 0; top: 7px; width: 12px; height: 12px; border: 2px solid rgba(255, 255, 255, 0.6); }
+#start-schritte li.fertig { color: #fff; }
+#start-schritte li.fertig::before { background: var(--hamm-gruen); border-color: var(--hamm-gruen); }
+@media (prefers-reduced-motion: reduce) { .schachbalken i { animation: none; } }
+
+/* Tanken und Politik */
+.feld { display: flex; align-items: center; gap: 8px; margin: 8px 0 16px; font: 500 13px var(--din); }
+.feld input { width: 72px; padding: 6px 8px; border: 1px solid var(--linie); font: 600 15px var(--din); text-align: right; }
+.auswahl { width: 100%; padding: 8px; border: 1px solid var(--linie); background: var(--flaeche); font: 500 13px var(--din); margin-bottom: 8px; border-radius: 0; }
+.farbkasten { display: inline-block; width: 12px; height: 12px; margin-right: 8px; vertical-align: -1px; }
+.legende { display: flex; flex-wrap: wrap; gap: 4px 16px; padding: 8px 0; font: 500 12px var(--din); color: var(--text2); }
+.karte ul.kompakt li { display: flex; justify-content: space-between; align-items: baseline; padding-top: 4px; padding-bottom: 4px; }
+
+/* Heute in Hamm */
+.karte.heute { border-top: 4px solid var(--hamm-gruen); }
+.karte.heute li > span { display: flex; gap: 8px; align-items: baseline; }
+.karte.heute em.art { flex: 0 0 64px; font: 600 11px var(--din); font-style: normal; text-transform: uppercase; letter-spacing: 0.04em; color: var(--text2); }
+.karte.heute li small { padding-left: 72px; }
+.skyline { display: block; width: 100%; height: auto; margin: 0 0 16px; }
+
+/* ---------------------------------------------------------------- Tafel (Tab Aktuell): Kacheln links, Lagekarte rechts */
+body.tafel-modus #karte { left: 62%; border-left: 1px solid var(--linie); }
+#tafel { position: absolute; top: var(--kopf); left: 0; right: 38%; bottom: 0; overflow-y: auto; padding: 16px; background: var(--flaeche2); z-index: 4; }
+#tafel #jetzt.tafel-raster { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; align-items: start; }
+.tafel-raster .karte { background: var(--flaeche); padding: 16px; margin: 0; box-shadow: var(--schatten); }
+.tafel-raster .karte header.sprung { cursor: pointer; }
+.tafel-raster .karte header.sprung:hover b { text-decoration: underline; text-decoration-color: var(--hamm-gruen); text-decoration-thickness: 2px; }
+.tafel-raster .karte header .zaehler { font: 600 20px var(--titel); color: var(--petrol); }
+.tafel-raster #k-heute { grid-column: 1 / -1; }
+.tafel-raster #k-heute ul { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 0 24px; }
+.tafel-raster #k-heute li { border-bottom: 0; }
+.tafel-raster #k-heute li > span { font-size: 16px; }
+.tafel-raster #k-heute .zaehler { font: 500 14px var(--din); color: var(--text2); }
+
+/* hidden muss immer gewinnen (z. B. #blatt hat display: flex) */
+[hidden] { display: none !important; }
+
+/* ---------------------------------------------------------------- Kartenart unten links */
+#kartenart { position: absolute; left: 392px; bottom: 32px; z-index: 3; display: flex; align-items: flex-end; gap: 8px; }
+body.tafel-modus #kartenart { left: 16px; }
+#kartenart button { display: block; padding: 0; border: 2px solid #fff; background: #fff; box-shadow: var(--schatten); cursor: pointer; position: relative; }
+#kartenart img { display: block; width: 64px; height: 64px; object-fit: cover; background: var(--flaeche2); }
+#kartenart button span { position: absolute; left: 0; right: 0; bottom: 0; padding: 2px 4px; background: rgba(0, 84, 104, 0.88); color: #fff; font: 600 11px var(--din); text-align: left; }
+#kartenart .ka-mehr { padding: 6px 8px; font: 600 12px var(--din); color: var(--petrol); }
+#kartenart .ka-mehr[aria-expanded="true"] { background: var(--petrol); color: #fff; border-color: var(--petrol); }
+#kartenart .ka-auswahl { display: flex; gap: 6px; align-items: flex-end; padding: 6px; background: var(--flaeche); box-shadow: var(--schatten); }
+#kartenart .ka-auswahl button { box-shadow: none; border-color: var(--linie); }
+#kartenart .ka-auswahl button img { width: 52px; height: 52px; }
+#kartenart .ka-auswahl button.an { border-color: var(--hamm-gruen); }
+#kartenart .ka-verkehr { display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 0 4px 2px; font: 600 11px var(--din); cursor: pointer; }
+body.mit-zeitleiste #kartenart { bottom: 132px; }
+
+/* Große Bildschirme: Seiten ohne Karte etwas größer zeichnen */
+@media (min-width: 1900px) { #tafel .magazin, #tafel .energie { zoom: 1.12; } }
+@media (min-width: 2400px) { #tafel .magazin, #tafel .energie { zoom: 1.3; } }
+
+/* ---------------------------------------------------------------- Magazin v2: Lagezeile und ruhigere, modernere Optik */
+.mz-lage { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px; padding: 20px 32px 4px; }
+.lz { text-align: left; border: 1px solid var(--linie); background: var(--flaeche); padding: 12px 14px 12px 16px; cursor: pointer; position: relative; font: inherit; color: inherit; transition: border-color .15s; }
+.lz::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: var(--text3); }
+.lz-gut::before { background: var(--hamm-gruen); } .lz-mittel::before { background: var(--gelb); } .lz-schlecht::before { background: var(--rot); }
+.lz:hover { border-color: var(--petrol); }
+.lz-name { display: block; font: 600 11px var(--din); letter-spacing: .07em; text-transform: uppercase; color: var(--text3); }
+.lz b { display: block; font: 600 18px/1.25 var(--titel); color: var(--text); margin-top: 3px; }
+.lz small { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; font-size: 12px; color: var(--text2); margin-top: 2px; overflow: hidden; }
+
+/* ---------------------------------------------------------------- Termine: Mini-Kalender links, Tag als Karten */
+.termine { display: grid; grid-template-columns: 300px minmax(0, 1fr); min-height: calc(100vh - var(--kopf)); }
+.te-links { border-right: 1px solid var(--linie); padding: 24px 20px; background: var(--flaeche2); }
+.mk-kopf { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+.mk-kopf b { font: 600 15px var(--titel); color: var(--petrol); }
+.mk-kopf button { width: 30px; height: 30px; border: 1px solid var(--linie); background: var(--flaeche); cursor: pointer; font-size: 16px; }
+.mk-raster { display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; text-align: center; }
+.mk-raster > span { font: 600 10px var(--din); color: var(--text3); padding: 4px 0; }
+.mk { border: 0; background: none; padding: 6px 0 4px; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 3px; font: 500 13px var(--din); color: var(--text); }
+.mk:hover { background: var(--flaeche); }
+.mk.fremd { color: var(--text3); }
+.mk.heute span { color: var(--petrol); font-weight: 700; }
+.mk.gewaehlt { background: var(--petrol); color: #fff; }
+.mk.gewaehlt .dichte { background: #fff; }
+.dichte { width: 5px; height: 5px; background: transparent; }
+.dichte.d1 { background: #9fc6d0; } .dichte.d2 { background: #4f8a9b; } .dichte.d3 { background: var(--petrol); }
+.te-heute { margin: 10px 0 0; padding: 6px 12px; border: 1px solid var(--linie); background: var(--flaeche); font: 600 12px var(--din); cursor: pointer; }
+.te-links h5 { margin: 24px 0 8px; font: 600 11px var(--din); letter-spacing: .07em; text-transform: uppercase; color: var(--text3); }
+.te-arten { display: flex; flex-direction: column; align-items: stretch; gap: 2px; }
+.te-arten button { text-align: left; padding: 7px 10px; border: 0; background: none; font: 500 13px var(--din); cursor: pointer; color: var(--text2); }
+.te-arten button:hover { background: var(--flaeche); }
+.te-arten button.an { background: var(--flaeche); color: var(--petrol); font-weight: 600; box-shadow: inset 3px 0 0 var(--hamm-gruen); }
+.te-tag { padding: 20px 32px 24px; min-width: 0; }
+.te-leiste { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 6px; }
+.te-leiste button { flex: 0 0 58px; padding: 8px 0; border: 1px solid var(--linie); background: var(--flaeche); cursor: pointer; display: flex; flex-direction: column; align-items: center; }
+.te-leiste button small { font: 600 10px var(--din); text-transform: uppercase; color: var(--text3); }
+.te-leiste button b { font: 600 18px var(--titel); }
+.te-leiste button.an { background: var(--petrol); border-color: var(--petrol); color: #fff; }
+.te-leiste button.an small { color: #cfe3e8; }
+.te-tag h2 { font: 600 28px var(--titel); margin: 20px 0 4px; display: flex; align-items: baseline; gap: 14px; }
+.te-tag h2 span { font: 500 14px var(--din); color: var(--text3); }
+.te-tag h3 { margin: 22px 0 10px; font: 600 12px var(--din); letter-spacing: .07em; text-transform: uppercase; color: var(--text3); }
+.tk-raster { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 12px; }
+.tk { display: grid; grid-template-columns: 64px minmax(0, 1fr); gap: 14px; padding: 14px 16px; background: var(--flaeche); border: 1px solid var(--linie); }
+.tk:hover { border-color: var(--petrol); }
+.tk time { font: 600 20px var(--titel); color: var(--petrol); }
+.tk h4 { margin: 0 0 4px; font: 600 15px/1.3 var(--sans); text-transform: none; letter-spacing: 0; color: var(--text); }
+.tk p { margin: 0; font-size: 13px; color: var(--text2); }
+.tk-tags { display: flex; gap: 6px; margin-top: 8px; }
+.tk-tags span { font: 600 11px var(--din); padding: 2px 7px; background: var(--flaeche2); color: var(--text2); }
+.tk-tags span.frei { background: #eef5dc; color: #3b5a0a; }
+.tk-laufend { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 8px; }
+.tk-laufend span { padding: 10px 12px; background: var(--flaeche2); font-size: 12px; color: var(--text2); }
+.tk-laufend b { display: block; font-size: 13px; color: var(--text); font-weight: 600; margin-bottom: 2px; }
+.te-tag .mz-quelle { padding: 24px 0 0; }
+
+
+/* ================================================================ Lese-Seiten (Aktuell, Energie): gemeinsame Bausteine */
+body.magazin-modus #karte, body.magazin-modus #kartenart { visibility: hidden; }
+body.magazin-modus #tafel { right: 0; background: #f3f5f6; padding: 0; }
+.seite { min-height: calc(100vh - var(--kopf)); display: flex; flex-direction: column; background: #f3f5f6; }
+.seite .mz-lage { padding: 20px 24px 0; }
+.box { background: var(--flaeche); padding: 20px 22px; min-width: 0; }
+.lbl { font: 600 10.5px var(--din); letter-spacing: .08em; text-transform: uppercase; color: var(--text3); margin: 0 0 6px; }
+.seite h4 { margin: 14px 0 4px; font: 600 10.5px var(--din); letter-spacing: .08em; text-transform: uppercase; color: var(--text3); }
+.mz-quelle { padding: 0 24px 20px; font-size: 11px; color: var(--text3); }
+.seite a { color: inherit; text-decoration: none; }
+.seite a:hover { text-decoration: underline; text-decoration-color: var(--hamm-gruen); text-decoration-thickness: 2px; }
+.seite button.mz-mehr, .seite button.mz-alle { margin-top: 10px; padding: 0; border: 0; background: none; font: 600 13px var(--din); color: var(--petrol); cursor: pointer; text-align: left; }
+
+/* ---------------------------------------------------------------- Aktuell: drei Spalten auf einen Blick */
+.mz-raster { flex: 1; display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr) clamp(300px, 22vw, 420px); gap: 20px; padding: 20px 24px; min-height: 0; height: calc(100vh - var(--kopf) - 150px); }
+.mz-auf { padding: 0; display: flex; flex-direction: column; overflow: hidden; }
+.mz-auf figure { margin: 0; flex: 1 1 auto; min-height: 0; position: relative; }
+.mz-bild { display: block; width: 100%; height: 100%; min-height: 220px; object-fit: cover; background: var(--flaeche2); }
+.mz-auf figcaption { position: absolute; right: 0; bottom: 0; padding: 2px 8px; font-size: 10.5px; color: #fff; background: rgba(0, 0, 0, .45); }
+.mz-auf-text { padding: 18px 22px 22px; flex: none; }
+.mz-auf h2 { margin: 0; font: 600 clamp(24px, 2vw, 38px)/1.18 var(--titel); letter-spacing: -.01em; color: var(--text); }
+.mz-quellen { display: flex; gap: 14px; margin: 10px 0 0; font: 600 13px var(--din); }
+.mz-quellen a { color: var(--petrol) !important; }
+.mz-mitte { display: flex; flex-direction: column; gap: 20px; min-height: 0; }
+.mz-neben { display: grid; grid-template-columns: 128px minmax(0, 1fr); gap: 14px; padding: 14px; flex: none; }
+.mz-mini { display: block; width: 128px; height: 84px; object-fit: cover; background: var(--flaeche2); }
+.mz-neben b { font: 600 15px/1.3 var(--sans); }
+.mz-liste { flex: 1; min-height: 0; display: flex; flex-direction: column; overflow: hidden; }
+.mz-liste.offen { overflow-y: auto; }
+.mz-liste ul, .mz-termine ul { list-style: none; margin: 0; padding: 0; }
+.mz-liste li { padding: 8px 0; border-bottom: 1px solid var(--linie); font-weight: 500; line-height: 1.35; }
+.mz-liste li:last-child { border-bottom: 0; }
+.mz-liste li small, .mz-termine li small { display: block; font-size: 11.5px; color: var(--text3); font-weight: 400; margin-top: 1px; }
+.mz-termine { overflow: hidden; display: flex; flex-direction: column; }
+.mz-termine li { display: grid; grid-template-columns: 52px minmax(0, 1fr); gap: 10px; padding: 7px 0; border-bottom: 1px solid var(--linie); line-height: 1.35; }
+.mz-termine time { font: 600 14px var(--din); color: var(--petrol); }
+.mz-termine time.jetzt { color: #5f7f12; }
+@media (max-width: 1200px) { .mz-raster { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); height: auto; } .mz-termine { grid-column: 1 / -1; } }
+
+/* ---------------------------------------------------------------- Energie: Lagezeile, Stromfluss, drei Karten */
+.en-haupt { flex: 1; display: flex; flex-direction: column; gap: 20px; padding: 20px 24px; min-height: 0; }
+.ef { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, .9fr) minmax(0, 1fr); align-items: center; padding: 22px 28px; }
+.ef-woher { padding-right: 24px; }
+.ef-gruppe { margin: 10px 0 4px; font: 600 11px var(--din); color: var(--text2); }
+.ef-balken { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr) auto; align-items: center; gap: 10px; margin-bottom: 5px; font-size: 13px; }
+.ef-balken i { display: block; }
+.ef-balken span { color: var(--text2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ef-balken b { font-weight: 600; font-variant-numeric: tabular-nums; }
+.ef-mitte { text-align: center; border-left: 2px solid var(--linie); border-right: 2px solid var(--linie); padding: 24px 12px; }
+.ef-zahl { font: 600 clamp(48px, 5vw, 72px)/1 var(--titel); color: var(--petrol); }
+.ef-zahl span { font-size: .38em; color: var(--text2); }
+.ef-mitte > p:not(.lbl) { color: var(--text2); margin: 10px 0 0; }
+.ef-teilung { display: flex; justify-content: center; gap: 16px; margin-top: 18px; font-size: 12px; color: var(--text2); }
+.ef-teilung span { border-top: 4px solid var(--f); padding-top: 4px; }
+.ef-wofuer { padding-left: 28px; }
+.zeile { display: flex; justify-content: space-between; gap: 12px; padding: 8px 0; border-bottom: 1px solid var(--linie); }
+.zeile:last-of-type { border-bottom: 0; }
+.zeile b { font-weight: 600; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.ef-fuss { margin: 8px 0 0; font-size: 12px; color: var(--text3); }
+.en-unten { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.en-unten h3 { font: 600 18px var(--titel); margin: 0 0 12px; }
+.ev { display: flex; align-items: flex-end; gap: 2px; height: 120px; }
+.ev > div { flex: 1; height: 100%; position: relative; }
+.ev i { position: absolute; left: 0; right: 0; bottom: 0; display: block; }
+.ev .ev-last { background: #e6f0f2; border-top: 3px solid var(--petrol); }
+.ev .ev-eigen { background: var(--hamm-gruen); }
+.ev.solar i { background: var(--gelb); }
+.ev.solar > div:last-child i { background: #d9b400; }
+.ef-annahmen { margin-top: 10px; }
+.ef-annahmen summary { cursor: pointer; font: 600 13px var(--din); color: var(--petrol); }
+.ef-annahmen p { font-size: 12px; color: var(--text2); margin: 6px 0 0; }
+
+/* ================================================================ Navigation in Gruppen */
+#tabs { display: flex; height: 100%; }
+.ng { position: relative; height: 100%; }
+#tabs .ng-knopf { height: 100%; padding: 0 14px; border: 0; border-bottom: 3px solid transparent; background: none; display: flex; align-items: center; gap: 4px; font: 600 14px var(--din); color: var(--text2); cursor: pointer; white-space: nowrap; }
+#tabs .ng-knopf:hover { color: var(--text); }
+#tabs .ng.aktiv .ng-knopf { color: var(--petrol); border-bottom-color: var(--hamm-gruen); }
+.ng-unter { font-weight: 500; color: var(--text); }
+.ng-unter::before { content: '·'; margin: 0 6px; color: var(--text3); }
+.ng-pfeil { width: 6px; height: 6px; border-right: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor; transform: rotate(45deg); margin: -3px 0 0 8px; transition: transform .15s; }
+.ng.offen .ng-pfeil { transform: rotate(-135deg); margin-top: 3px; }
+.ng-menue { position: absolute; top: 100%; left: 0; min-width: 270px; background: var(--flaeche); box-shadow: 0 10px 28px rgba(20, 22, 24, .16); padding: 6px 0; z-index: 20; }
+#tabs .ng-menue button { display: block; width: 100%; height: auto; text-align: left; padding: 10px 18px; border: 0; background: none; cursor: pointer; }
+#tabs .ng-menue button b { display: block; font: 600 14px var(--din); color: var(--text); }
+#tabs .ng-menue button small { font-size: 12px; color: var(--text3); }
+#tabs .ng-menue button:hover { background: var(--flaeche2); }
+#tabs .ng-menue button.an { background: #e6f0f2; box-shadow: inset 3px 0 0 var(--petrol); }
+#tabs .ng-menue button.an b { color: var(--petrol); }
+#menueknopf { display: none; }
+.chips .chip:not(.leise) { display: none; }
+
+/* ================================================================ Kartenseiten: Suche schwebt auf der Karte, Ebenen oben rechts, Panel kompakt */
+body:not(.magazin-modus) #kopf .suchfeld { position: fixed; top: calc(var(--kopf) + 16px); left: 16px; width: 360px; z-index: 7; }
+body:not(.magazin-modus) #suche { height: 46px; background: var(--flaeche); border: 0; box-shadow: var(--schatten); font-size: 15px; }
+body.magazin-modus #kopf .suchfeld { display: none; }
+#kopf .suchfeld { order: 9; }
+#panel { top: calc(var(--kopf) + 74px); }
+#ebenenleiste { position: absolute; top: calc(var(--kopf) + 16px); left: 392px; right: 16px; display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 6px; z-index: 4; pointer-events: none; }
+#ebenenleiste .chip-schalter { pointer-events: auto; background: var(--flaeche); box-shadow: var(--schatten); border: 0; padding: 9px 14px; font: 600 13px var(--din); }
+#ebenenleiste .chip-schalter.an { background: var(--petrol); color: #fff; }
+body.magazin-modus #ebenenleiste { display: none; }
+#blatt { top: calc(var(--kopf) + 64px); }
+#jetzt { gap: 12px; }
+.karte header.klapp { cursor: pointer; }
+.karte header.klapp b::after { content: ''; display: inline-block; width: 6px; height: 6px; border-right: 1.5px solid var(--text3); border-bottom: 1.5px solid var(--text3); transform: rotate(-135deg); margin: 0 0 1px 10px; }
+.karte.zu header.klapp b::after { transform: rotate(45deg); margin-bottom: 3px; }
+.karte.zu ul, .karte.zu .mehr, .karte.zu .quelle { display: none; }
+.karte.zu header { margin-bottom: 0; border-bottom-color: var(--linie); }
+
+/* ================================================================ Tablet */
+@media (max-width: 1100px) {
+  #panel, body:not(.magazin-modus) #kopf .suchfeld { width: 320px; }
+  #ebenenleiste { left: 352px; }
+  #kartenart { left: 352px; }
+  .ng-unter { display: none; }
+}
+
+/* ================================================================ Handy */
+@media (max-width: 760px) {
+  :root { --kopf: 52px; --blatt: 44vh; }
+  html, body { font-size: 15px; }
+  #kopf { gap: 0; padding: 0; }
+  .marke { padding: 0 14px; font-size: 17px; }
+  #tabs, .chips { display: none; }
+  #menueknopf { display: grid; grid-template-columns: auto 18px; grid-template-rows: repeat(3, 2px); column-gap: 12px; row-gap: 4px; align-content: center; margin-left: auto; height: 100%; padding: 0 16px; border: 0; background: none; color: var(--petrol); cursor: pointer; }
+  #menueknopf i { grid-column: 2; display: block; width: 18px; height: 2px; background: currentColor; }
+  #seitentitel { grid-column: 1; grid-row: 1 / 4; align-self: center; font: 600 15px var(--din); }
+  #menue { position: fixed; inset: var(--kopf) 0 0 0; background: var(--flaeche); z-index: 30; overflow-y: auto; padding: 4px 0 32px; }
+  #menue h3 { margin: 18px 20px 4px; font: 600 11px var(--din); letter-spacing: .08em; text-transform: uppercase; color: var(--text3); }
+  #menue button { display: block; width: 100%; text-align: left; padding: 12px 20px; border: 0; background: none; cursor: pointer; }
+  #menue button b { display: block; font: 600 17px var(--din); color: var(--text); }
+  #menue button small { font-size: 13px; color: var(--text3); }
+  #menue button.an { background: #e6f0f2; box-shadow: inset 4px 0 0 var(--petrol); }
+
+  /* Kartenseiten: Suche oben, Ebenen als Wischleiste, Panel als Blatt von unten */
+  body:not(.magazin-modus) #kopf .suchfeld { left: 12px; right: 12px; width: auto; top: calc(var(--kopf) + 10px); }
+  #ebenenleiste { top: calc(var(--kopf) + 64px); left: 0; right: 0; flex-wrap: nowrap; overflow-x: auto; justify-content: flex-start; padding: 0 12px 6px; pointer-events: auto; scrollbar-width: none; }
+  #ebenenleiste .chip-schalter { flex: none; padding: 8px 12px; }
+  #panel { top: auto; left: 0; right: 0; bottom: 0; width: auto; height: var(--blatt); padding: 26px 16px 16px; box-shadow: 0 -4px 18px rgba(20, 22, 24, .14); z-index: 6; transition: height .2s; }
+  #panel::before { content: ''; position: absolute; top: 9px; left: 50%; width: 40px; height: 4px; margin-left: -20px; background: #c9ced2; }
+  body.panel-gross #panel { height: calc(100vh - var(--kopf) - 120px); }
+  body.panel-klein #panel { height: 64px; overflow: hidden; }
+  body.mit-zeitleiste { --blatt: 30vh; }
+  #zeitleiste { left: 12px !important; right: 12px; width: auto !important; transform: none !important; bottom: calc(var(--blatt) + 10px); padding: 10px 12px; }
+  #kartenart { left: 12px !important; bottom: calc(var(--blatt) + 12px) !important; }
+  body.mit-zeitleiste #kartenart { bottom: calc(var(--blatt) + 132px) !important; }
+  #kartenart img { width: 48px; height: 48px; }
+  #kartenart .ka-auswahl button img { width: 44px; height: 44px; }
+  .maplibregl-ctrl-group { display: none !important; }
+  .maplibregl-ctrl-bottom-right { bottom: var(--blatt); }
+  #blatt { top: auto !important; left: 0; right: 0; bottom: 0; width: auto; max-height: 72vh; z-index: 12; box-shadow: 0 -4px 18px rgba(20, 22, 24, .18); }
+
+  /* Lese-Seiten untereinander */
+  .seite .mz-lage { grid-template-columns: repeat(2, minmax(0, 1fr)); padding: 12px 12px 0; gap: 8px; }
+  .lz { padding: 10px 10px 10px 14px; }
+  .lz b { font-size: 16px; }
+  .mz-raster { grid-template-columns: minmax(0, 1fr); height: auto; padding: 12px; gap: 12px; }
+  .mz-termine { grid-column: auto; }
+  .mz-bild { height: auto; min-height: 0; aspect-ratio: 16 / 10; }
+  .mz-auf h2 { font-size: 22px; }
+  .mz-mitte { gap: 12px; }
+  .mz-neben { grid-template-columns: 96px minmax(0, 1fr); }
+  .mz-mini { width: 96px; height: 64px; }
+  .mz-liste { overflow: visible; }
+  .box { padding: 16px; }
+  .en-haupt { padding: 12px; gap: 12px; }
+  .ef { grid-template-columns: minmax(0, 1fr); padding: 16px; gap: 18px; }
+  .ef-mitte { order: -1; border: 0; border-bottom: 2px solid var(--linie); padding: 4px 0 16px; }
+  .ef-woher, .ef-wofuer { padding: 0; }
+  .en-unten { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+  .termine { grid-template-columns: minmax(0, 1fr); }
+  .te-links { border-right: 0; border-bottom: 1px solid var(--linie); padding: 14px 16px; }
+  .te-links h5 { display: none; }
+  .te-arten { flex-direction: row; overflow-x: auto; gap: 6px; margin-top: 12px; scrollbar-width: none; }
+  .te-arten button { flex: none; border: 1px solid var(--linie); background: var(--flaeche); }
+  .te-tag { padding: 14px 12px 20px; }
+  .te-tag h2 { font-size: 22px; flex-wrap: wrap; }
+  .tk-raster, .tk-laufend { grid-template-columns: minmax(0, 1fr); }
+  .mz-quelle { padding: 0 12px 16px; }
+}
+
+/* ================================================================ Kopfzeile modern: Schriftzug, Luft links und rechts, ruhige Menüpunkte */
+:root { --kopf: 64px; --rand: clamp(16px, 3vw, 48px); }
+#kopf { padding: 0 var(--rand); gap: clamp(16px, 2.5vw, 40px); border-bottom: 0; box-shadow: 0 1px 0 var(--linie), 0 2px 12px rgba(20, 22, 24, .04); }
+#kopf .marke { height: auto; padding: 4px 0; background: none; color: var(--petrol); border: 0; font: 600 23px var(--titel); letter-spacing: .01em; display: flex; align-items: center; }
+#kopf .marke span { color: var(--hamm-gruen); margin: 0 1px; }
+#kopf .marke:hover { color: #003a48; }
+#tabs { height: auto; gap: 2px; align-items: center; }
+.ng { height: auto; }
+#tabs .ng-knopf { height: 40px; padding: 0 14px; border: 0; border-radius: 0; font-size: 14.5px; }
+#tabs .ng-knopf:hover { background: var(--flaeche2); }
+#tabs .ng.aktiv .ng-knopf { color: var(--petrol); background: #e6f0f2; box-shadow: inset 0 -2px 0 var(--hamm-gruen); }
+.ng-menue { top: calc(100% + 12px); }
+.chips { margin-left: auto; }
+.chip.leise { background: none; color: var(--text3); padding: 0; height: auto; }
+body:not(.magazin-modus) #kopf .suchfeld { left: var(--rand); }
+#panel { left: var(--rand); top: calc(var(--kopf) + 74px); }
+#ebenenleiste { right: var(--rand); left: calc(var(--rand) + 376px); }
+#kartenart { left: calc(var(--rand) + 376px); }
+.seite .mz-lage, .mz-raster, .en-haupt { padding-left: var(--rand); padding-right: var(--rand); }
+.mz-quelle { padding-left: var(--rand); padding-right: var(--rand); }
+@media (max-width: 1100px) { #ebenenleiste, #kartenart { left: calc(var(--rand) + 336px); } }
+@media (max-width: 760px) {
+  :root { --kopf: 56px; --rand: 12px; }
+  #kopf { padding: 0 0 0 16px; }
+  #kopf .marke { font-size: 19px; }
+  #panel { left: 0; top: auto; }
+  #ebenenleiste { left: 0; right: 0; }
+  body:not(.magazin-modus) #kopf .suchfeld { left: 12px; }
+}
+@media (min-width: 761px) { #kopf .chip.leise { display: inline-flex !important; font: 500 13px var(--din); } }
+.mz-auf figure { flex: 1 1 0; }
+.mz-auf .mz-bild { min-height: 160px; }
+
+/* ================================================================ Aktuell v3: ein Bildschirm, kein Scrollen */
+.mz2 { height: calc(100vh - var(--kopf)); min-height: 0; overflow: hidden; }
+.mz2-kopf { flex: none; display: flex; align-items: center; gap: 24px; padding: 18px var(--rand) 0; }
+.mz2-datum { flex: none; }
+.mz2-datum b { display: block; font: 600 clamp(22px, 1.9vw, 30px)/1.1 var(--titel); color: var(--text); }
+.mz2-datum span { font-size: 13px; color: var(--text3); }
+.mz2-lage { flex: 1; display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 8px; min-width: 0; }
+.mz2-pill { display: flex; flex-direction: column; align-items: flex-start; padding: 7px 14px 7px 16px; background: var(--flaeche); border: 0; position: relative; cursor: pointer; text-align: left; font: inherit; color: inherit; box-shadow: 0 1px 2px rgba(20, 22, 24, .06); }
+.mz2-pill::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: var(--text3); }
+.mz2-pill.lz-gut::before { background: var(--hamm-gruen); } .mz2-pill.lz-mittel::before { background: var(--gelb); } .mz2-pill.lz-schlecht::before { background: var(--rot); }
+.mz2-pill span { font: 600 10px var(--din); letter-spacing: .08em; text-transform: uppercase; color: var(--text3); }
+.mz2-pill b { font: 600 15px/1.25 var(--titel); white-space: nowrap; }
+.mz2-pill:hover { box-shadow: inset 0 0 0 1px var(--petrol); }
+.mz2-raster { flex: 1; min-height: 0; display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 4fr) minmax(260px, 3fr); gap: 16px; padding: 16px var(--rand); }
+.mz2 a { color: inherit; text-decoration: none; }
+.mz2-auf { position: relative; display: block; overflow: hidden; background: #2b3a40; min-height: 0; }
+.mz2-auf-bild { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .4s; }
+.mz2-auf:hover .mz2-auf-bild { transform: scale(1.03); }
+.mz2-auf-bild.leer { background: var(--petrol); }
+.mz2-auf-text { position: absolute; left: 0; right: 0; bottom: 0; padding: 18px 22px 16px; background: rgba(12, 20, 24, .78); color: #fff; }
+.mz2-auf-text .lbl { color: #b9d27a; }
+.mz2-auf-text h2 { margin: 0; font: 600 clamp(22px, 2vw, 34px)/1.18 var(--titel); letter-spacing: -.01em; }
+.mz2-auf-text small { display: block; margin-top: 8px; font-size: 10.5px; color: rgba(255, 255, 255, .6); }
+.mz2-kacheln { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 16px; min-height: 0; }
+.mz2-k { display: flex; flex-direction: column; background: var(--flaeche); overflow: hidden; min-height: 0; }
+.mz2-k-bild { display: block; width: 100%; flex: 1 1 52%; min-height: 0; object-fit: cover; background: var(--flaeche2); transition: transform .4s; }
+.mz2-k:hover .mz2-k-bild { transform: scale(1.04); }
+.mz2-k-bild.leer { display: flex; align-items: flex-end; padding: 10px 12px; font: 600 11px var(--din); letter-spacing: .08em; text-transform: uppercase; color: #fff; background: var(--petrol); }
+.mz2-k-bild.leer.r-blaulicht { background: #2b3a55; } .mz2-k-bild.leer.r-kultur { background: #55682a; }
+.mz2-k > div { padding: 10px 14px 12px; flex: none; }
+.mz2-k b { font: 600 14.5px/1.3 var(--sans); display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.mz2-k:hover b, .mz2-fuss a:hover, .mz2-alle a:hover { text-decoration: underline; text-decoration-color: var(--hamm-gruen); text-decoration-thickness: 2px; }
+.mz2-rechts { display: flex; flex-direction: column; gap: 16px; min-height: 0; }
+.mz2-live { flex: 1 1 50%; min-height: 160px; display: flex; flex-direction: column; text-align: left; border: 0; cursor: pointer; font: inherit; color: inherit; padding: 14px 16px; }
+.mz2-live .lbl { display: flex; align-items: center; gap: 8px; margin: 0; }
+.puls { width: 8px; height: 8px; background: var(--rot); display: inline-block; animation: puls 1.6s infinite; }
+@keyframes puls { 0%, 100% { opacity: 1; } 50% { opacity: .25; } }
+@media (prefers-reduced-motion: reduce) { .puls { animation: none; } .mz2-auf-bild, .mz2-k-bild { transition: none; } }
+.mz2-live-text { font: 600 15px var(--titel); margin: 2px 0 10px; }
+#mz-kartenplatz { flex: 1; min-height: 100px; display: block; background: var(--flaeche2); }
+body.mz-karte #karte { visibility: visible !important; }
+body.mz-karte #karte .maplibregl-ctrl-bottom-right, body.mz-karte #karte .maplibregl-ctrl-top-right { display: none; }
+.mz2-heute { flex: 1 1 50%; min-height: 0; overflow: hidden; display: flex; flex-direction: column; padding: 14px 16px; }
+.mz2-heute ul { list-style: none; margin: 0; padding: 0; min-height: 0; overflow: hidden; }
+.mz2-heute li { display: grid; grid-template-columns: 50px minmax(0, 1fr); gap: 8px; padding: 6px 0; border-bottom: 1px solid var(--linie); line-height: 1.3; }
+.mz2-heute li span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-size: 13.5px; }
+.mz2-heute li small { display: block; font-size: 11.5px; color: var(--text3); overflow: hidden; text-overflow: ellipsis; }
+.mz2-heute time { font: 600 13.5px var(--din); color: var(--petrol); }
+.mz2-heute time.jetzt { color: #5f7f12; }
+.mz2-heute .mz-alle { margin-top: auto; padding-top: 8px; }
+.mz2-fuss { flex: none; display: flex; align-items: center; gap: 24px; padding: 0 var(--rand) 10px; min-width: 0; font-size: 13.5px; }
+.mz2-fuss .lbl { margin: 0; flex: none; }
+.mz2-fuss a { flex: 1 1 0; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding-left: 14px; border-left: 2px solid var(--linie); }
+.mz2-fuss .mz-mehr { margin: 0 !important; flex: none; }
+.mz2 .mz-quelle { flex: none; padding-bottom: 8px; }
+.mz2-alle { position: fixed; top: var(--kopf); right: 0; bottom: 0; width: min(520px, 100vw); background: var(--flaeche); box-shadow: -8px 0 28px rgba(20, 22, 24, .18); z-index: 9; overflow-y: auto; padding: 18px 24px; }
+.mz2-alle-kopf { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+.mz2-alle-kopf b { font: 600 18px var(--titel); }
+.mz2-alle ul { list-style: none; margin: 0; padding: 0; }
+.mz2-alle li { padding: 9px 0; border-bottom: 1px solid var(--linie); font-weight: 500; }
+.mz2-alle li small { display: block; font-size: 11.5px; color: var(--text3); font-weight: 400; }
+@media (max-height: 760px) { .mz2-kopf { padding-top: 12px; } .mz2-raster { padding-top: 12px; padding-bottom: 12px; } .mz2-k b { -webkit-line-clamp: 2; } }
+@media (max-width: 1200px) { .mz2-raster { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); grid-template-rows: 1fr auto; } .mz2-rechts { grid-column: 1 / -1; flex-direction: row; } .mz2-lage .mz2-pill:nth-child(n+5) { display: none; } }
+@media (max-width: 760px) {
+  .mz2 { height: auto; overflow: visible; }
+  .mz2-kopf { flex-direction: column; align-items: stretch; gap: 12px; padding: 14px 12px 0; }
+  .mz2-lage { justify-content: flex-start; flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; }
+  .mz2-lage .mz2-pill { flex: none; display: flex !important; }
+  .mz2-raster { display: flex; flex-direction: column; padding: 12px; gap: 12px; }
+  .mz2-auf { height: 300px; flex: none; }
+  .mz2-kacheln { grid-template-rows: auto auto; gap: 12px; }
+  .mz2-k-bild { flex: none; height: 110px; }
+  .mz2-rechts { flex-direction: column; }
+  .mz2-live { min-height: 260px; }
+  .mz2-fuss { flex-direction: column; align-items: stretch; gap: 8px; padding: 0 12px 12px; }
+  .mz2-fuss a { white-space: normal; border-left: 0; padding: 0 0 8px; border-bottom: 1px solid var(--linie); }
+}
+
+/* Aktuell: Meldungen in der Mitte als Liste mit Bild links (mehr Platz für den Titel) */
+.mz2-kacheln { display: flex; flex-direction: column; gap: 12px; }
+.mz2-k { flex: 1 1 0; flex-direction: row; min-height: 0; }
+.mz2-k-bild { flex: 0 0 38%; width: 38%; height: 100%; }
+.mz2-k-bild.leer { width: 38%; }
+.mz2-k > div { flex: 1; padding: 12px 16px; display: flex; flex-direction: column; justify-content: center; min-width: 0; }
+.mz2-k b { font-size: 15.5px; -webkit-line-clamp: 4; }
+@media (max-width: 760px) { .mz2-k { flex: none; } .mz2-k-bild { height: auto; min-height: 96px; flex-basis: 34%; } }
+
+/* vergrößerte Darstellung auf großen Bildschirmen: Höhe von Aktuell ausgleichen, damit nichts scrollt */
+@media (min-width: 1900px) { .mz2 { height: calc((100vh - var(--kopf)) / 1.12); } }
+@media (min-width: 2400px) { .mz2 { height: calc((100vh - var(--kopf)) / 1.3); } }
+
+/* ================================================================ Verkehr: Überblick und Tagesleiste */
+.vu { display: flex; flex-direction: column; gap: 4px; margin-bottom: 16px; }
+.vu .lbl { margin: 12px 0 4px; }
+.vu-kz { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr) minmax(0, 1fr); gap: 8px; }
+.vu-kz > div { background: var(--flaeche2); padding: 10px 12px; min-width: 0; }
+.vu-kz b { display: block; font: 600 18px/1.2 var(--titel); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.vu-kz span { font: 600 10px var(--din); letter-spacing: .08em; text-transform: uppercase; color: var(--text3); }
+.vu-achsen, .vu-stoer { list-style: none; margin: 0; padding: 0; }
+.vu-achsen li { display: grid; grid-template-columns: minmax(0, 1fr) 112px; gap: 12px; align-items: center; padding: 7px 0; border-bottom: 1px solid var(--linie); cursor: pointer; }
+.vu-achsen li:hover b { text-decoration: underline; text-decoration-color: var(--hamm-gruen); text-decoration-thickness: 2px; }
+.vu-achsen li > span:first-child b { display: block; font-weight: 600; font-size: 14px; }
+.vu-achsen small { display: block; font-size: 11.5px; color: var(--text3); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.vu-wert { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; }
+.vu-wert b { font: 600 14px var(--din); }
+.vu-wert > i { display: block; width: 100%; height: 6px; background: var(--flaeche2); }
+.vu-wert > i > i { display: block; height: 100%; }
+.vu-stoer li { padding: 7px 0 7px 12px; border-left: 3px solid var(--gelb); margin-bottom: 4px; font-size: 13.5px; background: var(--flaeche2); }
+.vu-stoer li.alarm { border-left-color: var(--rot); }
+.vu-stoer li.klickbar { cursor: pointer; }
+.vu-stoer small { display: block; font-size: 11.5px; color: var(--text3); }
+.vu-fuss { margin: 8px 0 0; font-size: 11px; color: var(--text3); }
+.vt-balken { display: flex; align-items: flex-end; gap: 3px; height: 56px; margin: 6px 0 2px; }
+.vt-balken i { flex: 1; background: var(--petrol); opacity: .55; min-height: 2px; }
+.vt-balken i.jetzt { background: var(--rot); opacity: 1; }
+.vt-balken i.leer { background: var(--linie); opacity: 1; }
+
+/* Wetter: breitere Spalte für den Wetterbericht */
+@media (min-width: 761px) { body.tab-wetter #panel { width: 460px; } body.tab-wetter #zeitleiste { left: calc(492px + (100vw - 492px) / 2); width: min(760px, calc(100vw - 540px)); } }
+#wb .wb { width: 100%; }
+
+.vu-tag { display: none; }
+@media (max-width: 760px) {
+  body.tab-verkehr #zeitleiste { display: none !important; }
+  .vu-tag { display: block; margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--linie); }
+  .vu-tag .kopf b { font: 600 14px var(--titel); display: block; }
+  .vu-tag .kopf span { font-size: 11.5px; color: var(--text3); }
+  .vu-tag .marken { display: flex; justify-content: space-between; font-size: 11px; color: var(--text3); }
+  .vu-kz b { font-size: 16px; }
+}
+
+/* ================================================================ UI-Durchgang 2026-10-01 (Standards: docs/ui-standards.md) */
+/* Kartenseiten: Panel nur so hoch wie sein Inhalt */
+@media (min-width: 761px) { #panel { bottom: auto; max-height: calc(100vh - var(--kopf) - 90px); } }
+/* Zeitleiste rechts neben der Kartenart, links von den Zoomknöpfen */
+@media (min-width: 761px) {
+  #zeitleiste, body.tab-wetter #zeitleiste { left: calc(var(--rand) + 376px + 160px); right: 72px; width: auto; max-width: 760px; margin: 0 auto; transform: none; }
+  body.tab-wetter #zeitleiste { left: calc(var(--rand) + 476px + 160px); }
+}
+/* Handy: Jahresmarken der Zeitreise scrollen statt überzulaufen */
+@media (max-width: 760px) {
+  #zeitleiste .marken { overflow-x: auto; scrollbar-width: none; gap: 12px; justify-content: flex-start; }
+  #zeitleiste .marken.skala { justify-content: space-between; overflow: visible; }
+  #zeitleiste .marken button { flex: none; }
+}
+/* Verkehr: Kennzahlen dürfen umbrechen statt abzuschneiden */
+.vu-kz b { white-space: normal; font-size: 16px; line-height: 1.25; }
+.vu-kz span { display: block; margin-top: 2px; line-height: 1.3; }
+/* Energie: Herkunft als Zeile Name · Balken · Wert, Balken einheitlich hoch */
+.ef-balken { grid-template-columns: minmax(0, 1fr) minmax(64px, 1.2fr) 48px; }
+.ef-balken span { order: 1; }
+.ef-balken i { order: 2; height: 10px !important; }
+.ef-balken b { order: 3; text-align: right; }
+.mz2-alle { z-index: 20; }
+@media (min-width: 761px) { body.tab-wetter #kartenart { left: calc(var(--rand) + 476px); } }
+/* Aktuell: offene Liste „Alle Meldungen“ verdeckt die Live-Karte */
+body.mz-karte:has(.mz2-alle:not([hidden])) #karte { visibility: hidden !important; }
+
+/* Radio Lippe Welle oben rechts */
+.radio { display: flex; align-items: center; gap: 10px; margin-left: 24px; min-width: 0; max-width: 300px; }
+.radio-knopf { flex: none; width: 36px; height: 36px; border: 0; background: var(--petrol); cursor: pointer; display: grid; place-items: center; }
+.radio-knopf i { width: 0; height: 0; border-style: solid; border-width: 7px 0 7px 12px; border-color: transparent transparent transparent #fff; margin-left: 3px; }
+.radio.laeuft .radio-knopf i { width: 12px; height: 14px; border: 0; margin: 0; border-left: 4px solid #fff; border-right: 4px solid #fff; }
+.radio.laedt .radio-knopf { opacity: .6; }
+.radio-knopf:hover { background: #003c46; }
+.radio-text { display: flex; flex-direction: column; min-width: 0; line-height: 1.25; }
+.radio-text b { font: 600 10px var(--din); letter-spacing: .08em; text-transform: uppercase; color: var(--text3); }
+.radio-text small { font-size: 13px; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.radio.laeuft .radio-text b { color: var(--rot); }
+@media (max-width: 1100px) { .radio-text { display: none; } }
+@media (max-width: 760px) { .radio { margin-left: auto; margin-right: 4px; } .radio-knopf { width: 32px; height: 32px; } }
+@media (max-width: 760px) { .radio + #menueknopf { margin-left: 0; } }
+.karte .quelle.veraltet { color: var(--rot); }
+.vu-hinweis { margin: 0 0 8px; padding: 8px 12px; border-left: 3px solid var(--gelb); background: var(--flaeche2); font-size: 13px; line-height: 1.4; }
+.vu-leer { margin: 0; padding: 6px 0; font-size: 13px; color: var(--text2); }
+
+/* Tanken: Preisverlauf über den Tag */
+.sv { margin: 16px 0 8px; }
+.sv .lbl { margin: 0 0 6px; }
+.sv-balken { display: flex; align-items: flex-end; gap: 2px; height: 56px; }
+.sv-balken i { flex: 1; background: var(--petrol); opacity: .45; }
+.sv-balken i.best { background: var(--hamm-gruen); opacity: 1; }
+.sv-balken i.leer { background: var(--linie); opacity: 1; }
+.sv-skala { display: flex; justify-content: space-between; font-size: 11px; color: var(--text3); margin-top: 2px; }
+.sv-text, .sv-leer { margin: 6px 0 0; font-size: 12.5px; color: var(--text2); line-height: 1.4; }
+
+/* ================================================================ Quellen und Lizenzen */
+.ql { gap: 16px; padding: 24px var(--rand) 40px; }
+.ql-kopf h1 { margin: 2px 0 0; font: 600 clamp(24px, 2.2vw, 32px)/1.15 var(--titel); }
+.ql .box { max-width: 1200px; width: 100%; box-sizing: border-box; }
+.ql h2 { margin: 0 0 8px; font: 600 18px var(--titel); }
+.ql-hinweis { border-left: 4px solid var(--petrol); }
+.ql-hinweis p { margin: 0 0 8px; line-height: 1.5; color: var(--text2); max-width: 900px; }
+.ql-text { margin: 0 0 10px; font-size: 13px; color: var(--text3); }
+.ql-tab { width: 100%; border-collapse: collapse; font-size: 13px; }
+.ql-tab th { text-align: left; font: 600 10.5px var(--din); letter-spacing: .08em; text-transform: uppercase; color: var(--text3); padding: 6px 12px 6px 0; border-bottom: 2px solid var(--petrol); }
+.ql-tab td { padding: 7px 12px 7px 0; border-bottom: 1px solid var(--linie); vertical-align: top; line-height: 1.4; }
+.ql-tab td:last-child { white-space: nowrap; color: var(--text2); }
+.ql-tab td.ql-alt { color: var(--rot); }
+.ql-gruppe summary { font: 600 14px var(--titel); padding: 8px 0; border-bottom: 1px solid var(--linie); }
+.ql-gruppe summary span { color: var(--text3); font: 500 12px var(--din); }
+.menue-fuss { display: block; padding: 16px 20px 24px; font-size: 13px; color: var(--text3); text-decoration: underline; }
+@media (max-width: 760px) {
+  .ql { padding: 16px 12px 32px; }
+  .ql-tab thead { display: none; }
+  .ql-tab tr { display: block; padding: 8px 0; border-bottom: 1px solid var(--linie); }
+  .ql-tab td { display: block; padding: 1px 0; border: 0; }
+  .ql-tab td:first-child { font-weight: 600; }
+  .ql-tab td:last-child { white-space: normal; }
+}
+
+/* Fußzeile der Leseseiten */
+.fusszeile { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; padding: 16px var(--rand) 20px; border-top: 1px solid var(--linie); font-size: 12px; color: var(--text3); background: #f3f5f6; }
+.fusszeile a, .mz2 a.mz-rechtlich { color: var(--text2); text-decoration: underline; text-underline-offset: 2px; }
+.fusszeile a:hover, .mz2 a.mz-rechtlich:hover { color: var(--petrol); }

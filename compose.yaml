@@ -1,0 +1,21 @@
+# HAM:LIVE als Dienst. Start: docker compose up -d --build   ·   Logs: docker compose logs -f   ·   Stopp: docker compose down
+# Nur im Heimnetz betreiben: mehrere Quellen sind ausdrücklich nur für die private Nutzung (CLAUDE.md, Regeln).
+services:
+  ham-live:
+    build: .
+    image: ham-live:latest
+    container_name: ham-live
+    restart: unless-stopped
+    ports:
+      - "5300:8080"
+    environment:
+      TZ: Europe/Berlin
+      # HAM_VORLADEN: "aus"          # Kartenkacheln nicht vorladen
+      # HAM_TANKERKOENIG: "…"        # statt local/tankerkoenig.json
+    volumes:
+      # erzeugte Daten (python daten/*.py), nur lesend
+      - ./web/public/daten:/data/daten:ro
+      # Aufzeichnung alle 5 Minuten (Rückblick, Statistik)
+      - ./aufzeichnung:/data/aufzeichnung
+      # private Dateien (tankerkoenig.json) und Kachelspeicher local/kacheln
+      - ./local:/data/local

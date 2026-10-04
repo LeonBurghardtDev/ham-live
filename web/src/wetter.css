@@ -1,0 +1,34 @@
+/* ---------------------------------------------------------------- Wetterbericht (Entwurf W1, wetter-seite.ts) */
+.wb { width: 460px; max-width: 100%; box-sizing: border-box; display: flex; flex-direction: column; gap: 16px; }
+.wb .box { padding: 16px 20px; }
+.wb-gross { display: flex; align-items: baseline; gap: 16px; }
+.wb-gross b { font: 600 64px/1 var(--titel); color: var(--petrol); font-variant-numeric: tabular-nums; }
+.wb-gross span { font: 600 20px var(--titel); color: var(--text); }
+.wb-info { margin-top: 8px; color: var(--text2); }
+.wb-stand { margin-top: 4px; font-size: 12px; color: var(--text3); }
+
+.wb-stunden { display: grid; grid-template-columns: repeat(8, 1fr); gap: 4px; text-align: center; font-size: 12px; font-variant-numeric: tabular-nums; }
+.wb-spalte { display: flex; flex-direction: column; align-items: center; gap: 4px; min-width: 0; }
+.wb-uhr { color: var(--text2); }
+.wb-spalte b { font: 600 16px var(--titel); }
+.wb-balken { height: 32px; width: 100%; display: flex; align-items: flex-end; justify-content: center; border-bottom: 1px solid var(--linie); }
+.wb-balken i { display: block; width: 12px; background: var(--blau); }
+.wb-mm { color: var(--text2); }
+.wb-einheit { margin-top: 8px; font-size: 11px; color: var(--text3); }
+
+.wb-tag { align-items: baseline; padding: 6px 0; }
+.wb-tname { flex: 0 0 96px; font-weight: 600; }
+.wb-tzust { flex: 1 1 auto; color: var(--text2); min-width: 0; }
+.wb-tregen { flex: 0 0 64px; text-align: right; color: var(--blau); font-variant-numeric: tabular-nums; }
+.wb-tag b { flex: 0 0 72px; text-align: right; }
+
+.wb-quelle { margin: 0; font-size: 11px; color: var(--text3); }
+
+@media (max-width: 760px) {
+  .wb { width: 100%; gap: 8px; }
+  .wb .box { padding: 16px; }
+  .wb-gross b { font-size: 48px; }
+  .wb-stunden { gap: 2px; font-size: 11px; }
+  .wb-spalte b { font-size: 14px; }
+  .wb-tname { flex-basis: 88px; }
+}

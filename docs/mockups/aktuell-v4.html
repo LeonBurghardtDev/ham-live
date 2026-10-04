@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aktuell v4 – Magazin</title>
+<style>
+:root{--p:#005468;--g:#95c11e;--rot:#c4271b;--gelb:#f0ca00;--l:#e3e5e6;--f1:#f4f5f5;--t2:#5f6168;--t3:#8a8c92}
+*{box-sizing:border-box}
+body{margin:0;padding:32px;background:#d8dadb;font:14px/1.45 "Fira Sans","Segoe UI",system-ui,sans-serif;color:#1f2024}
+.lead{color:var(--t2);margin:0 0 16px;max-width:1280px}
+.frame{width:1280px;height:820px;background:#fff;box-shadow:0 2px 12px rgba(0,0,0,.15);display:flex;flex-direction:column;overflow:hidden}
+.kopf{height:52px;display:flex;align-items:center;gap:18px;border-bottom:1px solid var(--l);flex:none}
+.marke{background:var(--p);color:#fff;height:100%;display:flex;align-items:center;padding:0 18px;font:600 18px Poppins,sans-serif;border-bottom:4px solid var(--g)}
+.such{width:240px;height:32px;background:var(--f1);color:var(--t3);display:flex;align-items:center;padding:0 10px;font-size:13px}
+.tabs{display:flex;height:100%}.tabs span{padding:0 10px;display:flex;align-items:center;color:var(--t2);font-weight:600;font-size:14px}
+.tabs .a{color:var(--p);box-shadow:inset 0 -4px 0 var(--g)}
+.zahlen{flex:none;display:grid;grid-template-columns:repeat(8,minmax(0,1fr));border-bottom:1px solid var(--l);background:var(--f1)}
+.z{padding:10px 16px;border-right:1px solid var(--l)}.z:last-child{border:0}
+.z b{display:block;font:600 20px/1.1 Poppins,sans-serif;color:var(--p)}
+.z span{font-size:12px;color:var(--t2)}
+.z small{display:block;font-size:11px;color:var(--t3)}
+.z.ab b{color:var(--rot)}
+.haupt{flex:1;display:grid;grid-template-columns:minmax(0,1fr) 330px;min-height:0}
+.links{padding:24px 32px 16px;overflow:hidden}
+.q{display:inline-block;font:600 11px "Fira Sans";padding:1px 6px;margin-right:4px;color:#fff;background:var(--p)}
+.q.pol{background:#2b3a55}.q.stadt{background:#55682a}.q.wa{background:#6b6e73}.q.lw{background:#7a4a1e}
+.meta{font-size:12px;color:var(--t3)}
+.auf{display:grid;grid-template-columns:minmax(0,1fr) 290px;gap:28px;padding-bottom:22px;border-bottom:3px solid var(--p)}
+.auf h2{font:600 30px/1.15 Poppins,sans-serif;color:var(--p);margin:8px 0 10px}
+.auf p{margin:0;color:var(--t2);font-size:15px;max-width:600px}
+.auf .weiter{margin-top:12px;display:flex;gap:16px;font-size:13px;font-weight:600;color:var(--p)}
+.karte{background:#e9ebe6;position:relative;overflow:hidden;background-image:linear-gradient(#dfe2dc 1px,transparent 1px),linear-gradient(90deg,#dfe2dc 1px,transparent 1px);background-size:32px 32px}
+.pin{position:absolute;width:20px;height:20px;color:#fff;font:600 11px "Fira Sans";display:flex;align-items:center;justify-content:center;border:2px solid #fff;background:var(--p)}
+.ressorts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px;margin-top:20px}
+.res h3{font:600 15px Poppins,sans-serif;color:var(--p);margin:0 0 4px;padding-bottom:6px;border-bottom:2px solid var(--g)}
+.m{padding:9px 0;border-bottom:1px solid var(--l)}.m:last-child{border:0}
+.m b{font-weight:600;display:block;line-height:1.3}
+.m .meta{margin-top:2px}
+.ort{color:var(--p);font-weight:600}
+.weitere{margin-top:14px;font-size:13px;color:var(--p);font-weight:600}
+.rechts{border-left:1px solid var(--l);padding:24px 22px;display:flex;flex-direction:column;min-height:0}
+.rechts h3{font:600 17px Poppins,sans-serif;color:var(--p);margin:0}
+.tag{font:600 11px "Fira Sans";letter-spacing:.06em;text-transform:uppercase;color:var(--t2);margin:16px 0 2px}
+.ag{display:grid;grid-template-columns:48px minmax(0,1fr);gap:10px;padding:8px 0;border-bottom:1px solid var(--l)}
+.ag time{font:600 14px "Fira Sans";color:var(--p)}
+.ag small{display:block;color:var(--t3);font-size:12px}
+.ag.jetzt time{color:var(--g)}
+.alle{margin-top:auto;padding-top:14px;font-weight:600;color:var(--p);font-size:13px}
+.notiz{margin:28px 0 8px;font:600 15px Poppins,sans-serif}
+ul.n{margin:0;padding-left:18px;color:var(--t2);max-width:1280px}ul.n li{margin:3px 0}
+</style>
+</head>
+<body>
+<p class="lead">Entwurf C, ausgearbeitet. Schlagzeilen echt vom 01.10. (WA, Stadt Hamm), Kennzahlen und einige Termine sind Beispielwerte.</p>
+<div class="frame">
+<div class="kopf"><div class="marke">HAM:LIVE</div><div class="such">Ort, Straße, Adresse</div><div class="tabs"><span class="a">Aktuell</span><span>Termine</span><span>Verkehr</span><span>Tanken und Laden</span><span>Wegweiser</span><span>Wetter</span><span>Politik</span><span>Simulation</span><span>Historisch</span></div></div>
+
+<div class="zahlen">
+<div class="z"><b>17°</b><span>Regen ab 19 Uhr</span><small>Stadtwetter, 3 Stationen</small></div>
+<div class="z"><b>118</b><span>Busse unterwegs</span><small>2 verspätet</small></div>
+<div class="z ab"><b>+22</b><span>RE6 Minden, min</span><small>übrige Züge pünktlich</small></div>
+<div class="z ab"><b>1</b><span>Unfall in Hamm</span><small>2,1 km Stau gesamt</small></div>
+<div class="z"><b>4,8 MW</b><span>Solarstrom in Hamm</span><small>geschätzt · 312 MW installiert</small></div>
+<div class="z"><b>27 %</b><span>Ökostrom im Netz</span><small>Energy-Charts, PLZ 59065</small></div>
+<div class="z"><b>96</b><span>Ladepunkte frei</span><small>von 155</small></div>
+<div class="z"><b>sehr gut</b><span>Luft</span><small>PM2,5 6 µg/m³</small></div>
+</div>
+
+<div class="haupt">
+<div class="links">
+<div class="auf">
+<div><span class="q stadt">Stadt</span><span class="q wa">WA</span><span class="meta">3 Meldungen seit Dienstag</span>
+<h2>Innenstadt 2040: Zukunftsplan steht, Fahrradparkhaus eröffnet</h2>
+<p>Über 130 Bürgerinnen und Bürger haben am Zukunftsplan Innenstadt mitgearbeitet, die Parteien haben einen Innenstadt-Konsens geschlossen.</p>
+<div class="weiter"><span>Stadt Hamm ›</span><span>WA ›</span><span>Auf der Karte ›</span></div></div>
+<div class="karte" style="height:180px"><div style="position:absolute;left:60px;top:30px;width:170px;height:120px;border:2px solid var(--p)"></div><div class="pin" style="left:135px;top:78px">!</div></div>
+</div>
+<div class="ressorts">
+<div class="res"><h3>Stadt</h3>
+<div class="m"><b>Fachwerkhaus von 1550 verkauft</b><div class="meta">WA · 17:00 · unter 200.000 Euro</div></div>
+<div class="m"><b>Neues Baugebiet geht weiter</b><div class="meta">WA · 14:45</div></div>
+<div class="m"><b>Hitzeaktionsplan unter den Top 5</b><div class="meta">Stadt · Dienstag</div></div></div>
+<div class="res"><h3>Blaulicht</h3>
+<div class="m"><b>Auffahrunfall, zwei Verletzte</b><div class="meta">Polizei, WA · 10:05 · <span class="ort">Hammer Straße</span></div></div>
+<div class="m"><b>Pedelec-Fahrer schwer verletzt</b><div class="meta">Polizei · 09:04</div></div>
+<div class="m"><b>Prozess um Motorradunfall endet mild</b><div class="meta">WA · 18:07</div></div></div>
+<div class="res"><h3>Kultur und Sport</h3>
+<div class="m"><b>Helios-Theater zeigt neues Stück</b><div class="meta">WA · 18:15 · <span class="ort">Helios-Theater</span></div></div>
+<div class="m"><b>Jubiläums-Kunstwerk im Kurpark fast fertig</b><div class="meta">WA · 14:57 · <span class="ort">Kurpark</span></div></div>
+<div class="m"><b>Kunstrasen beim SVE Heessen entschieden</b><div class="meta">WA · 11:00</div></div></div>
+</div>
+<div class="weitere">12 weitere Meldungen heute ›</div>
+</div>
+
+<div class="rechts">
+<h3>Heute und morgen</h3>
+<div class="tag">Heute</div>
+<div class="ag jetzt"><time>läuft</time><div>Fotowettbewerb 800 Jahre Hamm<small>Maximilianpark · bis 19 Uhr</small></div></div>
+<div class="ag"><time>19:00</time><div>Konzert Landespolizeiorchester<small>Kurhaus Bad Hamm</small></div></div>
+<div class="ag"><time>19:30</time><div>„Nicht perfekt genug?“<small>Helios-Theater</small></div></div>
+<div class="tag">Freitag</div>
+<div class="ag"><time>07:00</time><div>Wochenmarkt<small>Marktplatz · bis 13 Uhr</small></div></div>
+<div class="ag"><time>16:00</time><div>Kindertheater<small>Stadtbücherei</small></div></div>
+<div class="ag" style="border:0"><time>20:00</time><div>Kabarett<small>Kulturrevier Radbod</small></div></div>
+<div class="alle">Alle Termine im Tab „Termine“ ›</div>
+</div>
+</div>
+</div>
+
+<p class="notiz">Was gegenüber C geändert ist</p>
+<ul class="n">
+<li>Statt der Statusleiste eine Zeile „Stadt in Zahlen“ mit acht Live-Kennzahlen. Abweichungen (Verspätung, Unfall) in Rot, sonst Petrol. Jede Zahl führt in ihren Fachtab.</li>
+<li>Aufmacher wird automatisch gewählt: das Thema mit den meisten Meldungen aus verschiedenen Quellen in den letzten drei Tagen, sonst die neueste Stadt-Meldung. Mit Links zu jeder Quelle und zur Karte.</li>
+<li>Ressorts mit grüner Linie, je drei Meldungen, Ort als Link. Ein Ressort ohne neue Meldung fällt weg, die anderen werden breiter.</li>
+<li>Agenda rechts beginnt mit dem, was gerade läuft, und endet mit dem Link in den neuen Tab „Termine“.</li>
+<li>Gleiche Ereignisse aus mehreren Quellen werden eine Meldung („Polizei, WA“).</li>
+</ul>
+</body>
+</html>

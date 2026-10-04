@@ -1,0 +1,14 @@
+# Nur Quelltext ins Image; Daten, Aufzeichnung und private Dateien kommen als Volumes
+**/node_modules
+**/dist
+web/public/daten
+web/local
+web/.ui-pruefung
+web/scripts
+local
+aufzeichnung
+daten
+docs
+recherche
+.git
+**/*.log

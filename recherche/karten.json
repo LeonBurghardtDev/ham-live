@@ -1,0 +1,741 @@
+{
+  "stand": "2026-10-01",
+  "testbbox_epsg3857": "870000,6744000,880000,6752000 (256x256); zusätzlich 868000,6740000,873000,6745000, 870000,6742000,871000,6743000 und 870300,6742400,870600,6742700 für maßstabsbegrenzte Layer",
+  "hinweis_zoom": "Zoom-Angaben aus MaxScaleDenominator mit Maßstab ≈ 559082264 / 2^z (256-px-Kacheln, 3857-Meter). Leere Antworten sind transparente PNG mit HTTP 200 – Content-Type allein beweist keinen Inhalt. wms.nrw.de und sgx.geodatenzentrum.de senden CORS-Header für Origin localhost.",
+  "dienste": [
+    {
+      "id": "nrw_dop",
+      "name": "Luftbild aktuell (DOP 20 cm, RGB)",
+      "gruppe": "Geobasis NRW",
+      "typ": "wms",
+      "url": "https://www.wms.nrw.de/geobasis/wms_nw_dop",
+      "layers": [
+        "nw_dop_rgb",
+        "nw_dop_cir",
+        "nw_dop_nir"
+      ],
+      "format": "image/png",
+      "epsg3857": true,
+      "getmap_ok": true,
+      "lizenz": "Datenlizenz Deutschland – Zero – Version 2.0 (dl-de/zero-2-0)",
+      "namensnennung": "© GeoBasis NRW (Jahr), dl-de/zero-2-0 (Nennung freiwillig, empfohlen)",
+      "hinweis": "WMS 1.3.0, auch image/jpeg. Inhalt auf Test-BBOX. Info-Layer nw_dop_utm_info (Bildflugdatum). Kein Maßstabslimit."
+    },
+    {
+      "id": "nrw_vdop",
+      "name": "Vorschau-Luftbild neueste Befliegung (vDOP)",
+      "gruppe": "Geobasis NRW",
+      "typ": "wms",
+      "url": "https://www.wms.nrw.de/geobasis/wms_nw_vdop",
+      "layers": [
+        "nw_vdop_rgb",
+        "nw_vdop_cir",
+        "nw_vdop_nir",
+        "nw_vdop_Wasserzeichen"
+      ],
+      "format": "image/png",
+      "epsg3857": true,
+      "getmap_ok": true,
+      "lizenz": "Datenlizenz Deutschland – Zero – Version 2.0 (dl-de/zero-2-0)",
+      "namensnennung": "© GeoBasis NRW (Jahr), dl-de/zero-2-0 (Nennung freiwillig, empfohlen)",
+      "hinweis": "Vorläufige neueste Befliegung; Wasserzeichen ist eigener Layer. GetMap liefert Inhalt."
+    },
+    {
+      "id": "nrw_hist_dop",
+      "name": "Historische Luftbilder (WMS-T, ein Layer je Jahrgang)",
+      "gruppe": "Geobasis NRW",
+      "typ": "wms",
+      "url": "https://www.wms.nrw.de/geobasis/wms_nw_hist_dop",
+      "layers": [
+        "nw_hist_dop_1954",
+        "nw_hist_dop_1975",
+        "nw_hist_dop_1983",
+        "nw_hist_dop_1989",
+        "nw_hist_dop_1996",
+        "nw_hist_dop_2001",
+        "nw_hist_dop_2005",
+        "nw_hist_dop_2009",
+        "nw_hist_dop_2012",
+        "nw_hist_dop_2015",
+        "nw_hist_dop_2018",
+        "nw_hist_dop_2021",
+        "nw_hist_dop_2023"
+      ],
+      "format": "image/png",
+      "epsg3857": true,
+      "getmap_ok": true,
+      "lizenz": "Datenlizenz Deutschland – Zero – Version 2.0 (dl-de/zero-2-0)",
+      "namensnennung": "© GeoBasis NRW (Jahr), dl-de/zero-2-0 (Nennung freiwillig, empfohlen)",
+      "hinweis": "Capabilities listen 73 Jahrgänge: 1951, 1952, 1953, 1954, 1955, 1956, 1957, 1958, 1959, 1960, 1961, 1962, 1963, 1964, 1966, 1967, 1968, 1969, 1970, 1971, 1972, 1973, 1974, 1975, 1976, 1977, 1978, 1979, 1980, 1981, 1982, 1983, 1984, 1985, 1986, 1987, 1988, 1989, 1990, 1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024 (nw_hist_dop_JJJJ). Über Hamm (Prüf-BBOX 868000,6740000,873000,6745000) liefern NUR diese Jahrgänge Inhalt: 1954, 1975, 1983, 1989, 1996, 2001, 2005, 2009, 2012, 2015, 2018, 2021, 2023. Alle anderen Jahrgänge: leeres transparentes PNG (334 Byte); 2024 deckt Hamm noch nicht ab. Ältere Jahrgänge graustufig. nw_hist_dop_info zeigt Bildflugblätter. Kein Maßstabslimit."
+    },
+    {
+      "id": "nrw_uraufnahme",
+      "name": "Preußische Uraufnahme 1836–1850 (1:25 000)",
+      "gruppe": "Geobasis NRW",
+      "typ": "wms",
+      "url": "https://www.wms.nrw.de/geobasis/wms_nw_uraufnahme",
+      "layers": [
+        "nw_uraufnahme_rw"
+      ],
+      "format": "image/png",
+      "epsg3857": true,
+      "getmap_ok": true,
+      "lizenz": "Datenlizenz Deutschland – Zero – Version 2.0 (dl-de/zero-2-0)",
+      "namensnennung": "© GeoBasis NRW (Jahr), dl-de/zero-2-0 (Nennung freiwillig, empfohlen)",
+      "hinweis": "MaxScaleDenominator 50000 → erst ab ca. Zoom 14 (auf der 10-km-Test-BBOX leer, auf 1-km-BBOX Inhalt). Blattübersicht nw_uraufnahme_rw_info."
+    },
+    {
+      "id": "nrw_neuaufnahme",
+      "name": "Preußische Neuaufnahme 1891–1912 (1:25 000)",
+      "gruppe": "Geobasis NRW",
+      "typ": "wms",
+      "url": "https://www.wms.nrw.de/geobasis/wms_nw_neuaufnahme",
+      "layers": [
+        "nw_neuaufnahme"
+      ],
+      "format": "image/png",
+      "epsg3857": true,
+      "getmap_ok": true,
+      "lizenz": "Datenlizenz Deutschland – Zero – Version 2.0 (dl-de/zero-2-0)",
+      "namensnennung": "© GeoBasis NRW (Jahr), dl-de/zero-2-0 (Nennung freiwillig, empfohlen)",
+      "hinweis": "MaxScaleDenominator 150000 → ab ca. Zoom 12. Die oft zitierte URL wms_nw_neuauf liefert 404."
+    },
+    {
+      "id": "nrw_tk25_1936",
+      "name": "Topographische Karte TK25 1936–1945",
+      "gruppe": "Geobasis NRW",
+      "typ": "wms",
+      "url": "https://www.wms.nrw.de/geobasis/wms_nw_tk25_1936-1945",
+      "layers": [
+        "nw_tk25_1936-1945"
+      ],
+      "format": "image/png",
+      "epsg3857": true,
+      "getmap_ok": true,
+      "lizenz": "Datenlizenz Deutschland – Zero – Version 2.0 (dl-de/zero-2-0)",
+      "namensnennung": "© GeoBasis NRW (Jahr), dl-de/zero-2-0 (Nennung freiwillig, empfohlen)",
+      "hinweis": "Nur zwischen 1:2000 und 1:27000 sichtbar → ca. Zoom 15–18."
+    },
+    {
+      "id": "nrw_hist_dtk10",
+      "name": "Historische DTK10 (Zeitschnitte 2003–2023)",
+      "gruppe": "Geobasis NRW",
+      "typ": "wms",
+      "url": "https://www.wms.nrw.de/geobasis/wms_nw_hist_dtk10",
+      "layers": [
+        "nw_hist_dtk10_col_2003",
+        "nw_hist_dtk10_col_2004",
+        "nw_hist_dtk10_col_2005",
+        "nw_hist_dtk10_col_2006",
+        "nw_hist_dtk10_col_2007",
+        "nw_hist_dtk10_col_2008",
+        "nw_hist_dtk10_col_2009",
+        "nw_hist_dtk10_col_2010",
+        "nw_hist_dtk10_col_2011",
+        "nw_hist_dtk10_col_2012",
+        "nw_hist_dtk10_col_2013",
+        "nw_hist_dtk10_col_2014",
+        "nw_hist_dtk10_col_2015",
+        "nw_hist_dtk10_col_2016",
+        "nw_hist_dtk10_col_2017",
+        "nw_hist_dtk10_col_2018",
+        "nw_hist_dtk10_col_2019",
+        "nw_hist_dtk10_col_2020",
+        "nw_hist_dtk10_col_2021",
+        "nw_hist_dtk10_col_2022",
+        "nw_hist_dtk10_col_2023"
+      ],
+      "format": "image/png",
+      "epsg3857": true,
+      "getmap_ok": true,
+      "lizenz": "Datenlizenz Deutschland – Zero – Version 2.0 (dl-de/zero-2-0)",
+      "namensnennung": "© GeoBasis NRW (Jahr), dl-de/zero-2-0 (Nennung freiwillig, empfohlen)",
+      "hinweis": "Je Jahr nw_hist_dtk10_col_JJJJ, ab 2011 auch _pan_JJJJ, außerdem _res_ und _info_. MaxScale 1:50001 → ab ca. Zoom 14. Getestet 2003, 2010, 2023: Inhalt."
+    },
+    {
+      "id": "nrw_dtk",
+      "name": "Digitale Topographische Karten (aktuell, maßstabsabhängig)",
+      "gruppe": "Geobasis NRW",
+      "typ": "wms",
+      "url": "https://www.wms.nrw.de/geobasis/wms_nw_dtk",
+      "layers": [
+        "nw_dtk_col",
+        "nw_dtk_sw"
+      ],
+      "format": "image/png",
+      "epsg3857": true,
+      "getmap_ok": true,
+      "lizenz": "Datenlizenz Deutschland – Zero – Version 2.0 (dl-de/zero-2-0)",
+      "namensnennung": "© GeoBasis NRW (Jahr), dl-de/zero-2-0 (Nennung freiwillig, empfohlen)",
+      "hinweis": "Wechselt automatisch DTK10/25/50/100. Einzeldienste: wms_nw_dtk25 (nw_dtk25_col/_sw), wms_nw_dtk50, wms_nw_dtk100."
+    },
+    {
+      "id": "nrw_abk",
+      "name": "Amtliche Basiskarte ABK",
+      "gruppe": "Geobasis NRW",
+      "typ": "wms",
+      "url": "https://www.wms.nrw.de/geobasis/wms_nw_abk",
+      "layers": [
+        "nw_abk_col",
+        "nw_abk_sw"
+      ],
+      "format": "image/png",
+      "epsg3857": true,
+      "getmap_ok": true,
+      "lizenz": "Datenlizenz Deutschland – Zero – Version 2.0 (dl-de/zero-2-0)",
+      "namensnennung": "© GeoBasis NRW (Jahr), dl-de/zero-2-0 (Nennung freiwillig, empfohlen)",
+      "hinweis": "MaxScale 1:10050 → ab ca. Zoom 16."
+    },
+    {
+      "id": "nrw_dgk5",
+      "name": "Deutsche Grundkarte 1:5000 (DGK5, historischer Stand)",
+      "gruppe": "Geobasis NRW",
+      "typ": "wms",
+      "url": "https://www.wms.nrw.de/geobasis/wms_nw_dgk5",
+      "layers": [
+        "nw_dgk5_grundriss",
+        "nw_dgk5_hoehen"
+      ],
+      "format": "image/png",
+      "epsg3857": true,
+      "getmap_ok": true,
+      "lizenz": "Datenlizenz Deutschland – Zero – Version 2.0 (dl-de/zero-2-0)",
+      "namensnennung": "© GeoBasis NRW (Jahr), dl-de/zero-2-0 (Nennung freiwillig, empfohlen)",
+      "hinweis": "MaxScale 1:10050 → ab ca. Zoom 16. Ein 'WMS-T historische ABK' existiert laut Metadaten (AdV-MIS), URL nicht gefunden (wms_nw_hist_abk, wms_nw_hist_dgk5: 404)."
+    },
+    {
+      "id": "nrw_alkis",
+      "name": "ALKIS (Flurstücke, Gebäude mit Hausnummern, Nutzung)",
+      "gruppe": "Geobasis NRW",
+      "typ": "wms",
+      "url": "https://www.wms.nrw.de/geobasis/wms_nw_alkis",
+      "layers": [
+        "adv_alkis_flurstuecke",
+        "adv_alkis_gebaeude",
+        "adv_alkis_tatsaechliche_nutzung",
+        "adv_alkis_verkehr",
+        "adv_alkis_gewaesser",
+        "adv_alkis_vegetation",
+        "adv_alkis_siedlung",
+        "adv_alkis_bauw_einricht",
+        "adv_alkis_relief",
+        "adv_alkis_gesetzl_festlegungen",
+        "adv_alkis_weiteres"
+      ],
+      "format": "image/png",
+      "epsg3857": true,
+      "getmap_ok": true,
+      "lizenz": "Datenlizenz Deutschland – Zero – Version 2.0 (dl-de/zero-2-0)",
+      "namensnennung": "© GeoBasis NRW (Jahr), dl-de/zero-2-0 (Nennung freiwillig, empfohlen)",
+      "hinweis": "Styles je Layer: Farbe, Grau, Gelb. Hausnummern im Gebäude-Layer. MaxScale 1:5501 → erst ab ca. Zoom 17 (1-km-BBOX fast leer, 300-m-BBOX Inhalt)."
+    },
+    {
+      "id": "nrw_dgm_schummerung",
+      "name": "DGM-Schummerung (Relief)",
+      "gruppe": "Geobasis NRW",
+      "typ": "wms",
+      "url": "https://www.wms.nrw.de/geobasis/wms_nw_dgm-schummerung",
+      "layers": [
+        "nw_dgm-schummerung_pan",
+        "nw_dgm-schummerung_col",
+        "nw_dgm-schummerung_pan_ne",
+        "nw_dgm-schummerung_col_ne"
+      ],
+      "format": "image/png",
+      "epsg3857": true,
+      "getmap_ok": true,
+      "lizenz": "Datenlizenz Deutschland – Zero – Version 2.0 (dl-de/zero-2-0)",
+      "namensnennung": "© GeoBasis NRW (Jahr), dl-de/zero-2-0 (Nennung freiwillig, empfohlen)",
+      "hinweis": "_pan = grau, _col = farbig; _ne-Varianten zusätzlich. Inhalt auf Test-BBOX."
+    },
+    {
+      "id": "nrw_ndom",
+      "name": "Normalisiertes Oberflächenmodell (nDOM, Objekthöhen)",
+      "gruppe": "Geobasis NRW",
+      "typ": "wms",
+      "url": "https://www.wms.nrw.de/geobasis/wms_nw_ndom",
+      "layers": [
+        "nw_ndom"
+      ],
+      "format": "image/png",
+      "epsg3857": true,
+      "getmap_ok": true,
+      "lizenz": "Datenlizenz Deutschland – Zero – Version 2.0 (dl-de/zero-2-0)",
+      "namensnennung": "© GeoBasis NRW (Jahr), dl-de/zero-2-0 (Nennung freiwillig, empfohlen)",
+      "hinweis": "Gebäude- und Vegetationshöhen als Farbbild."
+    },
+    {
+      "id": "nrw_afis",
+      "name": "Festpunkte AFIS (Höhen-, Lage-, Schwerefestpunkte)",
+      "gruppe": "Geobasis NRW",
+      "typ": "wms",
+      "url": "https://www.wms.nrw.de/geobasis/wms_nw_afis",
+      "layers": [
+        "nw_afis_hfp",
+        "nw_afis_niv",
+        "nw_afis_sfp",
+        "nw_afis_lfpzentren_pst1",
+        "nw_afis_lfppunkte_pst1",
+        "nw_afis_hp_weitere"
+      ],
+      "format": "image/png",
+      "epsg3857": true,
+      "getmap_ok": true,
+      "lizenz": "Datenlizenz Deutschland – Zero – Version 2.0 (dl-de/zero-2-0)",
+      "namensnennung": "© GeoBasis NRW (Jahr), dl-de/zero-2-0 (Nennung freiwillig, empfohlen)",
+      "hinweis": "Unterlayer nach Ordnung (nw_afis_hfp_1_ordnung …). HFP bis 1:200000, SFP bis 1:350000."
+    },
+    {
+      "id": "nrw_dvg",
+      "name": "Verwaltungsgrenzen (DVG)",
+      "gruppe": "Geobasis NRW",
+      "typ": "wms",
+      "url": "https://www.wms.nrw.de/geobasis/wms_nw_dvg",
+      "layers": [
+        "nw_dvg_gem",
+        "nw_dvg_gem_namen",
+        "nw_dvg_krs",
+        "nw_dvg_rbz",
+        "nw_dvg_bld"
+      ],
+      "format": "image/png",
+      "epsg3857": true,
+      "getmap_ok": false,
+      "lizenz": "Datenlizenz Deutschland – Zero – Version 2.0 (dl-de/zero-2-0)",
+      "namensnennung": "© GeoBasis NRW (Jahr), dl-de/zero-2-0 (Nennung freiwillig, empfohlen)",
+      "hinweis": "Capabilities ok, GetMap nicht getestet. Für die Stadtgrenze Hamm."
+    },
+    {
+      "id": "nrw_hist_blattschnitte",
+      "name": "Blattschnitte historischer Kartenwerke vor 1912",
+      "gruppe": "Geobasis NRW",
+      "typ": "wms",
+      "url": "https://www.wms.nrw.de/geobasis/wms_nw_hist_blattschnitte",
+      "layers": [
+        "nw_hk_25_ur",
+        "nw_hk_25_ne",
+        "nw_hk_80_rw",
+        "nw_hk_86_lc",
+        "nw_hk_86_pg",
+        "nw_hk_100_fk",
+        "nw_hk_100_kdr",
+        "nw_hk_25_lippe",
+        "nw_hk_25_tm"
+      ],
+      "format": "image/png",
+      "epsg3857": true,
+      "getmap_ok": false,
+      "lizenz": "Datenlizenz Deutschland – Zero – Version 2.0 (dl-de/zero-2-0)",
+      "namensnennung": "© GeoBasis NRW (Jahr), dl-de/zero-2-0 (Nennung freiwillig, empfohlen)",
+      "hinweis": "Nur Blattübersichten. Capabilities ok, GetMap nicht getestet."
+    },
+    {
+      "id": "nrw_3d_mesh",
+      "name": "3D-Mesh / 3D-Gebäudemodell als WMS",
+      "gruppe": "Geobasis NRW",
+      "typ": "wms",
+      "url": "",
+      "layers": [],
+      "format": "",
+      "epsg3857": false,
+      "getmap_ok": false,
+      "lizenz": "Datenlizenz Deutschland – Zero – Version 2.0 (dl-de/zero-2-0)",
+      "namensnennung": "© GeoBasis NRW (Jahr), dl-de/zero-2-0 (Nennung freiwillig, empfohlen)",
+      "hinweis": "Kein WMS gefunden (wms_nw_3d-gebaeudemodell, wms_nw_3d-mesh, wms_nw_lod2-gebaeude: 404). 3D-Mesh und LoD2 nur als Download (opengeodata.nrw.de)."
+    },
+    {
+      "id": "nrw_tranchot",
+      "name": "Tranchot/v. Müffling 1801–1828",
+      "gruppe": "Geobasis NRW",
+      "typ": "wms",
+      "url": "https://www.wms.nrw.de/geobasis/wms_nw_tranchot",
+      "layers": [
+        "nw_tranchot"
+      ],
+      "format": "image/png",
+      "epsg3857": true,
+      "getmap_ok": false,
+      "lizenz": "Datenlizenz Deutschland – Zero – Version 2.0 (dl-de/zero-2-0)",
+      "namensnennung": "© GeoBasis NRW (Jahr), dl-de/zero-2-0 (Nennung freiwillig, empfohlen)",
+      "hinweis": "Nur Rheinland, deckt Hamm NICHT ab."
+    },
+    {
+      "id": "boris_brw",
+      "name": "BORIS NRW Bodenrichtwerte (aktuell)",
+      "gruppe": "Landesdienste NRW",
+      "typ": "wms",
+      "url": "https://www.wms.nrw.de/boris/wms_nw_brw",
+      "layers": [
+        "17",
+        "18",
+        "20",
+        "21",
+        "14",
+        "15",
+        "8",
+        "9",
+        "11",
+        "12",
+        "5",
+        "6",
+        "2",
+        "3",
+        "0"
+      ],
+      "format": "image/png",
+      "epsg3857": true,
+      "getmap_ok": true,
+      "lizenz": "Datenlizenz Deutschland – Zero – Version 2.0 (dl-de/zero-2-0)",
+      "namensnennung": "© Land NRW / Gutachterausschüsse (Jahr), dl-de/zero-2-0",
+      "hinweis": "Layer-Namen sind Nummern: 17/18 mehrgeschossige Bauweise (+Label), 20/21 ein-/zweigeschossig, 14/15 Gewerbe/Industrie, 8/9 Landwirtschaft, 11/12 Forst, 5/6 Außenbereich, 2/3 sonstige Flächen, 0 Verfügbarkeit. MaxScale ca. 1:113000 → ab ca. Zoom 13. Zeitreihe ab 2011: https://www.wms.nrw.de/boris/wms-t_nw_brw (Layer brw_*), Immobilienrichtwerte: https://www.wms.nrw.de/boris/wms_nw_irw."
+    },
+    {
+      "id": "laerm_r4",
+      "name": "Umgebungslärmkartierung 2022 (Runde 4)",
+      "gruppe": "Landesdienste NRW",
+      "typ": "wms",
+      "url": "https://www.wms.nrw.de/umwelt/laerm_stufe4",
+      "layers": [
+        "STR_DEN",
+        "STR_NGT",
+        "SCB_DEN",
+        "SCB_NGT",
+        "SCS_DEN",
+        "SCS_NGT",
+        "FLG_DEN",
+        "FLG_NGT",
+        "IND_DEN",
+        "IND_NGT",
+        "Gebaeude"
+      ],
+      "format": "image/png",
+      "epsg3857": true,
+      "getmap_ok": true,
+      "lizenz": "Datenlizenz Deutschland – Namensnennung – Version 2.0 (dl-de/by-2-0)",
+      "namensnennung": "Land NRW (Jahr), dl-de/by-2-0",
+      "hinweis": "STR Straße, SCB Schiene Bund, SCS Schiene sonstige, FLG Flug, IND Industrie; DEN 24 h, NGT Nacht. MaxScale 1:75500 → ab ca. Zoom 13 (10-km-BBOX leer, 5-km-BBOX Inhalt). Ältere Runden: laerm_stufe1 … laerm_stufe3."
+    },
+    {
+      "id": "hw_gefahr",
+      "name": "Hochwassergefahrenkarte NRW",
+      "gruppe": "Landesdienste NRW",
+      "typ": "wms",
+      "url": "https://www.wms.nrw.de/umwelt/HW_Gefahrenkarte",
+      "layers": [
+        "Tiefen_Ueberflutungsgebiet_hw",
+        "Tiefen_Ueberflutungsgebiet_mw",
+        "Tiefen_Ueberflutungsgebiet_nw",
+        "Grenze_der_ueberfluteten_Gebiete_hw",
+        "Grenze_der_ueberfluteten_Gebiete_mw",
+        "Grenze_der_ueberfluteten_Gebiete_nw",
+        "Tiefen_ueberflutungsgefaehrdete_Gebiete_hw",
+        "Fliessgeschwindigkeiten_hw",
+        "Schutzeinrichtung",
+        "Beckenstandort"
+      ],
+      "format": "image/png",
+      "epsg3857": true,
+      "getmap_ok": true,
+      "lizenz": "Datenlizenz Deutschland – Namensnennung – Version 2.0 (dl-de/by-2-0)",
+      "namensnennung": "Land NRW (Jahr), dl-de/by-2-0",
+      "hinweis": "Suffixe hw/mw/nw = hohe (häufig), mittlere (HQ100), niedrige Wahrscheinlichkeit (HQextrem). Auch unter /umwelt/wasser/HW_Gefahrenkarte."
+    },
+    {
+      "id": "hw_risiko",
+      "name": "Hochwasserrisikokarte NRW",
+      "gruppe": "Landesdienste NRW",
+      "typ": "wms",
+      "url": "https://www.wms.nrw.de/umwelt/HW_Risikokarte",
+      "layers": [
+        "Flaechennutzung_im_ueberfluteten_Bereich_hw",
+        "Flaechennutzung_im_ueberfluteten_Bereich_mw",
+        "Flaechennutzung_im_ueberfluteten_Bereich_nw",
+        "Ueberflutungsgrenzen_hw",
+        "Ueberflutungsgrenzen_mw",
+        "Ueberflutungsgrenzen_nw",
+        "Pegel",
+        "Schutzeinrichtungen",
+        "Beckenstandorte"
+      ],
+      "format": "image/png",
+      "epsg3857": true,
+      "getmap_ok": true,
+      "lizenz": "Datenlizenz Deutschland – Namensnennung – Version 2.0 (dl-de/by-2-0)",
+      "namensnennung": "Land NRW (Jahr), dl-de/by-2-0",
+      "hinweis": "Zusätzlich Einwohner-Layer je Gemeinde (Anzahl_betroffene_Einwohner_…)."
+    },
+    {
+      "id": "solarkataster",
+      "name": "Solarkataster NRW (im Energieatlas-WMS)",
+      "gruppe": "Landesdienste NRW",
+      "typ": "wms",
+      "url": "https://www.wms.nrw.de/umwelt/energieatlas",
+      "layers": [
+        "sk_potentiale_photovoltaik_dachflaechen",
+        "sk_potentiale_solarthermie_dachflaechen"
+      ],
+      "format": "image/png",
+      "epsg3857": true,
+      "getmap_ok": true,
+      "lizenz": "Datenlizenz Deutschland – Namensnennung – Version 2.0 (dl-de/by-2-0) laut open.nrw-Datensatz; im WMS nur 'Fees: keine', AccessConstraints fehlt – bestätigen",
+      "namensnennung": "Land NRW (Jahr), dl-de/by-2-0",
+      "hinweis": "Kein eigener Solarkataster-WMS; die Layer stecken im Sammel-WMS 'energieatlas' (dort auch Wärmekataster wk_*, hausumringe). Erst bei großem Maßstab sichtbar (300-m-BBOX Inhalt, 1-km-BBOX leer) → ab ca. Zoom 17."
+    },
+    {
+      "id": "ee_anlagen",
+      "name": "Erneuerbare-Energien-Anlagen NRW (Energieatlas)",
+      "gruppe": "Landesdienste NRW",
+      "typ": "wms",
+      "url": "https://www.wms.nrw.de/umwelt/erneuerbare_energien_nrw",
+      "layers": [
+        "Windenergieinbetrieb",
+        "Freiflaechen_PVinbetrieb",
+        "Gebaeudeflaechen_PVinbetrieb",
+        "Wasserkraftinbetrieb"
+      ],
+      "format": "image/png",
+      "epsg3857": true,
+      "getmap_ok": false,
+      "lizenz": "NICHT ERLAUBT: eigene Nutzungsbedingungen (keine Veränderung, keine kommerzielle Nutzung)",
+      "namensnennung": "–",
+      "hinweis": "Ausschließen oder vorher Entscheidung. EPSG:3857 nur im Root-Layer, GetMap nicht getestet."
+    },
+    {
+      "id": "denkmal",
+      "name": "Denkmäler NRW (INSPIRE, Listen nach DSchG)",
+      "gruppe": "Landesdienste NRW",
+      "typ": "wms",
+      "url": "https://www.wms.nrw.de/wms/wms_nw_inspire-denkmal",
+      "layers": [
+        "ProtectedSites_Cultural_Surface",
+        "ProtectedSites_Cultural_Line",
+        "ProtectedSites_Cultural_Point",
+        "ProtectedSites_Cultural_Multipoint",
+        "ProtectedSites_Archaeological_Surface",
+        "ProtectedSites_Archaeological_Point"
+      ],
+      "format": "image/png",
+      "epsg3857": true,
+      "getmap_ok": true,
+      "lizenz": "Im WMS 'Es gibt keine Bedingungen' / AccessConstraints 'Keine'; keine benannte Lizenz. Bodendenkmal-Downloads sind teils CC BY-ND 4.0 (nicht erlaubt) – Entscheidung nötig",
+      "namensnennung": "IT.NRW / Kommunen",
+      "hinweis": "Inhalt auf 1-km-BBOX in Hamm vorhanden."
+    },
+    {
+      "id": "gd_gk100",
+      "name": "Geologische Karte 1:100 000 (INSPIRE)",
+      "gruppe": "Geologischer Dienst NRW",
+      "typ": "wms",
+      "url": "https://www.wms.nrw.de/gd/wms_nw_inspire-gk100",
+      "layers": [
+        "GE.GeologicUnit",
+        "GE.GeologicUnit.Lithology_GK100",
+        "GE.GeologicUnit.AgeOfRocks_GK100",
+        "GE.GeologicFault"
+      ],
+      "format": "image/png",
+      "epsg3857": true,
+      "getmap_ok": true,
+      "lizenz": "Datenlizenz Deutschland – Namensnennung – Version 2.0 (dl-de/by-2-0)",
+      "namensnennung": "Geowissenschaftliche Daten: INSPIRE - IS GK 100 © Geologischer Dienst NRW, Jahr des Abrufs (Pflichtvermerk, deutlich sichtbar)",
+      "hinweis": ""
+    },
+    {
+      "id": "gd_gk50",
+      "name": "Geologische Karte 1:50 000 (IS GK 50)",
+      "gruppe": "Geologischer Dienst NRW",
+      "typ": "wms",
+      "url": "https://www.wms.nrw.de/gd/gk50",
+      "layers": [
+        "Geologische_Einheiten_Praequartaerer_Untergrund",
+        "Quartaer_Maechtigkeit",
+        "Quartaer_Basis_Verbreitung",
+        "Tektonik_Praequartaerer_Untergrund",
+        "Grenzen"
+      ],
+      "format": "image/png",
+      "epsg3857": true,
+      "getmap_ok": true,
+      "lizenz": "vermutlich dl-de/by-2-0 wie die anderen GD-Dienste (AccessConstraints nur 'otherRestrictions') – bestätigen",
+      "namensnennung": "© Geologischer Dienst NRW (Jahr)",
+      "hinweis": "Viele weitere Layer (Schnitte, Höhenlinien)."
+    },
+    {
+      "id": "gd_guek500",
+      "name": "Geologische Übersichtskarte 1:500 000",
+      "gruppe": "Geologischer Dienst NRW",
+      "typ": "wms",
+      "url": "https://www.wms.nrw.de/gd/guek500",
+      "layers": [
+        "1",
+        "2"
+      ],
+      "format": "image/png",
+      "epsg3857": true,
+      "getmap_ok": true,
+      "lizenz": "Datenlizenz Deutschland – Namensnennung – Version 2.0 (dl-de/by-2-0)",
+      "namensnennung": "Geowissenschaftliche Daten: IS GÜK 500 © Geologischer Dienst NRW, Jahr des Abrufs",
+      "hinweis": "1 Geologische Schichten, 2 Tektonische Verwerfungen."
+    },
+    {
+      "id": "bergbauberechtigungen",
+      "name": "Bergbauberechtigungen NRW (Bezirksregierung Arnsberg)",
+      "gruppe": "Bergbau",
+      "typ": "wms",
+      "url": "https://www.wms.nrw.de/wms/bebu",
+      "layers": [
+        "19",
+        "18",
+        "15",
+        "14",
+        "17",
+        "16",
+        "13",
+        "3"
+      ],
+      "format": "image/png",
+      "epsg3857": true,
+      "getmap_ok": true,
+      "lizenz": "Datenlizenz Deutschland – Namensnennung – Version 2.0 (dl-de/by-2-0)",
+      "namensnennung": "Land NRW (Jahr), dl-de/by-2-0",
+      "hinweis": "Layer-Nummern: 19 Alle, 18 Alle erloschen, 15 Steinkohle, 14 Steinkohle erloschen, 17 Erdwärme, 16 Erdwärme erloschen, 13 Braunkohle, 3 Kohlenwasserstoffe, 11 Salze usw. INSPIRE-Variante: https://www.wms.nrw.de/wms/wms_nw_inspire-bergbauberechtigungen (AM.ProspectingAndMiningPermitArea)."
+    },
+    {
+      "id": "tagesoeffnungen",
+      "name": "Altbergbau / Tagesöffnungen / Schächte",
+      "gruppe": "Bergbau",
+      "typ": "wms",
+      "url": "",
+      "layers": [],
+      "format": "",
+      "epsg3857": false,
+      "getmap_ok": false,
+      "lizenz": "–",
+      "namensnennung": "–",
+      "hinweis": "Kein offener WMS gefunden. Tagesöffnungen und Gefährdungspotenziale nur im Portal www.gdu.nrw.de, keine dokumentierte WMS-URL (gd/gdu, wms/gdu u. a.: 404). Ersatz: OSM (man_made=mineshaft, historic=mine_shaft). Offene Lücke."
+    },
+    {
+      "id": "basemap_vektor",
+      "name": "basemap.de Web Vektor (Farbe)",
+      "gruppe": "Bund (BKG)",
+      "typ": "style",
+      "url": "https://sgx.geodatenzentrum.de/gdz_basemapde_vektor/styles/bm_web_col.json",
+      "layers": [
+        "bm_web_col"
+      ],
+      "format": "application/x-protobuf (MVT)",
+      "epsg3857": true,
+      "getmap_ok": true,
+      "lizenz": "CC BY 4.0",
+      "namensnennung": "© basemap.de / BKG (Jahr) | Datenquellen: © GeoBasis-DE",
+      "hinweis": "Weitere Stile: bm_web_gry.json (grau), bm_web_top.json (topografisch), bm_web_bin.json. Quelle tiles/v2/bm_web_de_3857/{z}/{x}/{y}.pbf, maxzoom 15 (danach Overzoom), Glyphs und Sprites auf demselben Server. Style ca. 500 KB. Vektorkachel z14 geladen, CORS ok."
+    },
+    {
+      "id": "basemap_raster",
+      "name": "basemap.de Web Raster (WMTS)",
+      "gruppe": "Bund (BKG)",
+      "typ": "wmts",
+      "url": "https://sgx.geodatenzentrum.de/wmts_basemapde/tile/1.0.0/de_basemapde_web_raster_farbe/default/GLOBAL_WEBMERCATOR/{z}/{y}/{x}.png",
+      "layers": [
+        "de_basemapde_web_raster_farbe",
+        "de_basemapde_web_raster_grau"
+      ],
+      "format": "image/png",
+      "epsg3857": true,
+      "getmap_ok": true,
+      "lizenz": "CC BY 4.0",
+      "namensnennung": "© basemap.de / BKG (Jahr)",
+      "hinweis": "TileMatrixSet GLOBAL_WEBMERCATOR (z0–19) funktioniert als XYZ; DE_EPSG_3857_ADV mit XYZ-Index liefert 400. WMS: https://sgx.geodatenzentrum.de/wms_basemapde (gleiche Layer, GetMap ok)."
+    },
+    {
+      "id": "topplusopen",
+      "name": "TopPlusOpen (BKG)",
+      "gruppe": "Bund (BKG)",
+      "typ": "wmts",
+      "url": "https://sgx.geodatenzentrum.de/wmts_topplus_open/tile/1.0.0/web/default/WEBMERCATOR/{z}/{y}/{x}.png",
+      "layers": [
+        "web",
+        "web_grau",
+        "web_light",
+        "web_light_grau",
+        "web_scale",
+        "web_scale_grau"
+      ],
+      "format": "image/png",
+      "epsg3857": true,
+      "getmap_ok": true,
+      "lizenz": "Datenlizenz Deutschland – Namensnennung – Version 2.0 (dl-de/by-2-0)",
+      "namensnennung": "© BKG (Jahr), dl-de/by-2-0, Datenquellen: https://sgx.geodatenzentrum.de/web_public/Datenquellen_TopPlus_Open.html",
+      "hinweis": "TileMatrixSet WEBMERCATOR z0–18. WMS: https://sgx.geodatenzentrum.de/wms_topplus_open (GetMap ok)."
+    },
+    {
+      "id": "gibs_modis",
+      "name": "NASA GIBS MODIS True Color (täglich)",
+      "gruppe": "Satellit",
+      "typ": "wmts",
+      "url": "https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/MODIS_Terra_CorrectedReflectance_TrueColor/default/{TIME}/GoogleMapsCompatible_Level9/{z}/{y}/{x}.jpg",
+      "layers": [
+        "MODIS_Terra_CorrectedReflectance_TrueColor",
+        "MODIS_Aqua_CorrectedReflectance_TrueColor"
+      ],
+      "format": "image/jpeg",
+      "epsg3857": true,
+      "getmap_ok": true,
+      "lizenz": "gemeinfrei / keine Einschränkungen (NASA EOSDIS Open Data)",
+      "namensnennung": "Imagery: NASA EOSDIS GIBS / Worldview",
+      "hinweis": "{TIME} = YYYY-MM-DD, z. B. 2026-09-30, oder 'default' (= heute, oft noch lückenhaft). maxzoom 9 (ca. 250 m). Kachel z8/84/133 ok. CORS *."
+    },
+    {
+      "id": "gibs_viirs",
+      "name": "NASA GIBS VIIRS True Color (täglich)",
+      "gruppe": "Satellit",
+      "typ": "wmts",
+      "url": "https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/VIIRS_NOAA20_CorrectedReflectance_TrueColor/default/{TIME}/GoogleMapsCompatible_Level9/{z}/{y}/{x}.jpg",
+      "layers": [
+        "VIIRS_NOAA20_CorrectedReflectance_TrueColor",
+        "VIIRS_NOAA21_CorrectedReflectance_TrueColor",
+        "VIIRS_SNPP_CorrectedReflectance_TrueColor"
+      ],
+      "format": "image/jpeg",
+      "epsg3857": true,
+      "getmap_ok": true,
+      "lizenz": "gemeinfrei / keine Einschränkungen (NASA EOSDIS Open Data)",
+      "namensnennung": "Imagery: NASA EOSDIS GIBS / Worldview",
+      "hinweis": "Zeiträume laut Capabilities: NOAA20 ab 2022-01-14, NOAA21 ab 2024-02-29, SNPP nur ab 2026-07-16. Getestet 2026-09-30 ok."
+    },
+    {
+      "id": "gibs_viirs_nacht",
+      "name": "NASA GIBS VIIRS Day/Night Band (Nachtlichter)",
+      "gruppe": "Satellit",
+      "typ": "wmts",
+      "url": "https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/VIIRS_SNPP_DayNightBand_At_Sensor_Radiance/default/{TIME}/GoogleMapsCompatible_Level8/{z}/{y}/{x}.png",
+      "layers": [
+        "VIIRS_SNPP_DayNightBand_At_Sensor_Radiance",
+        "VIIRS_Black_Marble"
+      ],
+      "format": "image/png",
+      "epsg3857": true,
+      "getmap_ok": true,
+      "lizenz": "gemeinfrei / keine Einschränkungen (NASA EOSDIS Open Data)",
+      "namensnennung": "Imagery: NASA EOSDIS GIBS",
+      "hinweis": "maxzoom 8. VIIRS_Black_Marble nur Stand 2016-01-01. Getestet 2026-09-30 ok."
+    },
+    {
+      "id": "sentinel2_stac",
+      "name": "Sentinel-2 L2A (Earth Search STAC)",
+      "gruppe": "Satellit",
+      "typ": "stac",
+      "url": "https://earth-search.aws.element84.com/v1",
+      "layers": [
+        "sentinel-2-c1-l2a",
+        "sentinel-2-l2a"
+      ],
+      "format": "image/tiff (COG) / image/jpeg (Vorschau)",
+      "epsg3857": true,
+      "getmap_ok": false,
+      "lizenz": "Copernicus Sentinel Data Legal Notice (frei, offen, kostenlos; im STAC als 'proprietary' geführt) – steht nicht in der Liste erlaubter Lizenzen, braucht Entscheidung",
+      "namensnennung": "Contains modified Copernicus Sentinel data (Jahr)",
+      "hinweis": "Kein WMS/XYZ. Suche: POST /search mit collections [sentinel-2-c1-l2a], intersects Punkt (7.8195, 51.6806), query eo:cloud_cover lt 30, sortby properties.datetime desc. Kein Schlüssel, CORS *. Beispiel: Item S2A_T32UMC_20260925T104037_L2A, 2026-09-25T10:46:44Z, Wolken 5,04 %, MGRS 32UMC. visual (TCI 10 m, COG 315 MB, Range-Requests ok, UTM 32N EPSG:32632): https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/32/U/MC/2026/9/S2A_T32UMC_20260925T104037_L2A/TCI.tif ; thumbnail (JPEG 46 KB, ganze 110-km-Kachel): https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/32/U/MC/2026/9/S2A_T32UMC_20260925T104037_L2A/L2A_PVI.jpg . MapLibre: Thumbnail als image-Quelle mit den Item-bbox-Ecken (grob, UTM gegen 3857 verzerrt) oder COG über ein Protokoll-Plugin (z. B. maplibre-cog-protocol) bzw. in einer Vorstufe nach 3857 kacheln. Legacy-Collection sentinel-2-l2a: dieselbe Szene als S2A_32UMC_20260925_1_L2A (sentinel-cogs.s3.us-west-2.amazonaws.com/…/TCI.tif und preview.jpg)."
+    }
+  ]
+}

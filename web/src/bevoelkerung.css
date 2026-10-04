@@ -1,0 +1,41 @@
+/* Seite „Bevölkerung“ (bevoelkerung.ts): Kennzahlen, Merkmalwahl, Legende, Bezirke. Farben nur aus den Tokens in style.css. */
+
+/* Kennzahl-Baustein wie .vu-kz, zwei Spalten im 360-px-Panel */
+.vu-kz.bv-kz { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); margin-bottom: 8px; }
+.bv-kz > div { display: flex; flex-direction: column; gap: 2px; }
+.bv-kz span { display: block; }
+.bv-kz b { font-variant-numeric: tabular-nums; }
+.bv-kz small { display: block; font-size: 11px; color: var(--text3); line-height: 1.3; }
+
+.segment.bv-gruppen button { padding: 8px 4px; }
+
+/* Merkmalliste: Name links, Hamm-Wert rechts, gewähltes Merkmal mit Petrol-Streifen */
+.karte.bv-merkmale { margin-top: 0; }
+.bv-merkmale ul.kompakt li { gap: 12px; }
+.bv-merkmale li b { font-weight: 600; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.bv-merkmale li em { font: 600 10px var(--din); font-style: normal; letter-spacing: .06em; text-transform: uppercase; color: var(--text3); margin-left: 4px; }
+.karte.bv-merkmale li.klickbar.an { border-left-color: var(--petrol); background: var(--flaeche2); }
+.karte.bv-merkmale li.klickbar.an span { color: var(--petrol); font-weight: 600; }
+
+.bv-text { margin: 4px 0 0; font-size: 13px; color: var(--text2); }
+.legende.bv-legende { flex-direction: column; gap: 4px; padding: 8px 0 0; font-variant-numeric: tabular-nums; }
+
+/* Bezirke mit Balken */
+.bv-bezirke ul li { display: grid; grid-template-columns: minmax(0, 1fr) 96px minmax(72px, auto); gap: 8px; align-items: center; padding: 6px 0; border-left: 0; }
+.bv-bezirke ul li span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.bv-bezirke ul li b { font-weight: 600; font-variant-numeric: tabular-nums; text-align: right; white-space: nowrap; }
+.bv-bezirke ul li.summe { border-top: 2px solid var(--linie); }
+.bv-bezirke ul li.summe span, .bv-bezirke ul li.summe b { font-weight: 700; }
+.bv-balken { display: block; height: 8px; background: var(--flaeche2); }
+.bv-balken > i { display: block; height: 100%; background: var(--petrol); }
+.bv-bezirke li.summe .bv-balken > i { background: var(--hamm-gruen); }
+
+/* Tabellen in den Klappabschnitten */
+.bv-tabelle li b { font-weight: 600; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.bv-tabelle li b small { display: inline; font-weight: 400; color: var(--text3); margin-left: 4px; }
+.bv-tabelle li.summe { border-top: 2px solid var(--linie); }
+.karte.bv-klapp.zu h4, .karte.bv-klapp.zu dl { display: none; }
+
+/* Detailblatt */
+.fakten.bv-fakten dd small { color: var(--text3); font-size: 12px; }
+.fakten.bv-fakten dt small { color: var(--text3); font: 600 10px var(--din); letter-spacing: .06em; text-transform: uppercase; }

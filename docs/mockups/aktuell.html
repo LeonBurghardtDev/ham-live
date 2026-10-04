@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aktuell – fünf Entwürfe</title>
+<style>
+:root{--border:#d9dcdf;--surface-1:#f2f2f2;--surface-2:#fff;--text-primary:#1f2024;--text-secondary:#5f6168}
+body{margin:0;padding:24px;background:#eceae4;font:14px/1.45 "Fira Sans","Segoe UI",system-ui,sans-serif;color:var(--text-primary)}
+main{max-width:980px;margin:0 auto}
+.m{border:0.5px solid var(--border);background:var(--surface-2);margin:0 0 6px;font-size:13px;line-height:1.35;overflow:hidden}
+.cap{font-size:15px;font-weight:600;margin:28px 0 8px}
+.cap span{color:var(--text-secondary);font-weight:400}
+.kopf{display:flex;align-items:center;gap:8px;height:30px;border-bottom:0.5px solid var(--border);font-size:12px;color:var(--text-secondary)}
+.marke{background:#005468;color:#fff;height:100%;display:flex;align-items:center;padding:0 12px;font-weight:600;border-bottom:2px solid #95c11e}
+.tab{padding:0 8px}.tab.a{color:#005468;font-weight:600;box-shadow:inset 0 -2px 0 #95c11e;height:100%;display:flex;align-items:center}
+.k{background:var(--surface-1);padding:8px}
+.kl{font-size:12px;color:var(--text-secondary)}
+.big{font-size:22px;font-weight:600;color:#005468}
+.mapbox{background:repeating-linear-gradient(0deg,transparent 0 13px,var(--border) 13px 14px),repeating-linear-gradient(90deg,transparent 0 13px,var(--border) 13px 14px);position:relative;min-height:170px}
+.dot{position:absolute;width:10px;height:10px}
+.row{display:grid;grid-template-columns:50px 80px minmax(0,1fr) 90px;gap:8px;padding:6px 0;border-bottom:1px solid #2f7a8c}
+</style>
+</head>
+<body><main>
+
+<p class="cap">1 Anzeigetafel <span>– eine Liste wie am Bahnsteig, wichtigstes oben</span></p>
+<div class="m">
+<div class="kopf"><div class="marke">HAM:LIVE</div><div class="tab a">Aktuell</div><div class="tab">Verkehr</div><div class="tab">Wetter</div><div style="margin-left:auto;padding-right:8px">Do 01.10. · 18:42</div></div>
+<div style="display:grid;grid-template-columns:minmax(0,1fr) 260px">
+<div style="background:#005468;color:#fff;padding:12px 14px">
+<div class="row" style="font-size:12px;color:#9fd0dc"><span>Zeit</span><span>Thema</span><span>Meldung</span><span>Ort</span></div>
+<div class="row"><span>ab 18</span><span style="background:#f0ca00;color:#412402;padding:0 4px">Wetter</span><span>Regen, 5 mm bis Mitternacht</span><span>ganz Hamm</span></div>
+<div class="row"><span>18:31</span><span style="background:#c4271b;padding:0 4px">Verkehr</span><span>B63 dichter Verkehr, +3 min</span><span>Hamm-Kump</span></div>
+<div class="row"><span>heute</span><span style="background:#95c11e;color:#173404;padding:0 4px">Blitzer</span><span>Fritz-Husemann-Str., Heideweg</span><span>Herringen</span></div>
+<div class="row"><span>18:44</span><span style="background:#fff;color:#005468;padding:0 4px">Bahn</span><span>RE6 Minden +22 min</span><span>Hbf Gl. 9</span></div>
+<div class="row" style="border:0"><span>19:00</span><span style="background:#fff;color:#005468;padding:0 4px">Termin</span><span>Konzert Landespolizeiorchester</span><span>Kurhaus</span></div>
+</div>
+<div class="mapbox"><div class="dot" style="left:80px;top:40px;background:#c4271b"></div><div class="dot" style="left:150px;top:90px;background:#95c11e"></div><div class="dot" style="left:110px;top:130px;background:#f0ca00"></div></div>
+</div></div>
+
+<p class="cap">2 Titelseite <span>– Aufmacher groß, darunter drei Spalten</span></p>
+<div class="m">
+<div class="kopf"><div class="marke">HAM:LIVE</div><div class="tab a">Aktuell</div><div class="tab">Verkehr</div><div class="tab">Wetter</div></div>
+<div style="padding:12px 14px;display:grid;grid-template-columns:minmax(0,1fr) 200px;gap:14px;border-bottom:2px solid #005468">
+<div><div class="kl">Donnerstag, 1. Oktober</div><div style="font-size:22px;font-weight:600;color:#005468;line-height:1.2;margin:2px 0 4px">Ab 18 Uhr Regen, B63 bei Kump dicht</div><div style="color:var(--text-secondary)">4 Baustellen der Stadt, mobil geblitzt in Herringen</div></div>
+<div class="k"><div class="big">17 °C</div><div class="kl">Regen ab 18 Uhr · Luft sehr gut</div></div>
+</div>
+<div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr))">
+<div style="padding:10px 14px;border-right:0.5px solid var(--border)"><div style="font-weight:600;color:#005468;margin-bottom:4px">Unterwegs</div><div>Stau Kamen–Unna 3 km</div><div>RE6 +22 min</div><div>Linie 4 +9 min</div></div>
+<div style="padding:10px 14px;border-right:0.5px solid var(--border)"><div style="font-weight:600;color:#005468;margin-bottom:4px">In der Stadt</div><div>Grünstraße gesperrt bis 9.10.</div><div>Polizei: Einbruch Uentrop</div><div>WA: Ratssitzung zum Bad</div></div>
+<div style="padding:10px 14px"><div style="font-weight:600;color:#005468;margin-bottom:4px">Heute los</div><div>19:00 Kurhaus Konzert</div><div>Ausstellung Maxipark</div><div>5 Termine</div></div>
+</div></div>
+
+<p class="cap">3 Ampel-Status <span>– je Bereich ein Zustand, Details beim Klick</span></p>
+<div class="m" style="padding:12px">
+<div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px">
+<div class="k" style="border-left:4px solid #1d7f3c"><div class="kl">Warnungen</div><div style="font-weight:600">keine</div></div>
+<div class="k" style="border-left:4px solid #f0ca00"><div class="kl">Wetter</div><div style="font-weight:600">Regen ab 18 Uhr</div></div>
+<div class="k" style="border-left:4px solid #f0ca00"><div class="kl">Verkehr</div><div style="font-weight:600">1 Störung in Hamm</div></div>
+<div class="k" style="border-left:4px solid #c4271b"><div class="kl">Bahn</div><div style="font-weight:600">RE6 +22 min</div></div>
+<div class="k" style="border-left:4px solid #1d7f3c"><div class="kl">Busse</div><div style="font-weight:600">pünktlich, 120 unterwegs</div></div>
+<div class="k" style="border-left:4px solid #1d7f3c"><div class="kl">Luft</div><div style="font-weight:600">sehr gut</div></div>
+<div class="k" style="border-left:4px solid #1d7f3c"><div class="kl">Lippe</div><div style="font-weight:600">53 cm, normal</div></div>
+<div class="k" style="border-left:4px solid #005468"><div class="kl">Heute</div><div style="font-weight:600">5 Termine</div></div>
+</div>
+<div class="k" style="margin-top:8px"><div class="kl">Ausgeklappt: Verkehr</div><div>B63 zwischen Hamm-Nord und Hessener Straße dicht, +3 min · 4 Baustellen · Blitzer Heideweg</div></div>
+</div>
+
+<p class="cap">4 Ereignis-Strom <span>– große Karte, rechts die Meldungen in zeitlicher Folge</span></p>
+<div class="m">
+<div style="display:grid;grid-template-columns:minmax(0,1fr) 280px;height:230px">
+<div class="mapbox"><div style="position:absolute;left:180px;top:40px;width:220px;height:140px;border:2px solid #005468"></div><div class="dot" style="left:250px;top:80px;background:#c4271b"></div><div class="dot" style="left:320px;top:130px;background:#95c11e"></div><div class="dot" style="left:220px;top:140px;background:#f0ca00"></div><div style="position:absolute;left:8px;bottom:8px;background:var(--surface-2);padding:2px 6px;font-size:12px">nur Ereignisse, keine Busse</div></div>
+<div style="padding:10px 12px;border-left:0.5px solid var(--border)">
+<div class="kl" style="margin-bottom:4px">Jetzt</div>
+<div style="padding:5px 0;border-bottom:0.5px solid var(--border)"><b>18:31</b> B63 dicht bei Kump</div>
+<div style="padding:5px 0;border-bottom:0.5px solid var(--border)"><b>18:20</b> RE6 jetzt +22 min</div>
+<div style="padding:5px 0;border-bottom:0.5px solid var(--border)"><b>17:55</b> Polizei: Unfall Werler Str.</div>
+<div style="padding:5px 0;border-bottom:0.5px solid var(--border)"><b>16:40</b> WA: Ratssitzung</div>
+<div style="padding:5px 0"><b>09:00</b> Blitzer Heideweg</div>
+</div></div></div>
+
+<p class="cap">5 Tagesleiste <span>– der Tag als Zeitstrahl, Jetzt-Marke wandert mit</span></p>
+<div class="m" style="padding:12px 14px;position:relative">
+<div style="display:grid;grid-template-columns:70px minmax(0,1fr);row-gap:8px;align-items:center;position:relative">
+<span></span><div style="display:flex;justify-content:space-between" class="kl"><span>6</span><span>9</span><span>12</span><span>15</span><span>18</span><span>21</span><span>24</span></div>
+<span class="kl">Wetter</span><div style="position:relative;height:18px;background:var(--surface-1)"><div style="position:absolute;left:0;width:66%;height:100%;background:#e6eef0"></div><div style="position:absolute;left:66%;right:0;height:100%;background:#85B7EB"></div><span style="position:absolute;left:68%;top:1px;font-size:12px;color:#042C53">Regen 5 mm</span><div style="position:absolute;left:69%;top:-26px;width:2px;height:120px;background:#95c11e"></div></div>
+<span class="kl">Verkehr</span><div style="position:relative;height:18px;background:var(--surface-1)"><div style="position:absolute;left:10%;width:10%;height:100%;background:#f0ca00"></div><div style="position:absolute;left:62%;width:12%;height:100%;background:#c4271b"></div></div>
+<span class="kl">Termine</span><div style="position:relative;height:18px;background:var(--surface-1)"><div style="position:absolute;left:22%;width:40%;height:100%;background:#9fd0dc"></div><span style="position:absolute;left:23%;top:1px;font-size:12px;color:#04342C">Ausstellung Maxipark</span><div style="position:absolute;left:72%;width:12%;height:100%;background:#005468"></div><span style="position:absolute;left:73%;top:1px;font-size:12px;color:#fff">Konzert</span></div>
+<span class="kl">Bahn</span><div style="position:relative;height:18px;background:var(--surface-1)"><div style="position:absolute;left:70%;width:2%;height:100%;background:#c4271b"></div><span style="position:absolute;left:73%;top:1px;font-size:12px">RE6 +22</span></div>
+</div>
+<div class="kl" style="margin-top:10px">Darunter die Kacheln wie bisher, aber nur drei: Jetzt wichtig, Unterwegs, Heute los</div>
+</div>
+
+</main></body>
+</html>

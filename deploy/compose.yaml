@@ -1,0 +1,32 @@
+# HAM:LIVE auf einem eigenen Server mit fertigem Image aus der GitHub Container Registry
+# (gebaut von .github/workflows/image.yml) und Watchtower für automatische Aktualisierung.
+# Pfade und Image über Umgebungsvariablen oder eine .env-Datei neben dieser Datei:
+#   HAM_IMAGE=ghcr.io/<benutzer>/ham-live:latest
+#   HAM_ORDNER=/srv/ham-live            (enthält daten/, aufzeichnung/, local/)
+services:
+  ham-live:
+    image: ${HAM_IMAGE:?HAM_IMAGE setzen, z. B. ghcr.io/<benutzer>/ham-live:latest}
+    container_name: ham-live
+    restart: unless-stopped
+    ports:
+      - "${HAM_PORT:-5300}:8080"
+    environment:
+      TZ: Europe/Berlin
+      # Quellen ohne offene Lizenz nur für private Installationen freigeben (siehe README)
+      # HAM_PRIVATQUELLEN: "an"
+    volumes:
+      - ${HAM_ORDNER:-./ham-live}/daten:/data/daten:ro
+      - ${HAM_ORDNER:-./ham-live}/aufzeichnung:/data/aufzeichnung
+      - ${HAM_ORDNER:-./ham-live}/local:/data/local
+
+  watchtower-ham-live:
+    image: containrrr/watchtower:latest
+    container_name: watchtower-ham-live
+    restart: unless-stopped
+    environment:
+      TZ: Europe/Berlin
+      # neuere Docker-Daemons verlangen mindestens API 1.40
+      DOCKER_API_VERSION: "1.44"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: --interval 300 --cleanup ham-live

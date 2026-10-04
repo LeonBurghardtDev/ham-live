@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aktuell – fünf Entwürfe für den ganzen Tab</title>
+<style>
+:root{--p:#005468;--g:#95c11e;--rot:#c4271b;--gelb:#f0ca00;--l:#dfe2e4;--f1:#f2f3f3;--t2:#5f6168;--t3:#8a8c92}
+*{box-sizing:border-box}
+body{margin:0;padding:32px;background:#d8dadb;font:14px/1.4 "Fira Sans","Segoe UI",system-ui,sans-serif;color:#1f2024}
+h1{font:600 22px "Poppins","Fira Sans",sans-serif;margin:0 0 4px}
+.lead{color:var(--t2);margin:0 0 28px;max-width:900px}
+.titel{font:600 17px "Poppins","Fira Sans",sans-serif;margin:40px 0 4px}
+.idee{color:var(--t2);margin:0 0 10px;max-width:1000px}
+.frame{width:1280px;height:760px;background:#fff;box-shadow:0 2px 12px rgba(0,0,0,.15);display:flex;flex-direction:column;overflow:hidden}
+.kopf{height:52px;display:flex;align-items:center;gap:18px;border-bottom:1px solid var(--l);flex:none}
+.marke{background:var(--p);color:#fff;height:100%;display:flex;align-items:center;padding:0 18px;font:600 18px Poppins,sans-serif;border-bottom:4px solid var(--g)}
+.such{width:260px;height:32px;background:var(--f1);color:var(--t3);display:flex;align-items:center;padding:0 10px;font-size:13px}
+.tabs{display:flex;height:100%}.tabs span{padding:0 11px;display:flex;align-items:center;color:var(--t2);font-weight:600;font-size:14px}
+.tabs .a{color:var(--p);box-shadow:inset 0 -4px 0 var(--g)}
+.inhalt{flex:1;display:flex;min-height:0}
+.karte{background:#e9ebe6;position:relative;overflow:hidden;background-image:linear-gradient(#dfe2dc 1px,transparent 1px),linear-gradient(90deg,#dfe2dc 1px,transparent 1px);background-size:40px 40px}
+.grenze{position:absolute;border:2px solid var(--p);background:rgba(255,255,255,.35)}
+.pin{position:absolute;width:22px;height:22px;color:#fff;font:600 12px "Fira Sans";display:flex;align-items:center;justify-content:center;border:2px solid #fff}
+.r{background:var(--rot)}.y{background:var(--gelb);color:#412402}.pp{background:var(--p)}.gg{background:var(--g);color:#173404}
+.k{font:600 11px "Fira Sans";letter-spacing:.06em;text-transform:uppercase;color:var(--t2)}
+.h{font:600 15px Poppins,sans-serif;color:var(--p)}
+.ev{display:grid;grid-template-columns:28px minmax(0,1fr);gap:10px;padding:10px 0;border-bottom:1px solid var(--l)}
+.ev:last-child{border-bottom:0}
+.ev b{font-weight:600}.ev small{display:block;color:var(--t3);font-size:12px}
+.nr{width:22px;height:22px;color:#fff;font:600 12px "Fira Sans";display:flex;align-items:center;justify-content:center}
+.zl{display:flex;justify-content:space-between;color:var(--t3);font-size:11px}
+.leise{color:var(--t3);font-size:12px}
+.chip{padding:6px 10px;border:1px solid var(--l);font-weight:600;font-size:13px;display:inline-flex;gap:6px;align-items:baseline}
+.chip.an{background:var(--p);color:#fff;border-color:var(--p)}
+.chip i{font-style:normal;font-weight:600}
+.spalte{border-right:1px solid var(--l);padding:16px;overflow:hidden}
+.zeile{padding:7px 0;border-bottom:1px solid var(--l)}.zeile:last-child{border:0}
+.zeile small{display:block;color:var(--t3);font-size:12px}
+.status{display:flex;align-items:center;gap:6px;font-size:13px}.status i{width:10px;height:10px;display:inline-block}
+</style>
+</head>
+<body>
+<h1>Tab Aktuell – fünf Entwürfe für den ganzen Bildschirm</h1>
+<p class="lead">Gleiche Beispieldaten in allen Entwürfen, angelehnt an Do 01.10., 18:55 (Unfall, Lesung und Einbruch sind erfunden). Jede Meldung steht genau einmal auf dem Bildschirm. Reihenfolge nach Relevanz: betrifft Hamm vor Umland, Gefahr vor Störung vor Hinweis, jetzt vor später, Verkehr nur mit Wirkung (Stau, Sperrung, Unfall – kein „dichter Verkehr“ ohne Zeitverlust).</p>
+
+<!-- 1 -->
+<p class="titel">1 Lagebild – Karte in der Mitte, links „Jetzt wichtig“, rechts „Heute“</p>
+<p class="idee">Links nur die fünf relevantesten Meldungen aus allen Quellen, nummeriert. Dieselbe Nummer steht auf der Karte – keine zweite Liste. Rechts der Tag: Wetterverlauf und Termine. Alles andere (Abfahrten, Nachrichten, Luft) liegt in den Fachtabs.</p>
+<div class="frame">
+<div class="kopf"><div class="marke">HAM:LIVE</div><div class="such">Ort, Straße, Adresse</div><div class="tabs"><span class="a">Aktuell</span><span>Verkehr</span><span>Tanken und Laden</span><span>Wegweiser</span><span>Wetter</span><span>Politik</span><span>Simulation</span><span>Historisch</span></div></div>
+<div class="inhalt">
+<div style="width:330px;padding:18px;border-right:1px solid var(--l)">
+<div class="k">Jetzt wichtig</div>
+<div class="ev"><div class="nr r">1</div><div><b>Unfall Werler Straße, eine Spur gesperrt</b><small>Polizei · seit 17:55 · Hamm-Mitte</small></div></div>
+<div class="ev"><div class="nr y">2</div><div><b>RE6 nach Minden +22 min</b><small>Hamm Hbf Gleis 9 · ab 18:44</small></div></div>
+<div class="ev"><div class="nr y">3</div><div><b>Regen ab 19 Uhr, 5 mm</b><small>bis Mitternacht · ganz Hamm</small></div></div>
+<div class="ev"><div class="nr pp">4</div><div><b>Grünstraße gesperrt</b><small>Baustelle bis 09.10. · Umleitung Langewanneweg</small></div></div>
+<div class="ev"><div class="nr gg">5</div><div><b>Blitzer Heideweg</b><small>mobil, heute · Herringen</small></div></div>
+<p class="leise" style="margin-top:14px">Sonst ruhig: keine Warnungen, Busse pünktlich, Luft sehr gut.</p>
+</div>
+<div class="karte" style="flex:1"><div class="grenze" style="left:150px;top:90px;width:420px;height:420px"></div>
+<div class="pin r" style="left:350px;top:300px">1</div><div class="pin y" style="left:320px;top:250px">2</div><div class="pin pp" style="left:250px;top:360px">4</div><div class="pin gg" style="left:200px;top:420px">5</div>
+<div style="position:absolute;left:16px;bottom:16px;width:64px;height:64px;border:2px solid #fff;background:#7b8a6a"></div></div>
+<div style="width:300px;padding:18px;border-left:1px solid var(--l)">
+<div class="k">Heute</div>
+<div style="display:flex;align-items:baseline;gap:10px;margin:8px 0 2px"><span style="font:600 32px Poppins;color:var(--p)">17°</span><span>Regen ab 19 Uhr</span></div>
+<div class="leise">morgen 14°, Schauer</div>
+<div style="display:flex;gap:2px;margin:12px 0 4px;height:34px;align-items:flex-end">
+<i style="flex:1;height:30%;background:#c9dfe6"></i><i style="flex:1;height:40%;background:#c9dfe6"></i><i style="flex:1;height:45%;background:#c9dfe6"></i><i style="flex:1;height:50%;background:#c9dfe6"></i><i style="flex:1;height:60%;background:#85B7EB"></i><i style="flex:1;height:90%;background:#378ADD"></i><i style="flex:1;height:70%;background:#378ADD"></i><i style="flex:1;height:40%;background:#85B7EB"></i></div>
+<div class="zl"><span>15</span><span>18</span><span>21</span><span>24</span></div>
+<div class="k" style="margin-top:22px">Termine heute</div>
+<div class="zeile"><b>19:00</b> Konzert Landespolizeiorchester<small>Kurhaus Bad Hamm</small></div>
+<div class="zeile"><b>19:30</b> Lesung „Hammer Geschichten“<small>Zentralbibliothek</small></div>
+<div class="zeile"><b>bis 18</b> Fotowettbewerb 800 Jahre<small>Maximilianpark</small></div>
+</div>
+</div></div>
+
+<!-- 2 -->
+<p class="titel">2 Stadtzeitung – eine Titelseite, die sich selbst schreibt</p>
+<p class="idee">Oben der Aufmacher: die eine wichtigste Lage in einem Satz mit Ortskarte. Darunter Ressorts, aber nur mit Dingen, die oben noch nicht standen. Ein leeres Ressort verschwindet statt „keine Meldungen“ zu zeigen.</p>
+<div class="frame">
+<div class="kopf"><div class="marke">HAM:LIVE</div><div class="such">Ort, Straße, Adresse</div><div class="tabs"><span class="a">Aktuell</span><span>Verkehr</span><span>Tanken und Laden</span><span>Wegweiser</span><span>Wetter</span><span>Politik</span><span>Simulation</span><span>Historisch</span></div></div>
+<div class="inhalt" style="flex-direction:column;padding:24px 32px;gap:20px">
+<div style="display:grid;grid-template-columns:minmax(0,1fr) 420px;gap:28px;border-bottom:3px solid var(--p);padding-bottom:20px">
+<div><div class="leise">Donnerstag, 1. Oktober · 18:55</div>
+<div style="font:600 34px/1.15 Poppins;color:var(--p);margin:6px 0 10px">Unfall auf der Werler Straße, dazu Regen ab 19 Uhr</div>
+<div style="font-size:16px;color:var(--t2);max-width:560px">Stadteinwärts eine Spur gesperrt, die Polizei ist vor Ort. Der Regen bringt bis Mitternacht rund 5 mm. RE6 nach Minden fährt 22 Minuten später.</div></div>
+<div class="karte" style="height:220px"><div class="pin r" style="left:200px;top:100px">!</div></div>
+</div>
+<div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:28px">
+<div><div class="h" style="margin-bottom:6px">Unterwegs</div><div class="zeile">Grünstraße gesperrt bis 09.10.</div><div class="zeile">Blitzer Heideweg, Herringen</div><div class="zeile">Linie 4 ab Rathaus +9 min</div></div>
+<div><div class="h" style="margin-bottom:6px">Stadt</div><div class="zeile">Rat berät über das Maxibad<small>WA · 16:40</small></div><div class="zeile">Einbruch in Uentrop<small>Polizei · 14:20</small></div></div>
+<div><div class="h" style="margin-bottom:6px">Heute Abend</div><div class="zeile">19:00 Konzert, Kurhaus</div><div class="zeile">19:30 Lesung, Zentralbibliothek</div></div>
+<div><div class="h" style="margin-bottom:6px">Morgen</div><div class="zeile">14°, Schauer</div><div class="zeile">Wochenmarkt Marktplatz 7–13 Uhr</div></div>
+</div>
+</div></div>
+
+<!-- 3 -->
+<p class="titel">3 Leitstand – große Karte, eine Ereignisliste, Themen als Filter</p>
+<p class="idee">Die Karte füllt den Tab. Links eine einzige, nach Relevanz sortierte Liste. Oben Themenfilter mit Anzahl statt Kacheln – ein Klick filtert Liste und Karte gleichzeitig. Kein Wert steht doppelt.</p>
+<div class="frame">
+<div class="kopf"><div class="marke">HAM:LIVE</div><div class="such">Ort, Straße, Adresse</div><div class="tabs"><span class="a">Aktuell</span><span>Verkehr</span><span>Tanken und Laden</span><span>Wegweiser</span><span>Wetter</span><span>Politik</span><span>Simulation</span><span>Historisch</span></div></div>
+<div class="inhalt" style="position:relative">
+<div class="karte" style="position:absolute;inset:0"><div class="grenze" style="left:520px;top:80px;width:470px;height:470px"></div>
+<div class="pin r" style="left:740px;top:330px">1</div><div class="pin y" style="left:700px;top:270px">2</div><div class="pin pp" style="left:620px;top:400px">3</div><div class="pin gg" style="left:580px;top:470px">4</div><div class="pin pp" style="left:820px;top:240px">5</div></div>
+<div style="position:absolute;left:16px;top:16px;right:16px;display:flex;gap:6px;flex-wrap:wrap">
+<span class="chip an">Alle <i>9</i></span><span class="chip" style="background:#fff">Verkehr <i>3</i></span><span class="chip" style="background:#fff">Bus und Bahn <i>2</i></span><span class="chip" style="background:#fff">Wetter <i>1</i></span><span class="chip" style="background:#fff">Polizei <i>1</i></span><span class="chip" style="background:#fff">Termine <i>2</i></span></div>
+<div style="position:absolute;left:16px;top:64px;bottom:16px;width:360px;background:#fff;padding:14px 16px;box-shadow:0 1px 6px rgba(0,0,0,.15)">
+<div class="ev"><div class="nr r">1</div><div><b>Unfall Werler Straße</b><small>Polizei · 17:55 · eine Spur gesperrt</small></div></div>
+<div class="ev"><div class="nr y">2</div><div><b>RE6 +22 min</b><small>Hbf Gleis 9 · 18:44</small></div></div>
+<div class="ev"><div class="nr pp">3</div><div><b>Grünstraße gesperrt</b><small>bis 09.10.</small></div></div>
+<div class="ev"><div class="nr gg">4</div><div><b>Blitzer Heideweg</b><small>heute mobil</small></div></div>
+<div class="ev"><div class="nr pp">5</div><div><b>Regen ab 19 Uhr</b><small>5 mm bis Mitternacht</small></div></div>
+<div class="ev"><div class="nr" style="background:var(--t3)">6</div><div><b>19:00 Konzert Kurhaus</b><small>Termin</small></div></div>
+<div class="leise" style="margin-top:8px">Umland ausgeblendet · 12 Meldungen A1/A2 im Tab Verkehr</div>
+</div>
+</div></div>
+
+<!-- 4 -->
+<p class="titel">4 Ressorts – vier Spalten nach Lebensbereich, ohne Karte</p>
+<p class="idee">Wie ein Lagebericht: Unterwegs, Bus und Bahn, Wetter und Umwelt, Stadt und Freizeit. Jede Spalte oben ein Satz zum Zustand, darunter nur Abweichungen vom Normalen. Normales („pünktlich“, „keine Warnungen“) steht nur als Zustandssatz, nie als Eintrag.</p>
+<div class="frame">
+<div class="kopf"><div class="marke">HAM:LIVE</div><div class="such">Ort, Straße, Adresse</div><div class="tabs"><span class="a">Aktuell</span><span>Verkehr</span><span>Tanken und Laden</span><span>Wegweiser</span><span>Wetter</span><span>Politik</span><span>Simulation</span><span>Historisch</span></div></div>
+<div class="inhalt" style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr))">
+<div class="spalte"><div class="h">Unterwegs</div><div class="status" style="margin:6px 0 12px"><i class="r"></i>1 Unfall, 1 Sperrung</div>
+<div class="zeile"><b>Unfall Werler Straße</b><small>eine Spur gesperrt · seit 17:55</small></div><div class="zeile"><b>Grünstraße gesperrt</b><small>bis 09.10. · Umleitung Langewanneweg</small></div><div class="zeile"><b>Blitzer Heideweg</b><small>mobil, heute</small></div></div>
+<div class="spalte"><div class="h">Bus und Bahn</div><div class="status" style="margin:6px 0 12px"><i class="y"></i>2 Verspätungen</div>
+<div class="zeile"><b>RE6 Minden +22 min</b><small>Hbf ab 18:44, Gleis 9</small></div><div class="zeile"><b>Linie 4 +9 min</b><small>ab Rathaus</small></div><div class="leise" style="margin-top:8px">übrige 118 Busse pünktlich</div></div>
+<div class="spalte"><div class="h">Wetter und Umwelt</div><div class="status" style="margin:6px 0 12px"><i class="y"></i>Regen ab 19 Uhr</div>
+<div class="zeile"><b>17°, morgen 14°</b><small>5 mm bis Mitternacht</small></div><div class="leise" style="margin-top:8px">Luft sehr gut · Lippe normal · keine Warnungen</div></div>
+<div class="spalte" style="border:0"><div class="h">Stadt und Freizeit</div><div class="status" style="margin:6px 0 12px"><i class="pp"></i>2 Termine heute Abend</div>
+<div class="zeile"><b>19:00 Konzert</b><small>Kurhaus Bad Hamm</small></div><div class="zeile"><b>19:30 Lesung</b><small>Zentralbibliothek</small></div><div class="zeile"><b>Rat berät über das Maxibad</b><small>WA · 16:40</small></div><div class="zeile"><b>Einbruch in Uentrop</b><small>Polizei · 14:20</small></div></div>
+</div></div>
+
+<!-- 5 -->
+<p class="titel">5 Tagesverlauf – der Tag als senkrechte Zeitachse, Karte folgt</p>
+<p class="idee">Links die Uhrzeit von 6 bis 24 Uhr, „jetzt“ als grüne Linie. Vergangenes blass, Kommendes kräftig. Dauerhaftes (Baustelle, Blitzer) als Band über die ganze Höhe. Fährt man mit der Maus über einen Eintrag, springt die Karte rechts dorthin.</p>
+<div class="frame">
+<div class="kopf"><div class="marke">HAM:LIVE</div><div class="such">Ort, Straße, Adresse</div><div class="tabs"><span class="a">Aktuell</span><span>Verkehr</span><span>Tanken und Laden</span><span>Wegweiser</span><span>Wetter</span><span>Politik</span><span>Simulation</span><span>Historisch</span></div></div>
+<div class="inhalt">
+<div style="width:620px;padding:16px 20px;position:relative;border-right:1px solid var(--l)">
+<div style="display:grid;grid-template-columns:52px minmax(0,1fr) 150px;gap:10px">
+<div class="k">Zeit</div><div class="k">Ereignis</div><div class="k">Den ganzen Tag</div>
+</div>
+<div style="display:grid;grid-template-columns:52px minmax(0,1fr) 150px;gap:10px;margin-top:8px">
+<div style="color:var(--t3);display:flex;flex-direction:column;gap:41px;font-size:12px"><span>08</span><span>11</span><span>14</span><span>17</span><span style="color:var(--p);font-weight:600">18:55</span><span>21</span><span>24</span></div>
+<div style="position:relative">
+<div class="zeile" style="opacity:.45">09:00 Blitzer Heideweg aufgebaut</div>
+<div class="zeile" style="opacity:.45;margin-top:40px">14:20 Einbruch in Uentrop<small>Polizei</small></div>
+<div class="zeile" style="opacity:.45;margin-top:30px">16:40 Rat berät über das Maxibad<small>WA</small></div>
+<div class="zeile" style="opacity:.6">17:55 Unfall Werler Straße<small>eine Spur gesperrt, dauert an</small></div>
+<div style="height:3px;background:var(--g);margin:8px 0"></div>
+<div class="zeile"><b>18:44 RE6 Minden +22 min</b><small>fährt 19:06</small></div>
+<div class="zeile"><b>19:00 Regen beginnt</b><small>5 mm bis Mitternacht</small></div>
+<div class="zeile"><b>19:00 Konzert Kurhaus</b></div>
+<div class="zeile"><b>19:30 Lesung Zentralbibliothek</b></div>
+</div>
+<div style="display:flex;flex-direction:column;gap:6px">
+<div style="background:#e6eef0;padding:8px;font-size:12px"><b>Grünstraße gesperrt</b><br>bis 09.10.</div>
+<div style="background:#eef5dc;padding:8px;font-size:12px"><b>Blitzer Heideweg</b><br>bis heute Abend</div>
+<div style="background:var(--f1);padding:8px;font-size:12px">Luft sehr gut<br>Lippe normal</div>
+</div>
+</div></div>
+<div class="karte" style="flex:1"><div class="grenze" style="left:120px;top:110px;width:380px;height:380px"></div><div class="pin r" style="left:310px;top:300px">!</div>
+<div style="position:absolute;left:290px;top:270px;background:#fff;padding:4px 8px;font-size:12px;box-shadow:0 1px 4px rgba(0,0,0,.2);transform:translate(30px,-10px)">Unfall Werler Straße</div></div>
+</div></div>
+
+</body>
+</html>

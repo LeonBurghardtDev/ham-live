@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Verkehr und Wetter – je fünf Entwürfe</title>
+<link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;500;600&family=Poppins:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{--p:#005468;--p2:#e6f0f2;--g:#95c11e;--gelb:#f0ca00;--or:#e06c00;--rot:#c4271b;--t:#16191c;--t2:#555b61;--t3:#8b9196;--l:#e4e7e9;--bg:#f3f5f6;--w:#fff;--blau:#378ADD}
+*{box-sizing:border-box}
+body{margin:0;padding:40px;background:#cfd4d7;font:14px/1.45 "Fira Sans",system-ui,sans-serif;color:var(--t)}
+.doc{max-width:1280px;margin:0 auto}
+h1{font:600 26px Poppins;margin:0 0 6px}.lead{color:var(--t2);max-width:1000px;margin:0 0 8px}
+h2.teil{font:600 22px Poppins;margin:56px 0 0;padding-top:16px;border-top:3px solid var(--p)}
+.cap{font:600 17px Poppins;margin:36px 0 4px}.cap+p{color:var(--t2);margin:0 0 12px;max-width:1100px}
+.f{width:1280px;height:720px;background:var(--bg);box-shadow:0 4px 24px rgba(0,0,0,.18);display:flex;flex-direction:column;overflow:hidden;position:relative}
+.kopf{height:60px;background:var(--w);display:flex;align-items:center;gap:28px;padding:0 40px;box-shadow:0 1px 0 var(--l);flex:none}
+.logo{font:600 21px Poppins;color:var(--p)}.logo span{color:var(--g)}
+.nav{display:flex;gap:4px}.nav span{padding:9px 14px;font-weight:600;color:var(--t2)}.nav span.a{background:var(--p2);color:var(--p);box-shadow:inset 0 -2px 0 var(--g)}
+.uhr{margin-left:auto;color:var(--t3);font-size:13px}
+.inh{flex:1;position:relative;min-height:0}
+.karte{position:absolute;inset:0;background:#e7ebe5;background-image:linear-gradient(#dde2db 1px,transparent 1px),linear-gradient(90deg,#dde2db 1px,transparent 1px);background-size:46px 46px}
+.stadt{position:absolute;border:2px solid var(--p);background:rgba(255,255,255,.3)}
+.str{position:absolute;height:5px}
+.pin{position:absolute;width:20px;height:20px;border:2px solid #fff;color:#fff;font:600 10px "Fira Sans";display:flex;align-items:center;justify-content:center}
+.box{background:var(--w);padding:16px 18px}
+.schwebe{position:absolute;background:var(--w);box-shadow:0 2px 12px rgba(0,0,0,.16);z-index:3}
+.lbl{font:600 10.5px "Fira Sans";letter-spacing:.08em;text-transform:uppercase;color:var(--t3);margin:0 0 4px}
+.h3{font:600 17px Poppins;margin:0 0 10px}
+.z{display:flex;justify-content:space-between;gap:10px;padding:7px 0;border-bottom:1px solid var(--l)}.z:last-child{border:0}
+.z small{display:block;color:var(--t3);font-size:12px}
+.kz{display:grid;gap:0}.kz div{padding:10px 14px;border-right:1px solid var(--l)}.kz div:last-child{border:0}
+.kz b{display:block;font:600 22px Poppins;color:var(--p)}.kz span{font-size:12px;color:var(--t2)}
+.such{position:absolute;left:40px;top:16px;width:360px;height:44px;background:var(--w);box-shadow:0 2px 12px rgba(0,0,0,.16);display:flex;align-items:center;padding:0 16px;color:var(--t3);z-index:3}
+.ampel{width:10px;height:10px;display:inline-block;margin-right:8px}
+.chip{background:var(--w);padding:8px 13px;font-weight:600;font-size:13px;color:var(--t2);box-shadow:0 2px 8px rgba(0,0,0,.12)}.chip.an{background:var(--p);color:#fff}
+.balken{height:8px;background:var(--l);position:relative}.balken i{position:absolute;left:0;top:0;bottom:0}
+.radar{position:absolute;border-radius:50%;opacity:.55}
+.zl{position:absolute;left:40px;right:40px;bottom:20px;background:var(--w);box-shadow:0 2px 12px rgba(0,0,0,.16);padding:12px 18px;z-index:3}
+.tafel{background:#0f2a33;color:#e8f3f5;font-variant-numeric:tabular-nums}
+.tafel .z{border-color:#28434c}
+.tafel small{color:#9fb6bd!important}
+.gelb{color:#f0ca00}
+</style>
+</head>
+<body><div class="doc">
+<h1>Verkehr und Wetter – je fünf Entwürfe</h1>
+<p class="lead">Alle im gleichen Design wie Aktuell und Energie: schwebende Suche auf der Karte, Lage auf einen Blick, kein langes Panel. Werte sind Beispiele vom 01.10., 21 Uhr.</p>
+
+<h2 class="teil">Verkehr</h2>
+
+<p class="cap">V1 Lagekarte mit Überblickskarte</p>
+<p>Die Karte füllt den Tab. Links unter der Suche eine Karte mit drei Kennzahlen und den fünf wichtigsten Störungen, sortiert nach Wirkung. Oben rechts die Ebenen. Nah am heutigen Stand, nur deutlich aufgeräumter.</p>
+<div class="f"><div class="kopf"><div class="logo">HAM<span>:</span>LIVE</div><div class="nav"><span>Jetzt</span><span class="a">Unterwegs</span><span>Stadt</span><span>Umwelt</span><span>Karten</span></div><div class="uhr">Do 1. Oktober · 21:00</div></div>
+<div class="inh"><div class="karte"><div class="stadt" style="left:500px;top:60px;width:520px;height:520px"></div><div class="str" style="left:620px;top:260px;width:240px;background:var(--rot);transform:rotate(-10deg)"></div><div class="str" style="left:780px;top:380px;width:180px;background:var(--or);transform:rotate(25deg)"></div><div class="str" style="left:560px;top:450px;width:200px;background:var(--gelb);transform:rotate(5deg)"></div><div class="pin" style="left:700px;top:240px;background:var(--rot)">!</div><div class="pin" style="left:860px;top:420px;background:var(--p)">B</div></div>
+<div class="such">Ort, Straße, Adresse oder Haltestelle</div>
+<div class="schwebe" style="left:40px;top:72px;width:360px"><div class="kz" style="grid-template-columns:repeat(3,1fr);border-bottom:1px solid var(--l)"><div><b>2,1 km</b><span>Stau in Hamm</span></div><div><b>+5 min</b><span>Bahn Ø Verspätung</span></div><div><b>4</b><span>Baustellen</span></div></div>
+<div style="padding:4px 16px"><div class="z"><span><span class="ampel" style="background:var(--rot)"></span>Unfall Werler Straße<small>eine Spur gesperrt · seit 17:55</small></span></div><div class="z"><span><span class="ampel" style="background:var(--or)"></span>B63 Hamm-Nord – Hessener Str.<small>zäh, +3 min</small></span></div><div class="z"><span><span class="ampel" style="background:var(--gelb)"></span>RE6 Minden +22 min<small>Hbf Gleis 9</small></span></div><div class="z"><span><span class="ampel" style="background:var(--p)"></span>Grünstraße gesperrt<small>bis 09.10.</small></span></div><div class="z"><span><span class="ampel" style="background:#7a1fa2"></span>Blitzer Heideweg<small>heute</small></span></div></div>
+<div style="padding:10px 16px;border-top:1px solid var(--l);color:var(--p);font-weight:600;font-size:13px">Alle 28 Meldungen ›</div></div>
+<div style="position:absolute;right:40px;top:16px;display:flex;gap:6px;z-index:3"><span class="chip an">Verkehrslage</span><span class="chip an">Busse</span><span class="chip an">Züge</span><span class="chip">Blitzer</span><span class="chip">Baustellen</span><span class="chip">Parken</span></div>
+</div></div>
+
+<p class="cap">V2 Status je Verkehrsart</p>
+<p>Links sechs Zeilen: Straßen, Autobahn, Bus, Bahn, Parken, Blitzer. Jede mit Ampel, Zustand und einer Zeile Beleg. Ein Klick wählt die Verkehrsart, die Karte rechts zeigt dann nur diese. Weniger Durcheinander auf der Karte.</p>
+<div class="f"><div class="kopf"><div class="logo">HAM<span>:</span>LIVE</div><div class="nav"><span>Jetzt</span><span class="a">Unterwegs</span><span>Stadt</span><span>Umwelt</span><span>Karten</span></div><div class="uhr">Do 1. Oktober · 21:00</div></div>
+<div class="inh" style="display:grid;grid-template-columns:420px 1fr">
+<div style="background:var(--bg);padding:20px 20px 20px 40px;display:flex;flex-direction:column;gap:8px">
+<div class="box" style="border-left:4px solid var(--or);background:var(--p2)"><p class="lbl">Straßen in Hamm · gewählt</p><b style="font:600 18px Poppins">leicht zäh</b><div style="color:var(--t2);font-size:13px">88 % frei · B63 und Werler Str. betroffen</div></div>
+<div class="box" style="border-left:4px solid var(--g)"><p class="lbl">Autobahn A1 / A2</p><b style="font:600 18px Poppins">frei</b><div style="color:var(--t2);font-size:13px">2 Baustellen, keine Staus</div></div>
+<div class="box" style="border-left:4px solid var(--gelb)"><p class="lbl">Bus</p><b style="font:600 18px Poppins">5 Störungen</b><div style="color:var(--t2);font-size:13px">Baustelle Hamm (Westf), Linien 1, 2</div></div>
+<div class="box" style="border-left:4px solid var(--rot)"><p class="lbl">Bahn Hamm Hbf</p><b style="font:600 18px Poppins">5 verspätet</b><div style="color:var(--t2);font-size:13px">RE6 Minden +22 min</div></div>
+<div class="box" style="border-left:4px solid var(--t3)"><p class="lbl">Parken</p><b style="font:600 18px Poppins">61 Parkhäuser und Plätze</b><div style="color:var(--t2);font-size:13px">Lkw A1: 41 frei</div></div>
+<div class="box" style="border-left:4px solid #7a1fa2"><p class="lbl">Blitzer</p><b style="font:600 18px Poppins">Heideweg</b><div style="color:var(--t2);font-size:13px">mobil heute, 12 feste</div></div>
+</div>
+<div style="position:relative"><div class="karte"><div class="stadt" style="left:200px;top:60px;width:480px;height:520px"></div><div class="str" style="left:300px;top:250px;width:240px;background:var(--rot);transform:rotate(-10deg)"></div><div class="str" style="left:420px;top:380px;width:160px;background:var(--or);transform:rotate(25deg)"></div></div><div class="such" style="left:24px">Ort, Straße, Adresse</div></div>
+</div></div>
+
+<p class="cap">V3 Hauptachsen wie bei einer Navi-App</p>
+<p>Die wichtigsten Straßen von Hamm als Liste mit Zustandsbalken und Zeitverlust: B63, Werler Straße, Ring, Hammer Straße, Warendorfer Straße, A1, A2. Fährt man über eine Achse, leuchtet sie auf der Karte auf. Beantwortet „Komme ich gut durch?“ am schnellsten.</p>
+<div class="f"><div class="kopf"><div class="logo">HAM<span>:</span>LIVE</div><div class="nav"><span>Jetzt</span><span class="a">Unterwegs</span><span>Stadt</span><span>Umwelt</span><span>Karten</span></div><div class="uhr">Do 1. Oktober · 21:00</div></div>
+<div class="inh"><div class="karte"><div class="stadt" style="left:560px;top:60px;width:500px;height:520px"></div><div class="str" style="left:620px;top:250px;width:380px;background:var(--rot);transform:rotate(-12deg);height:8px;box-shadow:0 0 0 3px rgba(196,39,27,.25)"></div><div class="str" style="left:700px;top:420px;width:260px;background:var(--g);transform:rotate(30deg)"></div></div>
+<div class="such">Ort, Straße, Adresse</div>
+<div class="schwebe" style="left:40px;top:72px;width:440px;padding:16px 20px"><p class="lbl">Hauptachsen jetzt</p>
+<div class="z" style="background:var(--p2);margin:0 -20px;padding:9px 20px"><span><b>B63</b> Hamm-Nord – Rhynern<small>dicht zwischen Hessener Str. und Kump</small></span><span style="text-align:right"><b style="color:var(--rot)">+6 min</b><div class="balken" style="width:90px;margin-top:4px"><i style="width:70%;background:var(--rot)"></i></div></span></div>
+<div class="z"><span><b>Werler Straße</b><small>Unfall, eine Spur gesperrt</small></span><span style="text-align:right"><b style="color:var(--or)">+4 min</b><div class="balken" style="width:90px;margin-top:4px"><i style="width:50%;background:var(--or)"></i></div></span></div>
+<div class="z"><span><b>Ring</b> Innenstadt<small>flüssig</small></span><span style="text-align:right"><b style="color:var(--t2)">±0</b><div class="balken" style="width:90px;margin-top:4px"><i style="width:8%;background:var(--g)"></i></div></span></div>
+<div class="z"><span><b>Hammer Straße</b><small>Baustelle 2. Abschnitt</small></span><span style="text-align:right"><b style="color:var(--gelb)">+2 min</b><div class="balken" style="width:90px;margin-top:4px"><i style="width:28%;background:var(--gelb)"></i></div></span></div>
+<div class="z"><span><b>Warendorfer Straße</b><small>flüssig</small></span><span style="text-align:right"><b style="color:var(--t2)">±0</b><div class="balken" style="width:90px;margin-top:4px"><i style="width:6%;background:var(--g)"></i></div></span></div>
+<div class="z"><span><b>A1</b> Kamener Kreuz – Hamm/Bergkamen<small>frei</small></span><span style="text-align:right"><b style="color:var(--t2)">±0</b><div class="balken" style="width:90px;margin-top:4px"><i style="width:4%;background:var(--g)"></i></div></span></div>
+<div class="z"><span><b>A2</b> Hamm-Uentrop – Kamener Kreuz<small>Baustelle, frei</small></span><span style="text-align:right"><b style="color:var(--t2)">±0</b><div class="balken" style="width:90px;margin-top:4px"><i style="width:6%;background:var(--g)"></i></div></span></div>
+</div>
+</div></div>
+
+<p class="cap">V4 Abfahrtstafel und Fahrzeuge live</p>
+<p>Links eine große Abfahrtstafel für Hamm Hbf und die Haltestelle in der Nähe (Busse und Züge, mit Verspätung, Gleis), wählbar per Suche. Rechts die Karte mit Bussen und Zügen in Bewegung. Für alle, die mit Bus und Bahn fahren.</p>
+<div class="f"><div class="kopf"><div class="logo">HAM<span>:</span>LIVE</div><div class="nav"><span>Jetzt</span><span class="a">Unterwegs</span><span>Stadt</span><span>Umwelt</span><span>Karten</span></div><div class="uhr">Do 1. Oktober · 21:00</div></div>
+<div class="inh" style="display:grid;grid-template-columns:560px 1fr">
+<div class="tafel" style="padding:24px 28px 24px 40px"><div style="display:flex;justify-content:space-between;align-items:baseline"><b style="font:600 22px Poppins">Hamm (Westf) Hbf</b><span class="gelb" style="font:600 20px Poppins">21:00</span></div>
+<div style="display:grid;grid-template-columns:60px 70px 1fr 60px;gap:10px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9fb6bd;margin:16px 0 6px"><span>Zeit</span><span>Linie</span><span>Ziel</span><span>Gleis</span></div>
+<div class="z" style="display:grid;grid-template-columns:60px 70px 1fr 60px;gap:10px"><span>21:04</span><b>RE6</b><span>Minden <small class="gelb" style="color:#f0ca00!important">+22 min</small></span><span>9</span></div>
+<div class="z" style="display:grid;grid-template-columns:60px 70px 1fr 60px;gap:10px"><span>21:06</span><b>RB69</b><span>Bielefeld Hbf</span><span>10</span></div>
+<div class="z" style="display:grid;grid-template-columns:60px 70px 1fr 60px;gap:10px"><span>21:09</span><b>ICE 544</b><span>Köln Hbf <small style="color:#f0ca00!important">+4</small></span><span>3</span></div>
+<div class="z" style="display:grid;grid-template-columns:60px 70px 1fr 60px;gap:10px"><span>21:10</span><b>Bus 1</b><span>Heessen Kirche</span><span>B3</span></div>
+<div class="z" style="display:grid;grid-template-columns:60px 70px 1fr 60px;gap:10px"><span>21:12</span><b>Bus 4</b><span>Pelkum Kreuzkamp <small style="color:#f0ca00!important">+2</small></span><span>B1</span></div>
+<div class="z" style="display:grid;grid-template-columns:60px 70px 1fr 60px;gap:10px"><span>21:15</span><b>RE11</b><span>Düsseldorf Hbf</span><span>8</span></div>
+<div class="z" style="display:grid;grid-template-columns:60px 70px 1fr 60px;gap:10px"><span>21:18</span><b>Bus 9</b><span>Bockum-Hövel</span><span>B4</span></div>
+<div style="margin-top:16px;color:#9fb6bd;font-size:12px">Haltestelle wechseln: Suche oder Klick auf die Karte</div></div>
+<div style="position:relative"><div class="karte"><div class="stadt" style="left:120px;top:60px;width:480px;height:520px"></div><div class="pin" style="left:300px;top:260px;background:var(--rot)">Z</div><div class="pin" style="left:380px;top:320px;background:#005ca9">1</div><div class="pin" style="left:260px;top:380px;background:#005ca9">4</div><div class="pin" style="left:420px;top:200px;background:#005ca9">9</div></div></div>
+</div></div>
+
+<p class="cap">V5 Verkehr im Tagesverlauf</p>
+<p>Karte wie V1, darunter eine Zeitleiste über den Tag: Stau-Kilometer und Zugverspätungen je Stunde aus der Aufzeichnung, „jetzt“ als grüne Linie. Schieben zeigt die Lage zu jeder Uhrzeit des Tages auf der Karte. Zeigt, ob es gerade besser oder schlechter wird.</p>
+<div class="f"><div class="kopf"><div class="logo">HAM<span>:</span>LIVE</div><div class="nav"><span>Jetzt</span><span class="a">Unterwegs</span><span>Stadt</span><span>Umwelt</span><span>Karten</span></div><div class="uhr">Do 1. Oktober · 21:00</div></div>
+<div class="inh"><div class="karte"><div class="stadt" style="left:500px;top:40px;width:520px;height:440px"></div><div class="str" style="left:620px;top:220px;width:240px;background:var(--or);transform:rotate(-10deg)"></div></div>
+<div class="such">Ort, Straße, Adresse</div>
+<div class="schwebe" style="left:40px;top:72px;width:320px;padding:14px 16px"><p class="lbl">Jetzt</p><b style="font:600 20px Poppins">leicht zäh</b><div style="color:var(--t2);font-size:13px">besser als um 17 Uhr (5,8 km Stau)</div></div>
+<div class="zl"><div style="display:flex;justify-content:space-between;align-items:baseline"><b style="font:600 16px Poppins">Heute</b><span style="font-size:12px;color:var(--t2)"><span class="ampel" style="background:var(--or)"></span>Stau-km &nbsp; <span class="ampel" style="background:var(--p)"></span>Bahn Ø Verspätung</span></div>
+<div style="display:flex;align-items:flex-end;gap:4px;height:70px;margin-top:8px;position:relative">
+<i style="flex:1;height:5%;background:var(--or)"></i><i style="flex:1;height:5%;background:var(--or)"></i><i style="flex:1;height:8%;background:var(--or)"></i><i style="flex:1;height:30%;background:var(--or)"></i><i style="flex:1;height:70%;background:var(--or)"></i><i style="flex:1;height:55%;background:var(--or)"></i><i style="flex:1;height:30%;background:var(--or)"></i><i style="flex:1;height:25%;background:var(--or)"></i><i style="flex:1;height:28%;background:var(--or)"></i><i style="flex:1;height:35%;background:var(--or)"></i><i style="flex:1;height:60%;background:var(--or)"></i><i style="flex:1;height:95%;background:var(--or)"></i><i style="flex:1;height:80%;background:var(--or)"></i><i style="flex:1;height:40%;background:var(--or)"></i><i style="flex:1;height:30%;background:var(--or)"></i><i style="flex:1;height:0;background:var(--l)"></i><i style="flex:1;height:0"></i><i style="flex:1;height:0"></i>
+<span style="position:absolute;left:83%;top:-6px;bottom:0;width:3px;background:var(--g)"></span></div>
+<div style="display:flex;justify-content:space-between;font-size:11px;color:var(--t3)"><span>6</span><span>9</span><span>12</span><span>15</span><span>18</span><span>21</span><span>24</span></div></div>
+</div></div>
+
+<h2 class="teil">Wetter</h2>
+
+<p class="cap">W1 Wetterbericht mit Radar</p>
+<p>Links der Wetterbericht wie in einer guten Wetter-App: jetzt groß, die nächsten 24 Stunden als Leiste, die nächsten sieben Tage. Rechts das Radar. Für den schnellen Blick „Brauche ich einen Schirm?“.</p>
+<div class="f"><div class="kopf"><div class="logo">HAM<span>:</span>LIVE</div><div class="nav"><span>Jetzt</span><span>Unterwegs</span><span>Stadt</span><span class="a">Umwelt</span><span>Karten</span></div><div class="uhr">Do 1. Oktober · 21:00</div></div>
+<div class="inh" style="display:grid;grid-template-columns:520px 1fr">
+<div style="padding:24px 24px 24px 40px;display:flex;flex-direction:column;gap:14px">
+<div class="box"><p class="lbl">Jetzt in Hamm</p><div style="display:flex;align-items:baseline;gap:14px"><b style="font:600 56px/1 Poppins;color:var(--p)">16°</b><span style="font:600 20px Poppins">Regen</span></div><div style="color:var(--t2)">gefühlt 14° · Wind 9 km/h aus Südwest · 92 % Luftfeuchte</div></div>
+<div class="box"><p class="lbl">Nächste 24 Stunden</p><div style="display:grid;grid-template-columns:repeat(8,1fr);text-align:center;font-size:12px;gap:4px">
+<div>21<br><b style="font:600 16px Poppins">16°</b><div style="height:24px;display:flex;align-items:flex-end;justify-content:center"><i style="width:12px;height:70%;background:var(--blau)"></i></div>2 mm</div><div>0<br><b style="font:600 16px Poppins">15°</b><div style="height:24px;display:flex;align-items:flex-end;justify-content:center"><i style="width:12px;height:40%;background:var(--blau)"></i></div>1 mm</div><div>3<br><b style="font:600 16px Poppins">14°</b><div style="height:24px"></div>–</div><div>6<br><b style="font:600 16px Poppins">13°</b><div style="height:24px"></div>–</div><div>9<br><b style="font:600 16px Poppins">15°</b><div style="height:24px"></div>–</div><div>12<br><b style="font:600 16px Poppins">17°</b><div style="height:24px;display:flex;align-items:flex-end;justify-content:center"><i style="width:12px;height:20%;background:var(--blau)"></i></div>0,3</div><div>15<br><b style="font:600 16px Poppins">17°</b><div style="height:24px;display:flex;align-items:flex-end;justify-content:center"><i style="width:12px;height:30%;background:var(--blau)"></i></div>0,5</div><div>18<br><b style="font:600 16px Poppins">15°</b><div style="height:24px"></div>–</div></div></div>
+<div class="box" style="flex:1"><p class="lbl">Nächste Tage</p><div class="z"><span>Freitag</span><span>Schauer</span><b>17° / 11°</b></div><div class="z"><span>Samstag</span><span>wolkig</span><b>15° / 9°</b></div><div class="z"><span>Sonntag</span><span>sonnig</span><b>16° / 7°</b></div><div class="z"><span>Montag</span><span>Regen</span><b>13° / 9°</b></div></div>
+</div>
+<div style="position:relative"><div class="karte"><div class="radar" style="left:80px;top:60px;width:300px;height:200px;background:var(--blau)"></div><div class="radar" style="left:180px;top:120px;width:160px;height:120px;background:#185FA5"></div><div class="stadt" style="left:200px;top:200px;width:300px;height:300px"></div></div>
+<div class="zl" style="left:24px;right:24px"><b>Radar · 20:55 Uhr</b> <span style="color:var(--t2);font-size:13px">▶ abspielen</span><div class="balken" style="margin-top:8px"><i style="width:100%;background:var(--p)"></i></div></div></div>
+</div></div>
+
+<p class="cap">W2 Radar zuerst</p>
+<p>Die Karte zeigt das Radar über die ganze Fläche, die Zeitleiste spielt die letzten drei Stunden ab. Links schwebt eine kleine Karte: Wetter jetzt und „Regen in Hamm bis etwa 23 Uhr“ aus der Stundenvorhersage, darunter aktive Warnungen. Am stärksten, wenn Regen oder Gewitter kommt.</p>
+<div class="f"><div class="kopf"><div class="logo">HAM<span>:</span>LIVE</div><div class="nav"><span>Jetzt</span><span>Unterwegs</span><span>Stadt</span><span class="a">Umwelt</span><span>Karten</span></div><div class="uhr">Do 1. Oktober · 21:00</div></div>
+<div class="inh"><div class="karte"><div class="radar" style="left:380px;top:20px;width:620px;height:380px;background:var(--blau)"></div><div class="radar" style="left:560px;top:110px;width:300px;height:200px;background:#185FA5"></div><div class="radar" style="left:640px;top:160px;width:120px;height:90px;background:var(--gelb)"></div><div class="stadt" style="left:560px;top:150px;width:360px;height:330px;background:none"></div></div>
+<div class="schwebe" style="left:40px;top:20px;width:340px;padding:16px 18px"><p class="lbl">Jetzt in Hamm</p><div style="display:flex;align-items:baseline;gap:10px"><b style="font:600 40px/1 Poppins;color:var(--p)">16°</b><b style="font:600 18px Poppins">Regen</b></div>
+<div style="margin-top:12px;padding:10px 12px;background:var(--p2);font-weight:600">Regen bis etwa 23 Uhr, dann trocken</div>
+<div class="z" style="margin-top:8px"><span>Warnungen</span><b style="color:#1d7f3c">keine</b></div><div class="z"><span>Wind</span><b>9 km/h, Böen 18</b></div></div>
+<div class="zl"><div style="display:flex;gap:16px;align-items:baseline"><b style="font:600 20px Poppins">20:55 Uhr</b><span style="color:var(--t2)">Regenradar DWD</span><span class="chip an" style="margin-left:auto">Abspielen</span></div><div class="balken" style="margin-top:10px"><i style="width:100%;background:var(--p)"></i></div><div style="display:flex;justify-content:space-between;font-size:11px;color:var(--t3);margin-top:4px"><span>vor 3 h</span><span>vor 2 h</span><span>vor 1 h</span><span>jetzt</span></div></div>
+</div></div>
+
+<p class="cap">W3 Stadtklima</p>
+<p>Die drei Wetterstationen der Stadt und die Feinstaubsensoren direkt auf der Karte, mit Temperatur und Luftwert. Rechts: Unterschied Innenstadt zu Stadtrand (Wärmeinsel), Luftqualität, Lippe-Pegel. Hamm-spezifisch statt allgemeines Wetter.</p>
+<div class="f"><div class="kopf"><div class="logo">HAM<span>:</span>LIVE</div><div class="nav"><span>Jetzt</span><span>Unterwegs</span><span>Stadt</span><span class="a">Umwelt</span><span>Karten</span></div><div class="uhr">Do 1. Oktober · 21:00</div></div>
+<div class="inh" style="display:grid;grid-template-columns:1fr 380px">
+<div style="position:relative"><div class="karte"><div class="stadt" style="left:220px;top:60px;width:500px;height:520px"></div>
+<div style="position:absolute;left:420px;top:280px;background:var(--or);color:#fff;padding:6px 10px;font:600 16px Poppins">17,8°</div><div style="position:absolute;left:300px;top:160px;background:#e8a23a;color:#fff;padding:6px 10px;font:600 16px Poppins">16,1°</div><div style="position:absolute;left:600px;top:420px;background:#f0c26a;color:#412402;padding:6px 10px;font:600 16px Poppins">15,4°</div>
+<div class="pin" style="left:380px;top:360px;background:var(--g)">6</div><div class="pin" style="left:500px;top:220px;background:var(--g)">5</div><div class="pin" style="left:560px;top:330px;background:var(--gelb);color:#412402">12</div></div><div class="such">Ort, Straße, Adresse</div></div>
+<div style="padding:20px 40px 20px 20px;display:flex;flex-direction:column;gap:14px">
+<div class="box"><p class="lbl">Wärmeinsel</p><b style="font:600 34px Poppins;color:var(--or)">+2,4°</b><div style="color:var(--t2)">Innenstadt wärmer als Stadtrand (Uentrop)</div></div>
+<div class="box"><p class="lbl">Luftqualität</p><b style="font:600 22px Poppins;color:#1d7f3c">sehr gut</b><div style="color:var(--t2)">PM2,5 Mittel 7 µg/m³ · 15 Sensoren</div></div>
+<div class="box"><p class="lbl">Lippe-Pegel</p><b style="font:600 22px Poppins">53 cm, gleichbleibend</b><div style="color:var(--t2)">Woche 51–64 cm</div></div>
+<div class="box"><p class="lbl">Stationen</p><div class="z"><span>Innenstadt</span><b>17,8° · 88 %</b></div><div class="z"><span>Bockum-Hövel</span><b>16,1° · 90 %</b></div><div class="z"><span>Uentrop</span><b>15,4° · 93 %</b></div></div>
+</div></div></div>
+
+<p class="cap">W4 Tagesverlauf (Meteogramm)</p>
+<p>Ein großes, sauberes Diagramm über heute und morgen: Temperaturlinie, Regenbalken, Wind und Sonne in einer Grafik. Darunter kleine Werte: UV, Pollen, Sonnenauf- und -untergang. Radar klein rechts oben. Für die Planung des Tages.</p>
+<div class="f"><div class="kopf"><div class="logo">HAM<span>:</span>LIVE</div><div class="nav"><span>Jetzt</span><span>Unterwegs</span><span>Stadt</span><span class="a">Umwelt</span><span>Karten</span></div><div class="uhr">Do 1. Oktober · 21:00</div></div>
+<div class="inh" style="padding:24px 40px;display:grid;grid-template-columns:1fr 320px;grid-template-rows:1fr auto;gap:16px">
+<div class="box" style="position:relative"><p class="lbl">Heute und morgen</p>
+<svg viewBox="0 0 800 300" width="100%" height="300"><g stroke="#e4e7e9"><line x1="0" y1="60" x2="800" y2="60"/><line x1="0" y1="140" x2="800" y2="140"/><line x1="0" y1="220" x2="800" y2="220"/></g>
+<g fill="#378ADD"><rect x="40" y="230" width="20" height="30"/><rect x="70" y="240" width="20" height="20"/><rect x="380" y="250" width="20" height="10"/><rect x="410" y="244" width="20" height="16"/><rect x="640" y="236" width="20" height="24"/></g>
+<polyline fill="none" stroke="#e06c00" stroke-width="3" points="0,90 60,100 120,120 180,140 240,150 300,130 360,100 420,80 480,85 540,110 600,130 660,145 720,140 800,120"/>
+<line x1="60" y1="20" x2="60" y2="270" stroke="#95c11e" stroke-width="3"/><g fill="#8b9196" font-size="12"><text x="0" y="290">21</text><text x="180" y="290">3</text><text x="360" y="290">9</text><text x="540" y="290">15</text><text x="720" y="290">21</text></g></svg>
+<div style="display:flex;gap:20px;font-size:12px;color:var(--t2)"><span><span class="ampel" style="background:var(--or)"></span>Temperatur</span><span><span class="ampel" style="background:var(--blau)"></span>Regen</span><span><span class="ampel" style="background:var(--g)"></span>jetzt</span></div></div>
+<div style="position:relative;background:#e7ebe5"><div class="radar" style="left:40px;top:40px;width:200px;height:140px;background:var(--blau)"></div><span style="position:absolute;left:12px;top:10px" class="lbl">Radar jetzt</span></div>
+<div style="grid-column:1/-1;display:grid;grid-template-columns:repeat(5,1fr);gap:16px">
+<div class="box"><p class="lbl">UV-Index</p><b style="font:600 22px Poppins">0</b></div><div class="box"><p class="lbl">Pollen</p><b style="font:600 22px Poppins">keine</b></div><div class="box"><p class="lbl">Sonne</p><b style="font:600 22px Poppins">07:31 – 19:06</b></div><div class="box"><p class="lbl">Wind</p><b style="font:600 22px Poppins">9 km/h SW</b></div><div class="box"><p class="lbl">Luft</p><b style="font:600 22px Poppins;color:#1d7f3c">sehr gut</b></div></div>
+</div></div>
+
+<p class="cap">W5 Unwetter-Lage</p>
+<p>Oben ein großes Statusfeld: „Keine Warnungen“ in Grün, bei Gefahr rot mit Text des DWD. Darunter die Karte mit Warngebieten, Blitzen und Radar zusammen, rechts Pegel, Starkregen- und Hochwasser-Hinweis mit Link zur Simulation. Ruhig im Normalfall, laut bei Unwetter.</p>
+<div class="f"><div class="kopf"><div class="logo">HAM<span>:</span>LIVE</div><div class="nav"><span>Jetzt</span><span>Unterwegs</span><span>Stadt</span><span class="a">Umwelt</span><span>Karten</span></div><div class="uhr">Do 1. Oktober · 21:00</div></div>
+<div class="inh" style="display:grid;grid-template-rows:auto 1fr;gap:0">
+<div style="background:#eaf3de;border-bottom:4px solid #1d7f3c;padding:16px 40px;display:flex;align-items:center;gap:24px"><b style="font:600 24px Poppins;color:#1d7f3c">Keine Warnungen für Hamm</b><span style="color:var(--t2)">DWD und NINA · Stand 20:58 · nächste Stunden: Regen, kein Gewitter</span></div>
+<div style="display:grid;grid-template-columns:1fr 360px"><div style="position:relative"><div class="karte"><div class="radar" style="left:240px;top:40px;width:440px;height:260px;background:var(--blau)"></div><div class="stadt" style="left:300px;top:120px;width:380px;height:360px;background:none"></div></div></div>
+<div style="padding:20px 40px 20px 20px;display:flex;flex-direction:column;gap:14px"><div class="box"><p class="lbl">Blitze</p><b style="font:600 20px Poppins">keine</b><div style="color:var(--t2)">letzte Stunde, 50 km Umkreis</div></div><div class="box"><p class="lbl">Pegel</p><div class="z"><span>Lippe Kesseler</span><b>53 cm</b></div><div class="z"><span>Datteln-Hamm-Kanal</span><b>normal</b></div></div><div class="box"><p class="lbl">Wenn es ernst wird</p><div style="color:var(--t2)">Hochwasser und Starkregen in der Simulation ansehen ›</div></div></div></div>
+</div></div>
+
+</div></body></html>

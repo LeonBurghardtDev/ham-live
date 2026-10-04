@@ -1,0 +1,8 @@
+node_modules/
+dist/
+web/public/daten/
+aufzeichnung/
+local/
+daten/raw/
+web/local/
+web/.ui-pruefung/

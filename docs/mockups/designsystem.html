@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HAM:LIVE – Designsystem</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;500;600&family=Poppins:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{--p:#005468;--p2:#e6f0f2;--g:#95c11e;--g2:#eef5dc;--gelb:#f0ca00;--rot:#c4271b;--t:#16191c;--t2:#555b61;--t3:#8b9196;--l:#e4e7e9;--bg:#f3f5f6;--w:#fff}
+*{box-sizing:border-box}
+body{margin:0;padding:40px;background:#cfd4d7;font:14px/1.5 "Fira Sans",system-ui,sans-serif;color:var(--t)}
+.doc{max-width:1440px;margin:0 auto}
+.doc>h1{font:600 26px Poppins;margin:0 0 6px}.doc>p{color:var(--t2);max-width:980px;margin:0 0 8px}
+.cap{font:600 18px Poppins;margin:48px 0 6px}.cap+p{color:var(--t2);margin:0 0 12px;max-width:1000px}
+.frame{width:1440px;height:860px;background:var(--bg);box-shadow:0 4px 24px rgba(0,0,0,.18);display:flex;flex-direction:column;overflow:hidden;position:relative}
+/* Kopf */
+.kopf{height:56px;background:var(--w);display:flex;align-items:center;gap:6px;padding:0 24px 0 0;border-bottom:1px solid var(--l);flex:none;position:relative;z-index:5}
+.marke{height:100%;display:flex;align-items:center;padding:0 22px;background:var(--p);color:#fff;font:600 19px Poppins;margin-right:12px}
+.marke i{display:inline-block;width:6px;height:6px;background:var(--g);margin-left:6px}
+.gr{position:relative;height:100%;display:flex;align-items:center;padding:0 14px;font-weight:500;color:var(--t2);cursor:pointer}
+.gr.a{color:var(--p);font-weight:600}.gr.a::after{content:'';position:absolute;left:14px;right:14px;bottom:0;height:3px;background:var(--g)}
+.gr small{font-size:10px;margin-left:5px;color:var(--t3)}
+.gr .unter{font-weight:600;color:var(--t);margin-left:6px}
+.menue{position:absolute;top:56px;left:0;background:var(--w);border:1px solid var(--l);box-shadow:0 8px 24px rgba(0,0,0,.12);min-width:220px;padding:6px 0;z-index:9}
+.menue div{padding:9px 16px;display:flex;justify-content:space-between;gap:16px;color:var(--t)}
+.menue div span{color:var(--t3);font-size:12px}
+.menue div.a{background:var(--p2);color:var(--p);font-weight:600;box-shadow:inset 3px 0 0 var(--p)}
+.uhr{margin-left:auto;color:var(--t2);font-size:13px}
+/* Lagezeile – auf jeder Seite das erste Element */
+.lage{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px;padding:20px 24px 0}
+.lz{background:var(--w);padding:12px 14px;border-left:4px solid var(--t3)}
+.lz.gut{border-color:var(--g)}.lz.mit{border-color:var(--gelb)}.lz.sch{border-color:var(--rot)}
+.lz span{display:block;font:600 10.5px "Fira Sans";letter-spacing:.08em;text-transform:uppercase;color:var(--t3)}
+.lz b{display:block;font:600 19px/1.25 Poppins;margin-top:2px}
+.lz small{display:block;color:var(--t2);font-size:12px}
+/* Bausteine */
+.box{background:var(--w);padding:20px 22px}
+.lbl{font:600 10.5px "Fira Sans";letter-spacing:.08em;text-transform:uppercase;color:var(--t3);margin:0 0 4px}
+.h2{font:600 18px Poppins;margin:0 0 12px}
+.zeile{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px solid var(--l)}.zeile:last-child{border:0}
+.zeile small{color:var(--t3);display:block;font-size:12px}
+.karte{position:absolute;inset:0;background:#e7ebe5;background-image:linear-gradient(#dde2db 1px,transparent 1px),linear-gradient(90deg,#dde2db 1px,transparent 1px);background-size:48px 48px}
+.stadt{position:absolute;border:2px solid var(--p);background:rgba(255,255,255,.35)}
+.pin{position:absolute;width:22px;height:22px;border:2px solid #fff;color:#fff;font:600 11px "Fira Sans";display:flex;align-items:center;justify-content:center}
+.linie{position:absolute;height:5px}
+.such{position:absolute;left:24px;top:20px;width:360px;height:44px;background:var(--w);box-shadow:0 2px 10px rgba(0,0,0,.15);display:flex;align-items:center;padding:0 16px;color:var(--t3);z-index:3}
+.ueber{position:absolute;left:24px;top:76px;width:360px;background:var(--w);box-shadow:0 2px 10px rgba(0,0,0,.15);z-index:3}
+.ueber .kz{display:grid;grid-template-columns:repeat(3,1fr);border-bottom:1px solid var(--l)}
+.ueber .kz div{padding:12px 14px;border-right:1px solid var(--l)}.ueber .kz div:last-child{border:0}
+.ueber .kz b{display:block;font:600 22px Poppins;color:var(--p)}.ueber .kz span{font-size:12px;color:var(--t2)}
+.ueber .liste{padding:6px 16px}
+.ueber .mehr{display:block;padding:10px 16px;border-top:1px solid var(--l);color:var(--p);font-weight:600;font-size:13px}
+.schicht{position:absolute;right:24px;top:20px;background:var(--w);box-shadow:0 2px 10px rgba(0,0,0,.15);padding:6px;display:flex;gap:4px;z-index:3}
+.schicht span{padding:7px 12px;font-weight:600;font-size:13px;color:var(--t2)}.schicht span.an{background:var(--p);color:#fff}
+.legende{position:absolute;right:24px;bottom:24px;background:var(--w);padding:8px 12px;font-size:12px;display:flex;gap:14px;box-shadow:0 2px 10px rgba(0,0,0,.15);z-index:3}
+.legende i{display:inline-block;width:18px;height:5px;margin-right:6px;vertical-align:2px}
+.anmerk{position:absolute;background:var(--g);color:#173404;font:600 12px "Fira Sans";padding:3px 8px;z-index:20}
+</style>
+</head>
+<body><div class="doc">
+<h1>HAM:LIVE – ein Design für alle Seiten</h1>
+<p>Drei Regeln. Erstens: Jede Seite beginnt mit der Lagezeile (Stichwort, Einordnung, Beleg) und zeigt darunter das Wichtigste auf einen Blick, ohne Scrollen. Zweitens: Es gibt nur zwei Seitenarten, Lesen (Aktuell, Termine, Energie) und Karte (Verkehr, Wetter, Politik und so weiter), beide mit denselben Bausteinen. Drittens: Die Navigation hat fünf Gruppen mit Menü statt zwölf Tabs; die Suche steht nur auf Kartenseiten, schwebend auf der Karte.</p>
+<p>Werte sind Beispiele vom 01.10., 20 Uhr.</p>
+
+<!-- Navigation -->
+<p class="cap">1 Navigation in fünf Gruppen</p>
+<p>Jetzt (Aktuell, Termine) · Unterwegs (Verkehr, Tanken und Laden) · Stadt (Einrichtungen, Politik, Energie) · Umwelt (Wetter, Simulation) · Karten (Historisch, Eigene Karte). Die aktive Gruppe zeigt die Unterseite im Kopf, ein Klick öffnet das Menü. Keine doppelten Status-Chips mehr im Kopf, nur die Uhr.</p>
+<div class="frame" style="height:330px">
+<div class="kopf"><div class="marke">HAM:LIVE<i></i></div>
+<div class="gr">Jetzt<small>▾</small></div>
+<div class="gr a">Unterwegs <span class="unter">· Verkehr</span><small>▾</small>
+<div class="menue"><div class="a">Verkehr <span>Staus, Busse, Züge</span></div><div>Tanken und Laden <span>Sprit, Ladesäulen</span></div></div></div>
+<div class="gr">Stadt<small>▾</small></div><div class="gr">Umwelt<small>▾</small></div><div class="gr">Karten<small>▾</small></div>
+<div class="uhr">Do 1. Oktober · 20:00</div></div>
+<div style="padding:24px;color:var(--t2)">Darunter die Seite.</div>
+</div>
+
+<!-- Aktuell -->
+<p class="cap">2 Lesen: Aktuell</p>
+<p>Ein Raster mit drei Spalten. Aufmacher und zwei Meldungen mit Bild oben, darunter eine kompakte Liste nach Ressort, rechts „Heute und morgen“. Alles passt auf einen Bildschirm; „Alle Meldungen“ führt weiter. Weniger Linien, mehr Weißraum, eine Schriftgrößenleiter (40 / 22 / 15 / 13).</p>
+<div class="frame">
+<div class="kopf"><div class="marke">HAM:LIVE<i></i></div><div class="gr a">Jetzt <span class="unter">· Aktuell</span><small>▾</small></div><div class="gr">Unterwegs<small>▾</small></div><div class="gr">Stadt<small>▾</small></div><div class="gr">Umwelt<small>▾</small></div><div class="gr">Karten<small>▾</small></div><div class="uhr">Do 1. Oktober · 20:00</div></div>
+<div class="lage">
+<div class="lz mit"><span>Wetter</span><b>16° Regen</b><small>bis Mitternacht 4 mm</small></div>
+<div class="lz mit"><span>Verkehrsfluss</span><b>leicht zäh</b><small>88 % der Strecken frei</small></div>
+<div class="lz mit"><span>Bus und Bahn</span><b>5 Störungen</b><small>Baustelle Hamm (Westf)</small></div>
+<div class="lz gut"><span>Luftqualität</span><b>sehr gut</b><small>Feinstaub 7 µg/m³</small></div>
+<div class="lz gut"><span>Lippe-Pegel</span><b>normal</b><small>53 cm, gleichbleibend</small></div>
+<div class="lz sch"><span>Ökostrom im Netz</span><b>29 %</b><small>grün ab Fr 9 Uhr</small></div>
+</div>
+<div style="flex:1;display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr) 340px;gap:20px;padding:20px 24px 24px;min-height:0">
+<div class="box" style="padding:0;display:flex;flex-direction:column">
+<div style="height:300px;background:#4f6068"></div>
+<div style="padding:18px 22px"><p class="lbl">Kultur · WA · 18:15</p><div style="font:600 30px/1.18 Poppins">Helios-Theater zeigt Stück über Körper und Selbstbild</div></div>
+</div>
+<div style="display:flex;flex-direction:column;gap:20px;min-height:0">
+<div class="box" style="display:grid;grid-template-columns:120px 1fr;gap:14px;padding:16px"><div style="background:#8b7d6b"></div><div><p class="lbl">Stadt · WA · 17:00</p><b style="font:600 16px/1.3 'Fira Sans'">Fachwerkhaus von 1550 für unter 200.000 Euro verkauft</b></div></div>
+<div class="box" style="display:grid;grid-template-columns:120px 1fr;gap:14px;padding:16px"><div style="background:#7d8f6b"></div><div><p class="lbl">Kultur · WA · 14:57</p><b style="font:600 16px/1.3 'Fira Sans'">Jubiläums-Kunstwerk im Kurpark fast fertig</b></div></div>
+<div class="box" style="flex:1"><p class="lbl">Weitere Meldungen</p>
+<div class="zeile"><span>Tödlicher Unfall Werler Straße: Verfahren eingestellt<small>Blaulicht · WA · 12:10</small></span></div>
+<div class="zeile"><span>Banningstraße bekommt Asphalt statt Gleisrückbau<small>Stadt · WA · 08:30</small></span></div>
+<div class="zeile"><span>Auseinandersetzung Westhofenstraße: Polizei sucht Zeugen<small>Blaulicht · Polizei · 11:10</small></span></div>
+<div class="zeile"><span>Kunstrasen beim SVE Heessen entschieden<small>Sport · WA · 11:00</small></span></div>
+<span style="color:var(--p);font-weight:600;font-size:13px">Alle 47 Meldungen ›</span></div>
+</div>
+<div class="box"><p class="lbl">Heute und morgen</p>
+<div class="zeile"><span><b style="color:var(--p)">läuft</b>&nbsp; Benefiz-Konzert Landespolizeiorchester<small>Kurhaus Bad Hamm</small></span></div>
+<div class="zeile"><span><b style="color:var(--p)">läuft</b>&nbsp; Lippepark Light Move<small>Lippepark Herringen · bis 21 Uhr</small></span></div>
+<p class="lbl" style="margin-top:14px">Freitag</p>
+<div class="zeile"><span><b style="color:var(--p)">07:30</b>&nbsp; Wochenmarkt<small>Marktplatz</small></span></div>
+<div class="zeile"><span><b style="color:var(--p)">10:00</b>&nbsp; Herbstmarkt Land und Leute<small>Maximilianpark</small></span></div>
+<div class="zeile"><span><b style="color:var(--p)">11:00</b>&nbsp; Hammer Perspektiven<small>Glaselefant</small></span></div>
+<span style="color:var(--p);font-weight:600;font-size:13px">Alle Termine ›</span></div>
+</div>
+</div>
+
+<!-- Kartenseite -->
+<p class="cap">3 Karte: Vorlage für Verkehr, Wetter, Politik, Einrichtungen …</p>
+<p>Die Karte füllt die Seite. Oben links die Suche, darunter eine schwebende Überblickskarte: drei Kennzahlen und die drei wichtigsten Einträge, nicht scrollbar. „Alle anzeigen“ klappt die volle Liste auf. Oben rechts die Ebenen als Schalter, unten rechts die Legende. Das lange Panel links entfällt.</p>
+<div class="frame">
+<div class="kopf"><div class="marke">HAM:LIVE<i></i></div><div class="gr">Jetzt<small>▾</small></div><div class="gr a">Unterwegs <span class="unter">· Verkehr</span><small>▾</small></div><div class="gr">Stadt<small>▾</small></div><div class="gr">Umwelt<small>▾</small></div><div class="gr">Karten<small>▾</small></div><div class="uhr">Do 1. Oktober · 20:00</div></div>
+<div style="flex:1;position:relative">
+<div class="karte"><div class="stadt" style="left:560px;top:90px;width:520px;height:560px"></div>
+<div class="linie" style="left:640px;top:330px;width:200px;background:var(--rot);transform:rotate(-8deg)"></div><div class="linie" style="left:820px;top:420px;width:160px;background:var(--gelb);transform:rotate(30deg)"></div>
+<div class="pin" style="left:700px;top:310px;background:var(--rot)">!</div><div class="pin" style="left:900px;top:430px;background:var(--p)">B</div><div class="pin" style="left:760px;top:520px;background:#7a1fa2">⚡</div></div>
+<div class="such">Ort, Straße, Adresse oder Haltestelle</div>
+<div class="ueber"><div class="kz"><div><b>2,1 km</b><span>Stau in Hamm</span></div><div><b>5</b><span>Störungen Bus</span></div><div><b>+22</b><span>RE6, Minuten</span></div></div>
+<div class="liste"><div class="zeile"><span>Unfall Werler Straße, eine Spur gesperrt<small>Polizei · 17:55</small></span></div><div class="zeile"><span>B63 dicht zwischen Hamm-Nord und Hessener Str.<small>+3 min</small></span></div><div class="zeile"><span>Haltestellenausfälle Hamm (Westf)<small>Baustelle · Linien 1, 2</small></span></div></div>
+<span class="mehr">Alle 28 Meldungen ›</span></div>
+<div class="schicht"><span class="an">Verkehrslage</span><span class="an">Busse</span><span class="an">Züge</span><span>Blitzer</span><span>Baustellen</span><span>Parken</span><span>Ebenen ▾</span></div>
+<div class="legende"><span><i style="background:var(--g)"></i>frei</span><span><i style="background:var(--gelb)"></i>dicht</span><span><i style="background:#e06c00"></i>zäh</span><span><i style="background:var(--rot)"></i>Stau</span></div>
+</div></div>
+
+<!-- Energie -->
+<p class="cap">4 Lesen: Energie mit einem roten Faden</p>
+<p>Eine Frage pro Zeile, von links nach rechts gelesen. Oben der Stromfluss als ein Bild: woher der Strom kommt (links), Hamm in der Mitte, wohin er geht (rechts). Darunter zwei Verläufe (heute, zwei Jahre) und drei Vergleichszahlen in Haushalten. Gleiche Bausteine wie überall, keine Sonderdiagramme.</p>
+<div class="frame">
+<div class="kopf"><div class="marke">HAM:LIVE<i></i></div><div class="gr">Jetzt<small>▾</small></div><div class="gr">Unterwegs<small>▾</small></div><div class="gr a">Stadt <span class="unter">· Energie</span><small>▾</small></div><div class="gr">Umwelt<small>▾</small></div><div class="gr">Karten<small>▾</small></div><div class="uhr">Do 1. Oktober · 20:00</div></div>
+<div class="lage">
+<div class="lz"><span>Verbrauch Hamm</span><b>118 MW</b><small>geschätzt, heute 1.945 MWh</small></div>
+<div class="lz mit"><span>Aus Hamm selbst</span><b>20 %</b><small>23 MW, vor allem Müllheizkraftwerk</small></div>
+<div class="lz gut"><span>Solar aus Hamm</span><b>0 MW</b><small>heute 81 MWh</small></div>
+<div class="lz"><span>Wind aus Hamm</span><b>0 MW</b><small>kaum Wind</small></div>
+<div class="lz sch"><span>Ökostrom im Netz</span><b>29 %</b><small>grün ab Fr 9 Uhr</small></div>
+<div class="lz"><span>Börsenpreis</span><b>29,7 ct</b><small>günstig Fr 13:45</small></div>
+</div>
+<div style="flex:1;display:grid;grid-template-rows:minmax(0,1.15fr) minmax(0,1fr);gap:20px;padding:20px 24px 24px;min-height:0">
+<div class="box" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;align-items:center;padding:20px 28px">
+<div><p class="lbl">Woher</p>
+<div style="display:flex;flex-direction:column;gap:6px">
+<div style="display:flex;justify-content:space-between;background:#6b5843;color:#fff;padding:8px 12px;width:60%"><span>Müllheizkraftwerk</span><b>17 %</b></div>
+<div style="display:flex;justify-content:space-between;background:#1d7f3c;color:#fff;padding:5px 12px;width:28%"><span>Bio</span><b>3 %</b></div>
+<div style="height:8px"></div>
+<div style="display:flex;justify-content:space-between;background:#6b5843;opacity:.75;color:#fff;padding:8px 12px;width:66%"><span>Braunkohle</span><b>18 %</b></div>
+<div style="display:flex;justify-content:space-between;background:#95c11e;color:#173404;padding:8px 12px;width:58%"><span>Import</span><b>15 %</b></div>
+<div style="display:flex;justify-content:space-between;background:#8a8c92;color:#fff;padding:7px 12px;width:50%"><span>Erdgas</span><b>12 %</b></div>
+<div style="display:flex;justify-content:space-between;background:#005468;color:#fff;padding:9px 12px;width:62%"><span>Wind</span><b>16 %</b></div>
+<div style="display:flex;justify-content:space-between;background:#9aa1a6;color:#fff;padding:6px 12px;width:52%"><span>Rest</span><b>19 %</b></div>
+</div></div>
+<div style="text-align:center;border-left:2px solid var(--l);border-right:2px solid var(--l);padding:20px 0">
+<p class="lbl">Hamm braucht gerade</p><div style="font:600 64px/1 Poppins;color:var(--p)">118<span style="font-size:24px;color:var(--t2)"> MW</span></div>
+<p style="color:var(--t2);margin:10px 0 0">so viel wie 345.000 Haushalte</p>
+<div style="display:flex;justify-content:center;gap:10px;margin-top:18px;font-size:12px;color:var(--t2)"><span style="border-top:4px solid var(--g);padding-top:4px">aus Hamm 20 %</span><span style="border-top:4px solid #9aa1a6;padding-top:4px">aus dem Netz 80 %</span></div></div>
+<div style="padding-left:28px"><p class="lbl">Wofür</p>
+<div class="zeile"><span>Industrie</span><b>33 %</b></div><div class="zeile"><span>Gewerbe, Handel, Dienste</span><b>31 %</b></div><div class="zeile"><span>Haushalte</span><b>30 %</b></div><div class="zeile"><span>Verkehr</span><b>3 %</b></div>
+<p class="leise" style="color:var(--t3);font-size:12px;margin:8px 0 0">nach Sektoranteilen, für Hamm angepasst</p></div>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;min-height:0">
+<div class="box"><p class="lbl">Heute</p><p class="h2">Verbrauch und Erzeugung in Hamm</p><div style="display:flex;align-items:flex-end;gap:3px;height:120px">
+<i style="flex:1;height:60%;background:var(--p2);border-top:3px solid var(--p)"></i><i style="flex:1;height:55%;background:var(--p2);border-top:3px solid var(--p)"></i><i style="flex:1;height:58%;background:var(--p2);border-top:3px solid var(--p)"></i><i style="flex:1;height:75%;background:var(--p2);border-top:3px solid var(--p)"></i><i style="flex:1;height:88%;background:var(--p2);border-top:3px solid var(--p)"></i><i style="flex:1;height:92%;background:var(--p2);border-top:3px solid var(--p)"></i><i style="flex:1;height:90%;background:var(--p2);border-top:3px solid var(--p)"></i><i style="flex:1;height:86%;background:var(--p2);border-top:3px solid var(--p)"></i><i style="flex:1;height:84%;background:var(--p2);border-top:3px solid var(--p)"></i><i style="flex:1;height:80%;background:var(--p2);border-top:3px solid var(--p)"></i></div>
+<p style="font-size:12px;color:var(--t3);margin:6px 0 0">Fläche: Verbrauch · Gelb: Solar aus Hamm</p></div>
+<div class="box"><p class="lbl">Seit 2024</p><p class="h2">Solar wächst um 24 %</p><div style="display:flex;align-items:flex-end;gap:3px;height:120px">
+<i style="flex:1;height:40%;background:var(--gelb)"></i><i style="flex:1;height:44%;background:var(--gelb)"></i><i style="flex:1;height:49%;background:var(--gelb)"></i><i style="flex:1;height:55%;background:var(--gelb)"></i><i style="flex:1;height:62%;background:var(--gelb)"></i><i style="flex:1;height:70%;background:var(--gelb)"></i><i style="flex:1;height:78%;background:var(--gelb)"></i><i style="flex:1;height:86%;background:var(--gelb)"></i><i style="flex:1;height:94%;background:var(--gelb)"></i><i style="flex:1;height:100%;background:#d9b400"></i></div>
+<p style="font-size:12px;color:var(--t3);margin:6px 0 0">10.923 Anlagen, 128,8 MW · 118 neue im Monat</p></div>
+<div class="box"><p class="lbl">Zum Vergleich</p><p class="h2">In Haushalten gerechnet</p>
+<div class="zeile"><span>Eigene Erzeugung reicht gerade für</span><b>68.345</b></div>
+<div class="zeile"><span>Solarstrom heute deckt den Tag von</span><b>9.841</b></div>
+<div class="zeile"><span>Balkonkraftwerke in Hamm</span><b>3.524</b></div>
+<p style="font-size:12px;color:var(--t3);margin:6px 0 0">Wie wird geschätzt? ›</p></div>
+</div>
+</div></div>
+
+</div></body></html>

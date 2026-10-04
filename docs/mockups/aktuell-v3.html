@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aktuell – Was passiert und was heute kommt</title>
+<style>
+:root{--p:#005468;--g:#95c11e;--rot:#c4271b;--gelb:#f0ca00;--l:#dfe2e4;--f1:#f2f3f3;--t2:#5f6168;--t3:#8a8c92}
+*{box-sizing:border-box}
+body{margin:0;padding:32px;background:#d8dadb;font:14px/1.4 "Fira Sans","Segoe UI",system-ui,sans-serif;color:#1f2024}
+h1{font:600 22px Poppins,"Fira Sans",sans-serif;margin:0 0 4px}
+.lead{color:var(--t2);margin:0 0 24px;max-width:960px}
+.titel{font:600 17px Poppins,"Fira Sans",sans-serif;margin:40px 0 4px}
+.idee{color:var(--t2);margin:0 0 10px;max-width:1040px}
+.frame{width:1280px;height:780px;background:#fff;box-shadow:0 2px 12px rgba(0,0,0,.15);display:flex;flex-direction:column;overflow:hidden}
+.kopf{height:52px;display:flex;align-items:center;gap:18px;border-bottom:1px solid var(--l);flex:none}
+.marke{background:var(--p);color:#fff;height:100%;display:flex;align-items:center;padding:0 18px;font:600 18px Poppins,sans-serif;border-bottom:4px solid var(--g)}
+.such{width:240px;height:32px;background:var(--f1);color:var(--t3);display:flex;align-items:center;padding:0 10px;font-size:13px}
+.tabs{display:flex;height:100%}.tabs span{padding:0 11px;display:flex;align-items:center;color:var(--t2);font-weight:600;font-size:14px}
+.tabs .a{color:var(--p);box-shadow:inset 0 -4px 0 var(--g)}
+.leiste{height:36px;flex:none;display:flex;align-items:center;gap:22px;padding:0 20px;background:var(--f1);border-bottom:1px solid var(--l);font-size:13px;color:var(--t2)}
+.leiste b{color:#1f2024;font-weight:600}.leiste i{display:inline-block;width:8px;height:8px;margin-right:6px}
+.k{font:600 11px "Fira Sans";letter-spacing:.06em;text-transform:uppercase;color:var(--t2)}
+.h{font:600 18px Poppins,sans-serif;color:var(--p)}
+.mel{padding:12px 0;border-bottom:1px solid var(--l);display:grid;grid-template-columns:52px minmax(0,1fr);gap:12px}
+.mel:last-child{border:0}
+.mel time{color:var(--t3);font-size:13px;padding-top:2px}
+.mel b{font-weight:600;font-size:15px;display:block;line-height:1.3}
+.mel small{color:var(--t3);font-size:12px;display:block;margin-top:3px}
+.q{display:inline-block;font:600 11px "Fira Sans";padding:1px 5px;margin-right:6px;color:#fff;background:var(--p)}
+.q.pol{background:#2b3a55}.q.stadt{background:#5a6b2a}.q.wa{background:#6b6e73}
+.ort{color:var(--p)}
+.ag{display:grid;grid-template-columns:52px minmax(0,1fr);gap:12px;padding:9px 0;border-bottom:1px solid var(--l)}
+.ag time{font:600 14px "Fira Sans";color:var(--p)}
+.ag small{display:block;color:var(--t3);font-size:12px}
+.karte{background:#e9ebe6;position:relative;overflow:hidden;background-image:linear-gradient(#dfe2dc 1px,transparent 1px),linear-gradient(90deg,#dfe2dc 1px,transparent 1px);background-size:40px 40px}
+.grenze{position:absolute;border:2px solid var(--p);background:rgba(255,255,255,.35)}
+.pin{position:absolute;width:20px;height:20px;color:#fff;font:600 11px "Fira Sans";display:flex;align-items:center;justify-content:center;border:2px solid #fff;background:var(--p)}
+.pin.e{background:var(--g);color:#173404}
+.mehr{color:var(--p);font-weight:600;font-size:13px;margin-top:8px}
+</style>
+</head>
+<body>
+<h1>Tab Aktuell – „Was passiert“ und „Was heute kommt“</h1>
+<p class="lead">Echte Schlagzeilen vom 01.10. (WA, Stadt Hamm); Orte der Unfälle und einige Termine (Kino, Kabarett, Wochenmarkt, Kindertheater) sind Beispiele. Status (Wetter, Verkehr, Bahn) steht nur noch in einer schmalen Leiste und nur mit Abweichungen. Gleiche Ereignisse aus mehreren Quellen werden zu einer Meldung zusammengefasst („2 Quellen“). Reihenfolge: neu und Hamm-weit vor alt und lokal; Blaulicht nur mit Ortsbezug Hamm.</p>
+
+<!-- A -->
+<p class="titel">A Zwei Spalten – links was passiert, rechts was heute noch kommt</p>
+<p class="idee">Links der Nachrichtenstrom der Stadt, rechts die Agenda ab jetzt. Ganz unten rechts eine kleine Karte: Fährt man über eine Meldung oder einen Termin, zeigt sie den Ort.</p>
+<div class="frame">
+<div class="kopf"><div class="marke">HAM:LIVE</div><div class="such">Ort, Straße, Adresse</div><div class="tabs"><span class="a">Aktuell</span><span>Verkehr</span><span>Tanken und Laden</span><span>Wegweiser</span><span>Wetter</span><span>Politik</span><span>Simulation</span><span>Historisch</span></div></div>
+<div class="leiste"><span><b>17°</b> Regen ab 19 Uhr</span><span><i style="background:var(--rot)"></i>Auffahrunfall Hammer Straße</span><span><i style="background:var(--gelb)"></i>RE6 +22 min</span><span>sonst alles normal</span><span style="margin-left:auto">Do 1. Oktober · 18:55</span></div>
+<div style="flex:1;display:grid;grid-template-columns:minmax(0,1fr) 420px;min-height:0">
+<div style="padding:18px 28px;overflow:hidden">
+<div class="h" style="margin-bottom:4px">Was passiert</div>
+<div class="mel"><time>18:15</time><div><b>Helios-Theater zeigt Stück über Körper und Selbstbild</b><small><span class="q wa">WA</span>Kultur · <span class="ort">Helios-Theater</span></small></div></div>
+<div class="mel"><time>18:07</time><div><b>Prozess um tödlichen Motorradunfall endet mild</b><small><span class="q wa">WA</span>Justiz</small></div></div>
+<div class="mel"><time>17:00</time><div><b>Fachwerkhaus von 1550 für unter 200.000 Euro verkauft</b><small><span class="q wa">WA</span>Eines der ältesten Häuser der Stadt</small></div></div>
+<div class="mel"><time>14:57</time><div><b>Kunstwerk zum Stadtjubiläum im Kurpark fast fertig</b><small><span class="q wa">WA</span>40.000 Euro · <span class="ort">Kurpark</span></small></div></div>
+<div class="mel"><time>10:05</time><div><b>Seniorin fährt auf wartende Autos auf, zwei Verletzte</b><small><span class="q pol">Polizei</span><span class="q wa">WA</span>2 Quellen · <span class="ort">Hammer Straße</span></small></div></div>
+<div class="mel"><time>09:04</time><div><b>Pedelec-Fahrer kollidiert mit Auto, schwer verletzt</b><small><span class="q pol">Polizei</span>Blaulicht</small></div></div>
+<div class="mel"><time>Di</time><div><b>Fahrradparkhaus in der City eröffnet</b><small><span class="q stadt">Stadt</span>Mobilität · <span class="ort">Innenstadt</span></small></div></div>
+</div>
+<div style="border-left:1px solid var(--l);padding:18px 22px;display:flex;flex-direction:column;min-height:0">
+<div class="h" style="margin-bottom:4px">Heute noch</div>
+<div class="ag"><time>19:00</time><div>Konzert Landespolizeiorchester<small>Kurhaus Bad Hamm</small></div></div>
+<div class="ag"><time>19:30</time><div>„Nicht perfekt genug?“<small>Helios-Theater</small></div></div>
+<div class="ag"><time>20:00</time><div>Kino: Sneak Preview<small>Cineplex</small></div></div>
+<div class="k" style="margin-top:16px">Morgen</div>
+<div class="ag"><time>07:00</time><div>Wochenmarkt<small>Marktplatz, bis 13 Uhr</small></div></div>
+<div class="ag" style="border:0"><time>16:00</time><div>Kindertheater „Gute Nacht, Carola“<small>Stadtbücherei</small></div></div>
+<div class="karte" style="flex:1;margin-top:10px;min-height:150px"><div class="grenze" style="left:60px;top:20px;width:260px;height:150px"></div><div class="pin" style="left:170px;top:70px">!</div></div>
+</div>
+</div></div>
+
+<!-- B -->
+<p class="titel">B Karte der Stadt – wo etwas passiert und wo heute etwas los ist</p>
+<p class="idee">Die Karte zeigt nur Meldungen mit Ort (Petrol) und Termine von heute (Grün). Links eine Liste, gegliedert nach „Neu“, „Heute Abend“, „Diese Woche“. Meldungen ohne Ort stehen nur in der Liste.</p>
+<div class="frame">
+<div class="kopf"><div class="marke">HAM:LIVE</div><div class="such">Ort, Straße, Adresse</div><div class="tabs"><span class="a">Aktuell</span><span>Verkehr</span><span>Tanken und Laden</span><span>Wegweiser</span><span>Wetter</span><span>Politik</span><span>Simulation</span><span>Historisch</span></div></div>
+<div class="leiste"><span><b>17°</b> Regen ab 19 Uhr</span><span><i style="background:var(--rot)"></i>Auffahrunfall Hammer Straße</span><span><i style="background:var(--gelb)"></i>RE6 +22 min</span><span style="margin-left:auto">Do 1. Oktober · 18:55</span></div>
+<div style="flex:1;display:grid;grid-template-columns:440px minmax(0,1fr);min-height:0">
+<div style="padding:16px 22px;border-right:1px solid var(--l);overflow:hidden">
+<div class="k">Neu</div>
+<div class="mel"><time>18:15</time><div><b>Helios-Theater: Stück über Körper und Selbstbild</b><small><span class="q wa">WA</span>Kultur</small></div></div>
+<div class="mel"><time>17:00</time><div><b>Fachwerkhaus von 1550 verkauft</b><small><span class="q wa">WA</span>unter 200.000 Euro</small></div></div>
+<div class="mel"><time>14:57</time><div><b>Jubiläums-Kunstwerk im Kurpark fast fertig</b><small><span class="q wa">WA</span>40.000 Euro</small></div></div>
+<div class="mel"><time>10:05</time><div><b>Auffahrunfall, zwei Verletzte</b><small><span class="q pol">Polizei</span><span class="q wa">WA</span>Hammer Straße</small></div></div>
+<div class="k" style="margin-top:12px">Heute Abend</div>
+<div class="ag"><time>19:00</time><div>Konzert Landespolizeiorchester<small>Kurhaus</small></div></div>
+<div class="ag"><time>19:30</time><div>„Nicht perfekt genug?“<small>Helios-Theater</small></div></div>
+<div class="k" style="margin-top:12px">Diese Woche</div>
+<div class="ag" style="border:0"><time>So</time><div>Chorkonzert<small>11.10. · Pauluskirche</small></div></div>
+</div>
+<div class="karte"><div class="grenze" style="left:140px;top:60px;width:520px;height:520px"></div>
+<div class="pin" style="left:400px;top:300px">1</div><div class="pin" style="left:470px;top:260px">2</div><div class="pin" style="left:330px;top:350px">4</div>
+<div class="pin e" style="left:520px;top:240px">K</div><div class="pin e" style="left:360px;top:290px">T</div>
+<div style="position:absolute;right:16px;top:16px;background:#fff;padding:8px 10px;font-size:12px;box-shadow:0 1px 4px rgba(0,0,0,.15)"><div><span class="pin" style="position:static;display:inline-flex;width:14px;height:14px;border:0;vertical-align:-2px"></span> Meldung</div><div style="margin-top:4px"><span class="pin e" style="position:static;display:inline-flex;width:14px;height:14px;border:0;vertical-align:-2px"></span> Termin heute</div></div>
+</div>
+</div></div>
+
+<!-- C -->
+<p class="titel">C Magazin – Aufmacher, Ressorts, Agenda</p>
+<p class="idee">Oben die wichtigste Geschichte des Tages groß (meistgemeldet oder Stadt-weit), darunter Ressorts Stadt, Blaulicht, Kultur, Sport mit je drei Meldungen. Rechts eine durchgehende Agenda „Heute und morgen“. Ressorts ohne neue Meldung fallen weg.</p>
+<div class="frame">
+<div class="kopf"><div class="marke">HAM:LIVE</div><div class="such">Ort, Straße, Adresse</div><div class="tabs"><span class="a">Aktuell</span><span>Verkehr</span><span>Tanken und Laden</span><span>Wegweiser</span><span>Wetter</span><span>Politik</span><span>Simulation</span><span>Historisch</span></div></div>
+<div class="leiste"><span><b>17°</b> Regen ab 19 Uhr</span><span><i style="background:var(--rot)"></i>Auffahrunfall Hammer Straße</span><span><i style="background:var(--gelb)"></i>RE6 +22 min</span><span style="margin-left:auto">Do 1. Oktober · 18:55</span></div>
+<div style="flex:1;display:grid;grid-template-columns:minmax(0,1fr) 340px;min-height:0">
+<div style="padding:20px 28px;overflow:hidden">
+<div style="display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:24px;padding-bottom:18px;border-bottom:3px solid var(--p)">
+<div><span class="q stadt">Stadt</span><span class="q wa">WA</span><span class="leise" style="color:var(--t3);font-size:12px">2 Quellen · seit Di</span>
+<div style="font:600 28px/1.15 Poppins;color:var(--p);margin:8px 0">Innenstadt 2040: Zukunftsplan steht, Fahrradparkhaus eröffnet</div>
+<div style="color:var(--t2);font-size:15px">Über 130 Bürgerinnen und Bürger haben am ISEK mitgearbeitet; Parteien schließen einen Innenstadt-Konsens.</div></div>
+<div class="karte" style="height:170px"><div class="pin" style="left:140px;top:70px">!</div></div>
+</div>
+<div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin-top:16px">
+<div><div class="h" style="font-size:15px;margin-bottom:4px">Stadt</div><div class="ag" style="grid-template-columns:1fr"><div>Fachwerkhaus von 1550 verkauft<small>WA · 17:00</small></div></div><div class="ag" style="grid-template-columns:1fr"><div>Neues Baugebiet geht weiter<small>WA · 14:45</small></div></div><div class="ag" style="grid-template-columns:1fr;border:0"><div>Hitzeaktionsplan unter Top 5<small>Stadt · Di</small></div></div></div>
+<div><div class="h" style="font-size:15px;margin-bottom:4px">Blaulicht</div><div class="ag" style="grid-template-columns:1fr"><div>Auffahrunfall, zwei Verletzte<small>Polizei, WA · 10:05</small></div></div><div class="ag" style="grid-template-columns:1fr"><div>Pedelec-Fahrer schwer verletzt<small>Polizei · 09:04</small></div></div><div class="ag" style="grid-template-columns:1fr;border:0"><div>Prozess um Motorradunfall endet mild<small>WA · 18:07</small></div></div></div>
+<div><div class="h" style="font-size:15px;margin-bottom:4px">Kultur und Sport</div><div class="ag" style="grid-template-columns:1fr"><div>Helios-Theater: neues Stück<small>WA · 18:15</small></div></div><div class="ag" style="grid-template-columns:1fr"><div>Kunstwerk im Kurpark fast fertig<small>WA · 14:57</small></div></div><div class="ag" style="grid-template-columns:1fr;border:0"><div>Kunstrasen SVE Heessen entschieden<small>WA · 11:00</small></div></div></div>
+</div>
+</div>
+<div style="border-left:1px solid var(--l);padding:20px 22px">
+<div class="h" style="margin-bottom:4px">Heute und morgen</div>
+<div class="ag"><time>19:00</time><div>Konzert Landespolizeiorchester<small>Kurhaus</small></div></div>
+<div class="ag"><time>19:30</time><div>„Nicht perfekt genug?“<small>Helios-Theater</small></div></div>
+<div class="k" style="margin-top:14px">Freitag</div>
+<div class="ag"><time>07:00</time><div>Wochenmarkt<small>Marktplatz</small></div></div>
+<div class="ag"><time>16:00</time><div>Kindertheater<small>Stadtbücherei</small></div></div>
+<div class="ag" style="border:0"><time>20:00</time><div>Kabarett<small>Kulturrevier Radbod</small></div></div>
+</div>
+</div></div>
+
+</body>
+</html>

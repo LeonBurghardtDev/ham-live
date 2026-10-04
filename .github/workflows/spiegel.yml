@@ -1,7 +1,7 @@
 name: GitHub-Spiegel
 
 # Läuft nur auf der privaten Git-Instanz (nicht auf GitHub selbst): Jeder Push auf den Branch github-mirror wird unverändert nach GitHub (main) geschoben.
-# Repo-Variable GITHUB_SPIEGEL_REPO (z. B. benutzer/ham-live), Repo-Secret GITHUB_SPIEGEL_TOKEN
+# Repo-Variable SPIEGEL_REPO (z. B. benutzer/ham-live), Repo-Secret SPIEGEL_TOKEN
 # (GitHub Fine-grained Token, nur dieses Repo, Contents: Read and write).
 on:
   push:
@@ -20,5 +20,5 @@ jobs:
       - name: Nach GitHub schieben
         run: |
           set -eu
-          git push "https://x-access-token:${{ secrets.GITHUB_SPIEGEL_TOKEN }}@github.com/${{ vars.GITHUB_SPIEGEL_REPO }}.git" HEAD:main
+          git push "https://x-access-token:${{ secrets.SPIEGEL_TOKEN }}@github.com/${{ vars.SPIEGEL_REPO }}.git" HEAD:main
           echo "Gespiegelt: $(git log -1 --format='%h %s')"

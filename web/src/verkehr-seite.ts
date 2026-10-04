@@ -110,7 +110,7 @@ export function achsenBerechnen(fc: GeoJSON.FeatureCollection | undefined) {
 const FARBE = { frei: '#95c11e', dicht: '#f0ca00', zaeh: '#e06c00', stau: '#c4271b' }
 const TEXT = { frei: 'frei', dicht: 'dicht', zaeh: 'zähfließend', stau: 'Stau' }
 
-export type VerkehrKennzahlen = { stauKm?: number; bahn?: string; baustellen?: number; veraltetSeit?: string }
+export type VerkehrKennzahlen = { stauKm?: number; bahn?: string; baustellen?: number; veraltetSeit?: string; ohneLage?: boolean }
 
 /** Überblick oben im Panel des Tabs Verkehr */
 export function verkehrUeberblickHtml(k: VerkehrKennzahlen, stoerungen: Zeile[]): string {
@@ -119,11 +119,11 @@ export function verkehrUeberblickHtml(k: VerkehrKennzahlen, stoerungen: Zeile[])
   return `<div class="vu">
     ${k.veraltetSeit ? `<p class="vu-hinweis">Verkehr.NRW liefert seit ${k.veraltetSeit} Uhr keine neue Verkehrslage. Die Farben auf der Karte stammen aus den aktuellen Staumeldungen: grün heißt keine Meldung. Hauptachsen und Stau-Kilometer entfallen so lange.</p>` : ''}
     <div class="vu-kz"><div><b>${k.stauKm == null ? '–' : zahl(k.stauKm, 1) + ' km'}</b><span>Stau und zäh</span></div><div><b>${esc(k.bahn ?? '–')}</b><span>Bahn Hamm Hbf</span></div><div><b>${k.baustellen ?? '–'}</b><span>Baustellen</span></div></div>
-    ${k.veraltetSeit ? '' : `<p class="lbl">Hauptachsen jetzt</p>
+    ${k.ohneLage ? '<p class="vu-leer">Verkehrslage und Hauptachsen stammen von Verkehr.NRW (ohne offene Lizenz) und laufen nur in privaten Installationen.</p>' : k.veraltetSeit ? '' : `<p class="lbl">Hauptachsen jetzt</p>
     <ul class="vu-achsen">${achsen.map((a) => `<li data-achse="${a.id}"><span><b>${esc(a.name)}</b><small>${a.gesperrt ? `${a.gesperrt} Abschnitt${a.gesperrt > 1 ? 'e' : ''} gesperrt` : TEXT[a.schlimmste]}${a.kmGestoert >= 0.1 ? ` · ${zahl(a.kmGestoert, 1)} km betroffen` : ''}</small></span>
       <span class="vu-wert"><b style="color:${a.verlustMin >= 1 ? FARBE[a.schlimmste] : 'var(--text2)'}">${a.verlustMin >= 0.5 ? `+${zahl(a.verlustMin)} min` : '±0'}</b><i><i style="width:${Math.max(4, (a.verlustMin / maxV) * 100).toFixed(0)}%;background:${FARBE[a.schlimmste]}"></i></i></span></li>`).join('') || '<li><span>Verkehrslage lädt …</span></li>'}</ul>`}
     <p class="lbl">Störungen in Hamm</p>${stoerungen.length ? `<ul class="vu-stoer">${stoerungen.slice(0, 4).map((z, i) => `<li class="${z.stufe ?? ''}${z.lon != null ? ' klickbar' : ''}" data-i="${i}">${esc(z.text.replace(/^Verkehrslage:\s*/, ''))}${z.klein ? `<small>${esc(z.klein)}</small>` : ''}</li>`).join('')}</ul>` : '<p class="vu-leer">Keine Staus oder Störungen gemeldet</p>'}
-    ${k.veraltetSeit ? '' : `<p class="vu-fuss">Zeitverlust je Richtung, geschätzt aus der Verkehrslage von Verkehr.NRW und angenommenen Geschwindigkeiten. Kilometer: Stadtgebiet, beide Richtungen.</p>`}
+    ${k.veraltetSeit || k.ohneLage ? '' : `<p class="vu-fuss">Zeitverlust je Richtung, geschätzt aus der Verkehrslage von Verkehr.NRW und angenommenen Geschwindigkeiten. Kilometer: Stadtgebiet, beide Richtungen.</p>`}
     <div class="vu-tag"></div>
   </div>`
 }

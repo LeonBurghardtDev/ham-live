@@ -443,7 +443,8 @@ function kennzahlen(): Kennzahl[] {
     const versp = zz.filter((x) => /\+\d+ min$/.test(x.text))
     const max = versp.map((x) => Number(/\+(\d+) min$/.exec(x.text)![1])).sort((a, b) => b - a)[0] ?? 0
     const ausfall = zz.filter((x) => /fällt aus/.test(x.text)).length
-    z.push({ name: 'Bahn Hamm Hbf', wert: ausfall ? `${ausfall} Ausfall${ausfall > 1 ? 'e' : ''}` : Number(zm[2]) ? `${zm[2]} verspätet` : 'pünktlich', klein: max ? `größte Verspätung ${versp.find((x) => x.text.endsWith(`+${max} min`))?.text}` : `${zm[1]} Züge unterwegs`, ampel: ausfall || max >= 15 ? 'schlecht' : max >= 5 ? 'mittel' : 'gut', tab: 'verkehr' })
+    // ohne Echtzeit (DB IRIS, nur privat) ist die Pünktlichkeit unbekannt
+    if (privat.an) z.push({ name: 'Bahn Hamm Hbf', wert: ausfall ? `${ausfall} Ausfall${ausfall > 1 ? 'e' : ''}` : Number(zm[2]) ? `${zm[2]} verspätet` : 'pünktlich', klein: max ? `größte Verspätung ${versp.find((x) => x.text.endsWith(`+${max} min`))?.text}` : `${zm[1]} Züge unterwegs`, ampel: ausfall || max >= 15 ? 'schlecht' : max >= 5 ? 'mittel' : 'gut', tab: 'verkehr' })
   }
   // Blitzer heute (Schwerpunkte der Stadt)
   const bl = zl('blitzer_woche').find((x) => /^heute/i.test(x.text))
@@ -601,7 +602,7 @@ function verkehrZeichnen() {
   const stoer = [...(cache.get('staumeldungen')?.zeilen ?? []).filter((z) => z.stufe !== 'info' && !/: Umland/.test(z.text)),
     ...(cache.get('verkehrslage')?.zeilen ?? []).filter((z) => (z.stufe === 'alarm' || z.stufe === 'warnung') && !/Abschnitt im Umland|^Keine aktuellen/.test(z.text)),
     ...(cache.get('lippewelle')?.zeilen ?? []).filter((z) => (z.stufe === 'alarm' || z.stufe === 'warnung') && ORT.test(z.text))]
-  el.outerHTML = `<div id="vu">${verkehrUeberblickHtml({ stauKm: verkehrVeraltet() ? undefined : stauKm(), bahn: bahn?.wert, baustellen: bs, veraltetSeit: verkehrVeraltet() }, stoer)}</div>`
+  el.outerHTML = `<div id="vu">${verkehrUeberblickHtml({ stauKm: verkehrVeraltet() || !privat.an ? undefined : stauKm(), bahn: bahn?.wert, baustellen: bs, veraltetSeit: verkehrVeraltet(), ohneLage: !privat.an }, stoer)}</div>`
   const neu = document.getElementById('vu')!
   neu.querySelectorAll<HTMLElement>('[data-achse]').forEach((li) => li.addEventListener('click', () => {
     const fc = achseLinien(li.dataset.achse!)

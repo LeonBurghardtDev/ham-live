@@ -339,7 +339,7 @@ function panelZeichnen() {
   }
   if (!tab.magazin) karteInKachel()
   if (tab.magazin) { magazinZeichnen(); return }
-  if (tab.energie) { el.innerHTML = energieSeiteHtml(energieDaten()) + FUSSZEILE; return }
+  if (tab.energie) { el.innerHTML = energieSeite() + FUSSZEILE; return }
   if (tab.quellen) { quellenZeichnen(el); return }
   if (tab.webcams) { const cams = WEBCAMS.filter((c) => erlaubt(c.lizenz)); el.innerHTML = webcamsSeiteHtml(cams) + FUSSZEILE; webcamsStopp?.(); webcamsStopp = webcamsVerdrahten(el, cams); return }
   if (tab.kalender) { el.innerHTML = kalenderHtml() + FUSSZEILE; kalenderVerdrahten(el, panelZeichnen); return }
@@ -635,6 +635,12 @@ async function verkehrTagZeichnen() {
   if (tag) tag.innerHTML = html
 }
 let energieRaf = 0
+/** Energie-Seite; fällt Energy-Charts aus, ein Hinweis statt dauerhaft „Lädt …“ */
+function energieSeite() {
+  const d = energieDaten()
+  if (!d.stromDe && /^Quelle gerade nicht erreichbar/.test(cache.get('stromDe')?.zeilen[0]?.text ?? '')) return '<div class="seite"><div class="box" style="margin:24px var(--rand)"><p class="lbl">Energie</p><h2 style="margin:4px 0 8px">Energy-Charts gerade nicht erreichbar</h2><p>Die Stromdaten für Deutschland kommen von Energy-Charts (Fraunhofer ISE). Neuer Versuch jede Minute.</p></div></div>'
+  return energieSeiteHtml(d)
+}
 let webcamsStopp: (() => void) | undefined
 /** Fußzeile der Leseseiten (Kartenseiten: Link im Kartenhinweis unten rechts) */
 const FUSSZEILE = `<footer class="fusszeile"><span>HAM:LIVE · privates Projekt, Daten aus öffentlichen Quellen, ohne Gewähr</span><a href="#quellen">Quellen, Lizenzen und rechtliche Hinweise</a></footer>`
@@ -646,7 +652,7 @@ function quellenZeichnen(el: HTMLElement) {
   el.innerHTML = quellenSeiteHtml(live, datenstand, magazin?.stand)
   if (!datenstand) void fetch('/api/datenstand').then((r) => r.json()).then((d) => { datenstand = d; if (tab.quellen) quellenZeichnen($('#tafel')) }).catch(() => { datenstand = [] })
 }
-function energieBald() { if (!energieRaf) energieRaf = requestAnimationFrame(() => { energieRaf = 0; if (tab.energie) $('#tafel').innerHTML = energieSeiteHtml(energieDaten()) + FUSSZEILE }) }
+function energieBald() { if (!energieRaf) energieRaf = requestAnimationFrame(() => { energieRaf = 0; if (tab.energie) $('#tafel').innerHTML = energieSeite() + FUSSZEILE }) }
 let magazinRaf = 0
 function magazinBald() { if (!magazinRaf) magazinRaf = requestAnimationFrame(() => { magazinRaf = 0; magazinZeichnen() }) }
 
@@ -1081,6 +1087,8 @@ async function quelleLaden(q: Quelle) {
     const vorher = cache.get(q.id)
     if (vorher?.abruf && !vorher.zeilen[0]?.text.startsWith('Quelle gerade nicht erreichbar')) karteRendern(q.id, vorher.zeilen, vorher.zaehler, q.lizenz, vorher.abruf, true)
     else karteRendern(q.id, [{ text: 'Quelle gerade nicht erreichbar', klein: String(err).slice(0, 100), stufe: 'alarm' }], '–', q.lizenz)
+    // noch nie geladen: nicht bis zum nächsten Takt (bis 15 min) warten, sondern nach einer Minute erneut versuchen
+    if (!vorher?.abruf || vorher.zeilen[0]?.text.startsWith('Quelle gerade nicht erreichbar')) setTimeout(() => void quelleLaden(q), 60000)
   }
 }
 

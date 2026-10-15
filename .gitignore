@@ -6,3 +6,5 @@ local/
 daten/raw/
 web/local/
 web/.ui-pruefung/
+__pycache__/
+*.pyc
